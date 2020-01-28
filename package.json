@@ -1,0 +1,37 @@
+{
+  "name": "ninstagram",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:server": "nodemon --exec ts-node src/index.ts -e ts,graphql",
+    "dev:client": "npm start --prefix client",
+    "dev": "concurrently npm:dev:*"
+  },
+  "author": "naamoonoo",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql-yoga": "^1.18.3",
+    "helmet": "^3.21.2",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7",
+    "typeorm": "^0.2.22"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/helmet": "0.0.45",
+    "@types/jsonwebtoken": "^8.3.7",
+    "@types/morgan": "^1.7.37",
+    "@types/node": "^13.5.1",
+    "concurrently": "^5.1.0",
+    "gql-merge": "0.0.6",
+    "graphql-to-typescript": "^0.1.2",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.5"
+  }
+}

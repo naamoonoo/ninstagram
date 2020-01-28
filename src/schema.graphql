@@ -1,0 +1,62 @@
+type Comment {
+  id: String!
+  comment: String
+  user: User
+  likes: [User]
+  comments: [Comment]
+  createAt: String!
+  updateAt: String!
+}
+
+type GetUserFeedResponse {
+  res: Boolean!
+  error: String
+}
+
+type Query {
+  GetUserFeed: GetUserFeedResponse!
+}
+
+type Feed {
+  id: String!
+  photo: String!
+  text: String
+  user: User
+  likes: [User]
+  comments: [Comment]
+  createAt: String!
+  updateAt: String!
+}
+
+type User {
+  id: String!
+  fbId: String
+  googleId: String
+  password: String!
+  firstName: String!
+  lastName: String!
+  profilePhoto: String!
+  email: Verification
+  phone: Verification
+  feeds: [Feed]
+  likes: [Feed]
+  createAt: String!
+  updateAt: String!
+}
+
+type SignUpResponse {
+  res: Boolean!
+  error: String
+}
+
+type Mutation {
+  SignUp: SignUpResponse!
+}
+
+type Verification {
+  type: String!
+  payload: String!
+  user: User
+  createAt: String!
+  updateAt: String!
+}

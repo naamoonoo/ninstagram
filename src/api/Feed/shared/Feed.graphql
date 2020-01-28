@@ -1,0 +1,10 @@
+type Feed {
+	id: String!
+	photo: String!
+	text: String
+	user: User
+	likes: [User]
+	comments: [Comment]
+	createAt: String!
+	updateAt: String!
+}

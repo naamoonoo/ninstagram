@@ -1,16 +1,19 @@
-import { GraphQLServer } from "graphql-yoga";
+import dotenv from "dotenv";
+dotenv.config();
 
-const typeDefs = `
-  type Query {
-    hello(name: String): String!
-  }
-`;
+import { Options } from "graphql-yoga";
+import { createConnection } from "typeorm";
+import app from "./app";
+import connectionOptions from "./ormConfig";
 
-const resolvers = {
-	Query: {
-		hello: (_, { name }) => `Hello ${name || "World"}`
-	}
+const appOption: Options = {
+	port: process.env.PORT || "4000",
+	playground: "/playground",
+	endpoint: "/graphql"
 };
 
-const server = new GraphQLServer({ typeDefs, resolvers });
-server.start(() => console.log("Server is running on localhost:4000"));
+createConnection(connectionOptions).then(() => {
+	app.start(appOption, () =>
+		console.log(`listening on http://localhost:${process.env.PORT || 4000}`)
+	);
+});

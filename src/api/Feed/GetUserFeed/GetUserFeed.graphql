@@ -1,0 +1,8 @@
+type GetUserFeedResponse {
+	res: Boolean!
+	error: String
+}
+
+type Query {
+	GetUserFeed:GetUserFeedResponse!
+}

@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "pretypes": "gql-merge --out-file ./src/schema.graphql ./src/api/**/*.graphql",
+    "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts",
     "dev:server": "nodemon --exec ts-node src/index.ts -e ts,graphql",
     "dev:client": "npm start --prefix client",
     "dev": "concurrently npm:dev:*"
@@ -14,8 +16,12 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "gql-merge": "0.0.6",
+    "graphql-to-typescript": "^0.1.2",
+    "graphql-tools": "^4.0.6",
     "graphql-yoga": "^1.18.3",
     "helmet": "^3.21.2",
+    "merge-graphql-schemas": "^1.7.6",
     "morgan": "^1.9.1",
     "path": "^0.12.7",
     "typeorm": "^0.2.22"
@@ -26,9 +32,8 @@
     "@types/jsonwebtoken": "^8.3.7",
     "@types/morgan": "^1.7.37",
     "@types/node": "^13.5.1",
+    "babel-runtime": "^6.26.0",
     "concurrently": "^5.1.0",
-    "gql-merge": "0.0.6",
-    "graphql-to-typescript": "^0.1.2",
     "nodemon": "^2.0.2",
     "ts-node": "^8.6.2",
     "tslint-config-prettier": "^1.18.0",

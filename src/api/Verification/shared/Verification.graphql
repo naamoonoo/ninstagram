@@ -1,0 +1,7 @@
+type Verification {
+	type: String!
+	payload: String!
+	user: User
+	createAt: String!
+	updateAt: String!
+}

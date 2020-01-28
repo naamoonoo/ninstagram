@@ -2,8 +2,7 @@ type Comment {
   id: String!
   comment: String
   user: User
-  likes: [User]
-  comments: [Comment]
+  feed: Feed
   createAt: String!
   updateAt: String!
 }
@@ -32,14 +31,15 @@ type User {
   id: String!
   fbId: String
   googleId: String
-  password: String!
   firstName: String!
   lastName: String!
+  password: String!
   profilePhoto: String!
   email: Verification
   phone: Verification
   feeds: [Feed]
   likes: [Feed]
+  comments: [Comment]
   createAt: String!
   updateAt: String!
 }
@@ -54,9 +54,11 @@ type Mutation {
 }
 
 type Verification {
+  id: String!
   type: String!
   payload: String!
   user: User
+  isVerified: Boolean!
   createAt: String!
   updateAt: String!
 }

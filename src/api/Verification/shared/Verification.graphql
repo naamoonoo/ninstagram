@@ -1,7 +1,9 @@
 type Verification {
+	id: String!
 	type: String!
 	payload: String!
 	user: User
+	isVerified: Boolean!
 	createAt: String!
 	updateAt: String!
 }

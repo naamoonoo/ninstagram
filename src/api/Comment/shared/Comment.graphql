@@ -2,8 +2,7 @@ type Comment {
 	id: String!
 	comment: String
 	user: User
-	likes: [User]
-	comments: [Comment]
+	feed: Feed
 	createAt: String!
 	updateAt: String!
 }

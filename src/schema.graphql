@@ -51,14 +51,27 @@ type SignUpResponse {
 
 type Mutation {
   SignUp: SignUpResponse!
+  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
+  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
+}
+
+type RequestVerificationResponse {
+  res: Boolean!
+  error: String
 }
 
 type Verification {
   id: String!
   type: String!
   payload: String!
+  key: String!
   user: User
   isVerified: Boolean!
   createAt: String!
   updateAt: String!
+}
+
+type ValidateVerificationResponse {
+  res: Boolean!
+  error: String
 }

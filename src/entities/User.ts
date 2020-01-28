@@ -1,4 +1,5 @@
 import {
+	BaseEntity,
 	Column,
 	CreateDateColumn,
 	Entity,
@@ -14,7 +15,7 @@ import { Feed } from "./Feed";
 import { Verification } from "./Verification";
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: string;
 

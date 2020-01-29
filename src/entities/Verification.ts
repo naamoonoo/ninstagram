@@ -9,7 +9,7 @@ import {
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
-import { EMAIL, PHONE } from "../types/constants";
+import { EMAIL, PHONE } from "../constants";
 import { User } from "./User";
 
 @Entity()

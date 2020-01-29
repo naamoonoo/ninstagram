@@ -1,0 +1,11 @@
+type RequestVerificationResponse {
+	res: Boolean!
+	error: String
+}
+
+type Mutation {
+	RequestVerification(
+		type: String!
+		payload: String!
+	): RequestVerificationResponse!
+}

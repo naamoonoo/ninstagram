@@ -1,0 +1,8 @@
+type Comment {
+	id: String!
+	comment: String
+	user: User
+	feed: Feed
+	createAt: String!
+	updateAt: String!
+}

@@ -1,0 +1,10 @@
+type Verification {
+	id: String!
+	type: String!
+	payload: String!
+	key: String!
+	user: User
+	isVerified: Boolean!
+	createAt: String!
+	updateAt: String!
+}

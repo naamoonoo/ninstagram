@@ -1,0 +1,11 @@
+type ValidateVerificationResponse {
+	res: Boolean!
+	error: String
+}
+
+type Mutation {
+	ValidateVerification(
+		payload: String!
+		key: String!
+	): ValidateVerificationResponse!
+}

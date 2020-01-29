@@ -1,0 +1,16 @@
+type User {
+	id: String!
+	fbId: String
+	googleId: String
+	firstName: String!
+	lastName: String!
+	password: String!
+	profilePhoto: String!
+	email: Verification
+	phone: Verification
+	feeds: [Feed]
+	likes: [Feed]
+	comments: [Comment]
+	createAt: String!
+	updateAt: String!
+}

@@ -1,5 +1,5 @@
-import { Verification } from "../../../entities/Verification";
 import { EMAIL, PHONE } from "../../../constants";
+import { Verification } from "../../../entities/Verification";
 import {
 	RequestVerificationMutationArgs,
 	RequestVerificationResponse

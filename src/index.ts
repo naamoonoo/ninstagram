@@ -2,18 +2,20 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { Options } from "graphql-yoga";
-import { createConnection } from "typeorm";
-import app from "./app";
-import connectionOptions from "./ormConfig";
+import server from "./server";
+import { openDBConn } from "./utils/databaseConn";
 
-const appOption: Options = {
-	port: process.env.PORT || "4000",
-	playground: "/playground",
-	endpoint: "/graphql"
+const startServer = async () => {
+	const options: Options = {
+		port: process.env.PORT || "4000",
+		playground: "/playground",
+		endpoint: "/graphql"
+	};
+
+	await openDBConn();
+	return server.start(options, () =>
+		console.log(`listening on http://localhost:${options.port}`)
+	);
 };
 
-createConnection(connectionOptions).then(() => {
-	app.start(appOption, () =>
-		console.log(`listening on http://localhost:${process.env.PORT || 4000}`)
-	);
-});
+startServer();

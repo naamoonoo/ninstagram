@@ -14,6 +14,7 @@ type GetUserFeedResponse {
 
 type Query {
   GetUserFeed: GetUserFeedResponse!
+  GetCurrentUser: GetCurrentUserResponse!
 }
 
 type Feed {
@@ -27,6 +28,31 @@ type Feed {
   updateAt: String!
 }
 
+type EmailSignInResponse {
+  res: Boolean!
+  error: String
+  token: String
+}
+
+type Mutation {
+  EmailSignIn(email: String!, password: String!): EmailSignInResponse!
+  EmailSignUp(firstName: String!, lastName: String!, password: String!, email: String!): EmailSignUpResponse!
+  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
+  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
+}
+
+type EmailSignUpResponse {
+  res: Boolean!
+  error: String
+  token: String
+}
+
+type GetCurrentUserResponse {
+  res: Boolean!
+  error: String
+  user: User
+}
+
 type User {
   id: String!
   fbId: String
@@ -35,24 +61,15 @@ type User {
   lastName: String!
   password: String!
   profilePhoto: String!
-  email: Verification
-  phone: Verification
+  email: String!
+  isEmailVerified: Boolean
+  phone: String!
+  isPhoneVerified: Boolean
   feeds: [Feed]
   likes: [Feed]
   comments: [Comment]
   createAt: String!
   updateAt: String!
-}
-
-type SignUpResponse {
-  res: Boolean!
-  error: String
-}
-
-type Mutation {
-  SignUp: SignUpResponse!
-  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
-  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
 }
 
 type RequestVerificationResponse {
@@ -65,7 +82,6 @@ type Verification {
   type: String!
   payload: String!
   key: String!
-  user: User
   isVerified: Boolean!
   createAt: String!
   updateAt: String!

@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import { Options } from "graphql-yoga";
 import server from "./server";
 import { openDBConn } from "./utils/databaseConn";
@@ -13,9 +10,7 @@ const startServer = async () => {
 	};
 
 	await openDBConn();
-	return server.start(options, () =>
-		console.log(`listening on http://localhost:${options.port}`)
-	);
+	return server.start(options);
 };
 
 startServer();

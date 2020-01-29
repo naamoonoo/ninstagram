@@ -1,8 +1,0 @@
-type SignUpResponse {
-	res: Boolean!
-	error: String
-}
-
-type Mutation {
-	SignUp:SignUpResponse!
-}

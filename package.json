@@ -4,15 +4,34 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "pretypes": "gql-merge --out-file ./src/schema.graphql ./src/api/**/*.graphql",
     "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts",
     "dev:server": "nodemon --exec ts-node src/index.ts -e ts,graphql",
     "dev:client": "npm start --prefix client",
     "dev": "NODE_ENV=development concurrently npm:dev:*"
   },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.json"
+      }
+    },
+    "testRegex": "\\.(test|spec)\\.((js|ts))$",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/__tests__/setup.ts"
+    ]
+  },
   "author": "naamoonoo",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -32,12 +51,18 @@
   "devDependencies": {
     "@types/cors": "^2.8.6",
     "@types/helmet": "0.0.45",
+    "@types/jest": "^25.1.0",
     "@types/jsonwebtoken": "^8.3.7",
     "@types/morgan": "^1.7.37",
     "@types/node": "^13.5.1",
+    "@types/supertest": "^2.0.8",
     "babel-runtime": "^6.26.0",
     "concurrently": "^5.1.0",
+    "graphql-request": "^1.8.2",
+    "jest": "^25.1.0",
     "nodemon": "^2.0.2",
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.0.0",
     "ts-node": "^8.6.2",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.5"

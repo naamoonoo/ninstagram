@@ -6,8 +6,10 @@ type User {
 	lastName: String!
 	password: String!
 	profilePhoto: String!
-	email: Verification
-	phone: Verification
+	email: String!
+	isEmailVerified: Boolean
+	phone: String!
+	isPhoneVerified: Boolean
 	feeds: [Feed]
 	likes: [Feed]
 	comments: [Comment]

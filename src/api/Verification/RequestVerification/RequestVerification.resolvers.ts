@@ -1,4 +1,4 @@
-import { EMAIL, PHONE } from "../../../constants";
+import { PHONE } from "../../../constants";
 import { Verification } from "../../../entities/Verification";
 import {
 	RequestVerificationMutationArgs,
@@ -12,10 +12,8 @@ const resolvers: Resolvers = {
 	Mutation: {
 		RequestVerification: async (
 			_,
-			args: RequestVerificationMutationArgs,
-			{ req }
+			args: RequestVerificationMutationArgs
 		): Promise<RequestVerificationResponse> => {
-			// user config
 			const { type, payload } = args;
 			try {
 				const existedVerification = await Verification.findOne({
@@ -23,22 +21,25 @@ const resolvers: Resolvers = {
 					payload
 				});
 				if (existedVerification) {
-					existedVerification.remove();
+					if (existedVerification.isVerified === false) {
+						existedVerification.remove();
+					} else {
+						return {
+							res: false,
+							error: "It already has a related user"
+						};
+					}
 				}
 				const newVerification = await Verification.create({
 					type,
 					payload
 				}).save();
+				newVerification.type = "hello";
 				const { key, payload: to } = newVerification;
 				if (type === PHONE) {
 					sendVerificationSMS(to, key);
-				} else if (type === EMAIL) {
-					await sendVerificationMail(to, key);
 				} else {
-					return {
-						res: false,
-						error: "Invalid Type"
-					};
+					await sendVerificationMail(to, key);
 				}
 				return {
 					res: true,

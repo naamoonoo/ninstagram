@@ -1,23 +1,19 @@
-import { Options } from "graphql-yoga";
 import request from "supertest";
 import server from "../../server";
-import { openDBConn } from "../../utils/databaseConn";
+import { closeDBConn } from "../../utils/databaseConn";
 
-const getApi = async (): Promise<any> => {
-	const options: Options = {
-		port: 0,
-		playground: "/playground",
-		endpoint: "/graphql"
-	};
+const app = server.getApp();
 
-	await openDBConn();
+beforeAll(async () => {
+	await server.listen();
+	console.log("is server running?");
+});
 
-	const app = await server.start(options);
-	const api = request(app)
-		.post("/graphql")
-		.set("Content-Type", "application/json")
-		.set("Accept", "application/json");
-	return api;
-};
+afterAll(async () => {
+	await closeDBConn();
+});
 
-export default getApi;
+export default request(app)
+	.post("/graphql")
+	.set("Content-Type", "application/json")
+	.set("Accept", "application/json");

@@ -1,5 +1,6 @@
+import "dotenv/config";
 process.env.NODE_ENV = "test";
 
-beforeAll(async () => {});
+beforeAll(() => {});
 
-afterAll(async () => {});
+afterAll(() => {});

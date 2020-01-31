@@ -34,7 +34,6 @@ const resolvers: Resolvers = {
 					type,
 					payload
 				}).save();
-				newVerification.type = "hello";
 				const { key, payload: to } = newVerification;
 				if (type === PHONE) {
 					sendVerificationSMS(to, key);

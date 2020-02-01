@@ -35,14 +35,17 @@ export class User extends BaseEntity {
 	@Column({ type: "text" })
 	password: string;
 
-	@Column({ type: "text" })
+	@Column({
+		type: "text",
+		default: "https://simpleicon.com/wp-content/uploads/user1.svg"
+	})
 	profilePhoto: string;
 
 	@Column() email: string;
 
 	@Column({ default: false }) isEmailVerified: boolean;
 
-	@Column() phone: string;
+	@Column({ nullable: true }) phone: string;
 
 	@Column({ default: false }) isPhoneVerified: boolean;
 

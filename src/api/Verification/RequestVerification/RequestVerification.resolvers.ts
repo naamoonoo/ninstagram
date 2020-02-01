@@ -7,6 +7,7 @@ import {
 import { Resolvers } from "../../../types/resolvers";
 import { sendVerificationMail } from "../../../utils/email";
 import { sendVerificationSMS } from "../../../utils/sms";
+import { EXISTED } from "./Errors";
 
 const resolvers: Resolvers = {
 	Mutation: {
@@ -16,19 +17,17 @@ const resolvers: Resolvers = {
 		): Promise<RequestVerificationResponse> => {
 			const { type, payload } = args;
 			try {
-				console.log(args);
 				const existedVerification = await Verification.findOne({
 					type,
 					payload
 				});
-				console.log(existedVerification);
 				if (existedVerification) {
 					if (existedVerification.isVerified === false) {
 						existedVerification.remove();
 					} else {
 						return {
 							res: false,
-							error: "It already has a related user"
+							error: EXISTED
 						};
 					}
 				}
@@ -36,7 +35,6 @@ const resolvers: Resolvers = {
 					type,
 					payload
 				}).save();
-				console.log(newVerification);
 
 				const { key, payload: to } = newVerification;
 				if (process.env.NODE_ENV === "production") {
@@ -47,7 +45,7 @@ const resolvers: Resolvers = {
 					}
 				} else {
 					console.log(
-						`[${type}] ${payload} verification code is ${key}`
+						`[${type}] ${payload} verification code is [${key}]`
 					);
 				}
 				return {

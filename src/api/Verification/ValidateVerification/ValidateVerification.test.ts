@@ -1,29 +1,24 @@
-import request from "supertest";
 import { EMAIL, PHONE } from "../../../constants";
 import { Verification } from "../../../entities/Verification";
-// import api from "../../../testUtils/api";
-import server from "../../../server";
+import { getApi } from "../../../testUtils/api";
 import "../../../testUtils/database";
-const app = server.getApp();
-
-const getQuery = (key: string, payload: string) => {
-	return `mutation {
-		ValidateVerification(key:"${key}" payload:"${payload}" ){
-			res
-			error
-		}
-	}`;
-};
+import { getQuery } from "../../../testUtils/getQuery";
 
 describe("[Verification]ValidateVerification", () => {
 	let api;
 
 	beforeEach(() => {
-		api = request(app)
-			.post("/graphql")
-			.set("Content-Type", "application/json")
-			.set("Accept", "application/json");
+		api = getApi();
 	});
+
+	const query = `mutation {
+			ValidateVerification(key:$key payload:$payload ){
+				res
+				error
+			}
+		}
+	`;
+
 	it("EMAIL validate request", async () => {
 		const variables = {
 			type: EMAIL,
@@ -36,7 +31,7 @@ describe("[Verification]ValidateVerification", () => {
 
 		const response = await api
 			.send({
-				query: getQuery(key, payload)
+				query: getQuery(query, { key, payload })
 			})
 			.expect(200)
 			.then(response => response.body.data.ValidateVerification);
@@ -58,7 +53,7 @@ describe("[Verification]ValidateVerification", () => {
 
 		const response = await api
 			.send({
-				query: getQuery(key, payload)
+				query: getQuery(query, { key, payload })
 			})
 			.expect(200)
 			.then(response => response.body.data.ValidateVerification);

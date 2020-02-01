@@ -5,6 +5,7 @@ import {
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
 import { createJWT } from "../../../utils/jwt";
+import { DB_ERROR, EXISTED } from "./Errors";
 
 const resolvers: Resolvers = {
 	Mutation: {
@@ -12,12 +13,17 @@ const resolvers: Resolvers = {
 			_,
 			args: EmailSignUpMutationArgs
 		): Promise<EmailSignUpResponse> => {
+			const { email, firstName, lastName } = args;
 			try {
-				const isExistedUser = await User.findOne({ ...args });
+				const isExistedUser = await User.findOne({
+					email,
+					firstName,
+					lastName
+				});
 				if (isExistedUser) {
 					return {
 						res: false,
-						error: "existed user, go to sign in instead",
+						error: EXISTED,
 						token: null
 					};
 				}
@@ -26,7 +32,7 @@ const resolvers: Resolvers = {
 				if (!newUser) {
 					return {
 						res: false,
-						error: "fail to sign up",
+						error: DB_ERROR,
 						token: null
 					};
 				}

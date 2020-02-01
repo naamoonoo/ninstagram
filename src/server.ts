@@ -47,5 +47,6 @@ const listen = async () => {
 
 export default {
 	getApp: () => app,
+	getServer: () => server,
 	listen
 };

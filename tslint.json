@@ -4,6 +4,7 @@
 	  "exclude": ["node_modules/**/*."]
 	},
 	"rules": {
+	"no-shadowed-variable": false,
 	  "no-console": false,
 	  "member-access": false,
 	  "object-literal-sort-keys": false,

@@ -4,13 +4,10 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
-	JoinColumn,
-	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
 import { EMAIL, PHONE } from "../constants";
-import { User } from "./User";
 
 @Entity()
 export class Verification extends BaseEntity {
@@ -28,13 +25,6 @@ export class Verification extends BaseEntity {
 
 	@Column({ type: "boolean", default: false })
 	isVerified: boolean;
-
-	@OneToOne(
-		type => User,
-		user => user.email || user.phone
-	)
-	@JoinColumn()
-	user: User;
 
 	@CreateDateColumn() createAt: string;
 

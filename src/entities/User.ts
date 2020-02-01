@@ -1,18 +1,19 @@
+import bcrypt from "bcrypt";
 import {
 	BaseEntity,
+	BeforeInsert,
+	BeforeUpdate,
 	Column,
 	CreateDateColumn,
 	Entity,
-	JoinColumn,
 	ManyToMany,
 	OneToMany,
-	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
+import { BCRYPT_ROUNDS } from "../constants";
 import { Comment } from "./Comment";
 import { Feed } from "./Feed";
-import { Verification } from "./Verification";
 
 @Entity()
 export class User extends BaseEntity {
@@ -37,25 +38,13 @@ export class User extends BaseEntity {
 	@Column({ type: "text" })
 	profilePhoto: string;
 
-	@OneToOne(
-		type => Verification,
-		verification => verification.user
-	)
-	@JoinColumn()
-	email: Verification;
+	@Column() email: string;
 
-	@Column({ type: "text" })
-	emailId: string;
+	@Column({ default: false }) isEmailVerified: boolean;
 
-	@OneToOne(
-		type => Verification,
-		verification => verification.user
-	)
-	@JoinColumn()
-	phone: Verification;
+	@Column() phone: string;
 
-	@Column({ type: "text" })
-	phoneId: string;
+	@Column({ default: false }) isPhoneVerified: boolean;
 
 	@OneToMany(
 		type => Feed,
@@ -78,4 +67,21 @@ export class User extends BaseEntity {
 	@CreateDateColumn() createAt: string;
 
 	@UpdateDateColumn() updateAt: string;
+
+	public async comparePassword(password: string): Promise<boolean> {
+		return await bcrypt.compare(this.password, password);
+	}
+
+	@BeforeInsert()
+	@BeforeUpdate()
+	async savePassword() {
+		if (this.password) {
+			const hashedPassword = await this.hashPassword(this.password);
+			this.password = hashedPassword;
+		}
+	}
+
+	private async hashPassword(password: string): Promise<string> {
+		return await bcrypt.hash(password, BCRYPT_ROUNDS);
+	}
 }

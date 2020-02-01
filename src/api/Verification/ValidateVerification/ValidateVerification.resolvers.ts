@@ -26,8 +26,10 @@ const resolvers: Resolvers = {
 						error: "Invalid key"
 					};
 				}
-				verification.isVerified = true;
-				verification.save();
+				await Verification.update(
+					{ id: verification.id },
+					{ isVerified: true }
+				);
 				// } else if (verification.type === EMAIL) {
 				// if (verification.type === PHONE) {
 				// 	await User.update(

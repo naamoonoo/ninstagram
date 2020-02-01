@@ -16,10 +16,12 @@ const resolvers: Resolvers = {
 		): Promise<RequestVerificationResponse> => {
 			const { type, payload } = args;
 			try {
+				console.log(args);
 				const existedVerification = await Verification.findOne({
 					type,
 					payload
 				});
+				console.log(existedVerification);
 				if (existedVerification) {
 					if (existedVerification.isVerified === false) {
 						existedVerification.remove();
@@ -34,11 +36,19 @@ const resolvers: Resolvers = {
 					type,
 					payload
 				}).save();
+				console.log(newVerification);
+
 				const { key, payload: to } = newVerification;
-				if (type === PHONE) {
-					sendVerificationSMS(to, key);
+				if (process.env.NODE_ENV === "production") {
+					if (type === PHONE) {
+						sendVerificationSMS(to, key);
+					} else {
+						await sendVerificationMail(to, key);
+					}
 				} else {
-					await sendVerificationMail(to, key);
+					console.log(
+						`[${type}] ${payload} verification code is ${key}`
+					);
 				}
 				return {
 					res: true,

@@ -1,11 +1,9 @@
 import { closeDBConn, openDBConn } from "../utils/databaseConn";
 
-beforeAll(async done => {
-	await openDBConn();
-	return done();
+beforeAll(async () => {
+	return await openDBConn();
 });
 
-afterAll(async done => {
-	await closeDBConn();
-	return done();
+afterAll(async () => {
+	return await closeDBConn();
 });

@@ -4,33 +4,34 @@ import api from "../../../testUtils/api";
 import "../../../testUtils/database";
 
 describe("Test api RequestVerification", () => {
-	const getQuery = (type: string, payload: string) => {
+	const getQuery = (key: string, payload: string) => {
 		return `mutation {
-			RequestVerification(type:"${type}" payload:"${payload}" ){
+			ValidateVerification(key:"${key}" payload:"${payload}" ){
 				res
 				error
 			}
 		}`;
 	};
 
-	it("PHONE valid request", async done => {
+	it("PHONE valid verification", async done => {
 		const variables = {
 			type: PHONE,
 			payload: "+330652360378"
 		};
-		const { type, payload } = variables;
+		const createdVerification = await Verification.create({
+			...variables
+		}).save();
+		const { key, payload } = createdVerification;
 
 		const response = await api
 			.send({
-				query: getQuery(type, payload)
+				query: getQuery(key, payload)
 			})
 			.expect(200)
-			.then(response => response.body.data.RequestVerification);
+			.then(response => response.body.data.ValidateVerification);
 		const { res, error } = response;
 		expect(res).toBeTruthy();
 		expect(error).toBeNull();
-		const createdRequest = await Verification.findOne({ ...variables });
-		expect(createdRequest).not.toBeUndefined();
 		done();
 	});
 
@@ -39,19 +40,20 @@ describe("Test api RequestVerification", () => {
 			type: EMAIL,
 			payload: "jnam920329@gmail.com"
 		};
-		const { type, payload } = variables;
+		const createdVerification = await Verification.create({
+			...variables
+		}).save();
+		const { key, payload } = createdVerification;
 
 		const response = await api
 			.send({
-				query: getQuery(type, payload)
+				query: getQuery(key, payload)
 			})
 			.expect(200)
-			.then(response => response.body.data.RequestVerification);
+			.then(response => response.body.data.ValidateVerification);
 		const { res, error } = response;
 		expect(res).toBeTruthy();
 		expect(error).toBeNull();
-		const createdRequest = await Verification.findOne({ ...variables });
-		expect(createdRequest).not.toBeUndefined();
 		done();
 	});
 });

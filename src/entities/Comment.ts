@@ -4,7 +4,7 @@ import {
 	CreateDateColumn,
 	Entity,
 	JoinColumn,
-	OneToMany,
+	ManyToOne,
 	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
@@ -27,7 +27,7 @@ export class Comment extends BaseEntity {
 	@JoinColumn()
 	user: User;
 
-	@OneToMany(
+	@ManyToOne(
 		type => Feed,
 		feed => feed.comments
 	)

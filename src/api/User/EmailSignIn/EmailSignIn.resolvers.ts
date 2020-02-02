@@ -5,6 +5,7 @@ import {
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
 import { createJWT } from "../../../utils/jwt";
+import { NON_EXISTED, WRONG_PASSWORD } from "./Errors";
 
 const resolvers: Resolvers = {
 	Mutation: {
@@ -18,11 +19,10 @@ const resolvers: Resolvers = {
 				if (!existedUser) {
 					return {
 						res: false,
-						error: "user not existed, go to sign up instead",
+						error: NON_EXISTED,
 						token: null
 					};
 				}
-
 				const isValidPassword = await existedUser.comparePassword(
 					password
 				);
@@ -36,7 +36,7 @@ const resolvers: Resolvers = {
 				}
 				return {
 					res: false,
-					error: "Invalid password",
+					error: WRONG_PASSWORD,
 					token: null
 				};
 			} catch (error) {

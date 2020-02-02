@@ -37,6 +37,7 @@ export class User extends BaseEntity {
 
 	@Column({
 		type: "text",
+		nullable: true,
 		default: "https://simpleicon.com/wp-content/uploads/user1.svg"
 	})
 	profilePhoto: string;
@@ -71,20 +72,21 @@ export class User extends BaseEntity {
 
 	@UpdateDateColumn() updateAt: string;
 
-	public async comparePassword(password: string): Promise<boolean> {
-		return await bcrypt.compare(this.password, password);
+	public comparePassword(password: string): Promise<boolean> {
+		return bcrypt.compare(password, this.password);
+		// compare(data: any, encrypted: string,...)
 	}
 
 	@BeforeInsert()
 	@BeforeUpdate()
-	async savePassword() {
+	async savePassword(): Promise<void> {
 		if (this.password) {
 			const hashedPassword = await this.hashPassword(this.password);
 			this.password = hashedPassword;
 		}
 	}
 
-	private async hashPassword(password: string): Promise<string> {
-		return await bcrypt.hash(password, BCRYPT_ROUNDS);
+	private hashPassword(password: string): Promise<string> {
+		return bcrypt.hash(password, BCRYPT_ROUNDS);
 	}
 }

@@ -1,3 +1,5 @@
+export const NO_JWT_ERROR = "No JWT authorized, need to login first";
+
 export const authProtector = authResolverFunction => async (
 	parent,
 	args,
@@ -5,7 +7,7 @@ export const authProtector = authResolverFunction => async (
 	info
 ) => {
 	if (!context.req.user) {
-		throw new Error("No JWT authorized, need to login first");
+		throw new Error(NO_JWT_ERROR);
 	}
 	return await authResolverFunction(parent, args, context, info);
 };

@@ -43,7 +43,7 @@ const resolvers: Resolvers = {
 					} else {
 						await sendVerificationMail(to, key);
 					}
-				} else {
+				} else if (process.env.NODE_ENV === "development") {
 					console.log(
 						`[${type}] ${payload} verification code is [${key}]`
 					);

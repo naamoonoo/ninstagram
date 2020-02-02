@@ -13,7 +13,7 @@ const connectionOptions: ConnectionOptions = {
 		process.env.NODE_ENV === "test" ? "test" : process.env.DB_DATABASE,
 	username: process.env.DB_USER,
 	password: process.env.DB_PASSWORD,
-	synchronize: process.env.NODE_ENV === "test",
+	synchronize: true,
 	dropSchema: process.env.NODE_ENV === "test"
 };
 

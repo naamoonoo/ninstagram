@@ -6,7 +6,6 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
-	ManyToMany,
 	OneToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
@@ -14,6 +13,7 @@ import {
 import { BCRYPT_ROUNDS } from "../constants";
 import { Comment } from "./Comment";
 import { Feed } from "./Feed";
+import { Like } from "./Like";
 
 @Entity()
 export class User extends BaseEntity {
@@ -56,11 +56,11 @@ export class User extends BaseEntity {
 	)
 	feeds: Feed[];
 
-	@ManyToMany(
-		type => Feed,
-		feed => feed.likes
+	@OneToMany(
+		type => Like,
+		like => like.user
 	)
-	likes: Feed[];
+	likes: Like[];
 
 	@OneToMany(
 		type => Comment,

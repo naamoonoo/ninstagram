@@ -1,5 +1,11 @@
 import "dotenv/config";
 process.env.NODE_ENV = "test";
-beforeAll(() => {});
+// import { closeDBConn, openDBConn } from "../utils/databaseConn";
 
-afterAll(() => {});
+// beforeAll(async () => {
+// 	return await openDBConn();
+// });
+
+// afterAll(async () => {
+// 	return await closeDBConn();
+// });

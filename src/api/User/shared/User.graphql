@@ -11,7 +11,7 @@ type User {
 	phone: String
 	isPhoneVerified: Boolean
 	feeds: [Feed]
-	likes: [Feed]
+	likes: [Like]
 	comments: [Comment]
 	createAt: String!
 	updateAt: String!

@@ -1,0 +1,8 @@
+type CreateLikeResponse {
+	res: Boolean!
+	error: String
+}
+
+type Mutation {
+	CreateLike(feedId: String!): CreateLikeResponse!
+}

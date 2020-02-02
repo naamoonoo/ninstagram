@@ -3,7 +3,7 @@ type Feed {
 	photo: String!
 	text: String
 	user: User
-	likes: [User]
+	likes: [Like]
 	comments: [Comment]
 	createAt: String!
 	updateAt: String!

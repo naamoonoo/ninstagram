@@ -1,0 +1,8 @@
+type CreateFeedResponse {
+	res: Boolean!
+	error: String
+}
+
+type Mutation {
+	CreateFeed(photo: String!, text: String!): CreateFeedResponse!
+}

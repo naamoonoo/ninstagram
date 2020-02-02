@@ -20,7 +20,7 @@ export class Feed extends BaseEntity {
 	@Column({ type: "text" })
 	photo: string;
 
-	@Column({ type: "text" })
+	@Column({ type: "text", nullable: true })
 	text: string;
 
 	@ManyToOne(

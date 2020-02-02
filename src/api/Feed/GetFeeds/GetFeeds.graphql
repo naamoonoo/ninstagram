@@ -1,0 +1,9 @@
+type GetFeedsResponse {
+	res: Boolean!
+	error: String
+	feeds: [Feed]
+}
+
+type Query {
+	GetFeeds(page: Int!): GetFeedsResponse!
+}

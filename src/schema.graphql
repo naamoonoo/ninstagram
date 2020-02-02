@@ -7,14 +7,34 @@ type Comment {
   updateAt: String!
 }
 
-type GetUserFeedResponse {
+type CreateFeedResponse {
   res: Boolean!
   error: String
 }
 
+type Mutation {
+  CreateFeed(photo: String!, text: String!): CreateFeedResponse!
+  EmailSignIn(email: String!, password: String!): EmailSignInResponse!
+  EmailSignUp(firstName: String!, lastName: String!, password: String!, email: String!): EmailSignUpResponse!
+  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
+  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
+}
+
+type GetFeedsResponse {
+  res: Boolean!
+  error: String
+  feeds: [Feed]
+}
+
 type Query {
+  GetFeeds(page: Int!): GetFeedsResponse!
   GetUserFeed: GetUserFeedResponse!
   GetCurrentUser: GetCurrentUserResponse!
+}
+
+type GetUserFeedResponse {
+  res: Boolean!
+  error: String
 }
 
 type Feed {
@@ -32,13 +52,6 @@ type EmailSignInResponse {
   res: Boolean!
   error: String
   token: String
-}
-
-type Mutation {
-  EmailSignIn(email: String!, password: String!): EmailSignInResponse!
-  EmailSignUp(firstName: String!, lastName: String!, password: String!, email: String!): EmailSignUpResponse!
-  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
-  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
 }
 
 type EmailSignUpResponse {

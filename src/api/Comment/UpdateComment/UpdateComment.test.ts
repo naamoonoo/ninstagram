@@ -59,6 +59,6 @@ describe("[Comment]UpdateComment", () => {
 		expect(error).toBeNull();
 		const result = await Comment.findOne({ ...variables });
 		expect(result).not.toBeUndefined();
-		expect(result).toMatchObject(variables);
+		expect(result!.comment).toBe(variables.comment);
 	});
 });

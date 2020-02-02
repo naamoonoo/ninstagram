@@ -28,8 +28,15 @@ type GetFeedsResponse {
 
 type Query {
   GetFeeds(page: Int!): GetFeedsResponse!
+  GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
   GetUserFeed: GetUserFeedResponse!
   GetCurrentUser: GetCurrentUserResponse!
+}
+
+type GetFeedsByUserResponse {
+  res: Boolean!
+  error: String
+  feeds: [Feed]
 }
 
 type GetUserFeedResponse {

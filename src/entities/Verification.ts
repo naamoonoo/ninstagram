@@ -11,7 +11,7 @@ import { EMAIL, PHONE } from "../constants";
 
 @Entity()
 export class Verification extends BaseEntity {
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
 	@Column({ type: "text", enum: { EMAIL, PHONE } })

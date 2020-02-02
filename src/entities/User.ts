@@ -17,7 +17,7 @@ import { Feed } from "./Feed";
 
 @Entity()
 export class User extends BaseEntity {
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
 	@Column({ type: "text", nullable: true, unique: true })

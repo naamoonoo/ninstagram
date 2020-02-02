@@ -1,0 +1,8 @@
+type DeleteLikeResponse {
+	res: Boolean!
+	error: String
+}
+
+type Mutation {
+	DeleteLike(feedId: String!): DeleteLikeResponse!
+}

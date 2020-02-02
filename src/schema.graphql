@@ -17,6 +17,7 @@ type Mutation {
   DeleteFeed(feedId: String!): DeleteFeedResponse!
   UpdateFeed(feedId: String!, text: String, photo: String): UpdateFeedResponse!
   CreateLike(feedId: String!): CreateLikeResponse!
+  DeleteLike(feedId: String!): DeleteLikeResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
   EmailSignUp(firstName: String!, lastName: String!, password: String!, email: String!): EmailSignUpResponse!
   RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
@@ -76,6 +77,11 @@ type UpdateFeedResponse {
 }
 
 type CreateLikeResponse {
+  res: Boolean!
+  error: String
+}
+
+type DeleteLikeResponse {
   res: Boolean!
   error: String
 }

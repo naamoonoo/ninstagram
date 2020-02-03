@@ -1,4 +1,4 @@
-import { ApolloServer } from "apollo-server-express";
+import { ApolloServer, PubSub } from "apollo-server-express";
 import cors from "cors";
 import express from "express";
 import helmet from "helmet";
@@ -15,22 +15,17 @@ app.use(helmet());
 app.use(logger("dev"));
 app.use(decodeJWT);
 
+const pubsub = new PubSub();
+// this.pubSub.ee.setMaxListeners(99); // only for dev, b/c of memory leak ???
+
 const server = new ApolloServer({
 	schema,
-	context: ({ req }) => {
-		return { req };
+	context: ({ req, connection: { context = null } = {} }) => {
+		return { context, req, pubsub };
 	}
 });
 
 server.applyMiddleware({ app });
-
-app.get("/hello", (req, res) => {
-	res.send("world!");
-});
-
-app.get("/status", (req, res) => {
-	res.send("ok");
-});
 
 const listen = async () => {
 	await openDBConn();
@@ -47,6 +42,5 @@ const listen = async () => {
 
 export default {
 	getApp: () => app,
-	getServer: () => server,
 	listen
 };

@@ -1,4 +1,4 @@
-import { PHONE } from "../../../constants";
+import { PHONE } from "../../../types/constants";
 import { Verification } from "../../../entities/Verification";
 import {
 	RequestVerificationMutationArgs,

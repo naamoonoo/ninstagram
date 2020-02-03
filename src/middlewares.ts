@@ -1,4 +1,4 @@
-import { JWT } from "./constants";
+import { JWT } from "./types/constants";
 import { verifyJWT } from "./utils/jwt";
 
 export const decodeJWT = async (req, res, next): Promise<void> => {

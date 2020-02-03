@@ -10,7 +10,7 @@ import {
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
-import { BCRYPT_ROUNDS } from "../constants";
+import { BCRYPT_ROUNDS } from "../types/constants";
 import { Comment } from "./Comment";
 import { Feed } from "./Feed";
 import { Like } from "./Like";

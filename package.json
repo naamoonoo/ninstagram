@@ -46,6 +46,7 @@
     "nodemailer": "^6.4.2",
     "path": "^0.12.7",
     "pg": "^7.17.1",
+    "subscriptions-transport-ws": "^0.9.16",
     "twilio": "^3.39.3",
     "typeorm": "^0.2.22"
   },

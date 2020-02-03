@@ -5,6 +5,7 @@ import {
 	CreateFeedResponse
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
+import { NEW_FEED_CREATED } from "../../../types/subscriptions";
 import { authProtector } from "../../../utils/authProtector";
 
 const resolvers: Resolvers = {
@@ -13,11 +14,14 @@ const resolvers: Resolvers = {
 			async (
 				_,
 				args: CreateFeedMutationArgs,
-				{ req }
+				{ req, pubsub }
 			): Promise<CreateFeedResponse> => {
 				const user: User = req.user;
 				try {
-					await Feed.create({ ...args, user }).save();
+					const newFeed = await Feed.create({ ...args, user }).save();
+					pubsub.publish(NEW_FEED_CREATED, {
+						...newFeed
+					});
 					return {
 						res: true,
 						error: null

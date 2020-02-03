@@ -1,10 +1,10 @@
-import { JWT } from "../../../constants";
 import { Comment } from "../../../entities/Comment";
 import { Feed } from "../../../entities/Feed";
 import { User } from "../../../entities/User";
 import { getApi } from "../../../testUtils/api";
 import "../../../testUtils/database";
 import { getQuery } from "../../../testUtils/getQuery";
+import { JWT } from "../../../types/constants";
 import { createJWT } from "../../../utils/jwt";
 
 describe("[Comment]UpdateComment", () => {

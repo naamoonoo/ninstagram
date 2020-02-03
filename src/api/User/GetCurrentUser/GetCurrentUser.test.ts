@@ -1,9 +1,8 @@
-import { JWT } from "../../../constants";
 import { User } from "../../../entities/User";
 import { getApi } from "../../../testUtils/api";
 import "../../../testUtils/database";
 import { getQuery } from "../../../testUtils/getQuery";
-// import { NO_JWT_ERROR } from "../../../utils/authProtector";
+import { JWT } from "../../../types/constants";
 import { createJWT } from "../../../utils/jwt";
 
 describe("[User]GetCurrentUser", () => {

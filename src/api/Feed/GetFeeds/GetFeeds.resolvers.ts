@@ -1,4 +1,4 @@
-import { FEEDS_PER_PAGE } from "../../../constants";
+import { FEEDS_PER_PAGE } from "../../../types/constants";
 import { Feed } from "../../../entities/Feed";
 import { GetFeedsQueryArgs, GetFeedsResponse } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";

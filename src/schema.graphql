@@ -96,6 +96,10 @@ type Feed {
   updateAt: String!
 }
 
+type Subscription {
+  SubscribeFeed: Feed
+}
+
 type UpdateFeedResponse {
   res: Boolean!
   error: String

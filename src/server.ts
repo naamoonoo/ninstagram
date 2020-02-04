@@ -67,7 +67,7 @@ const listen = async () => {
 	return server.listen(PORT, () => {
 		getSubscriptionServer();
 		console.log(
-			`🚀 Server ready at http://localhost:${PORT}${graphql.graphqlPath}`
+			`🚀 Server ready at http://localhost:${PORT}${graphqlServer.graphqlPath}`
 		);
 	});
 };

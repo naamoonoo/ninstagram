@@ -29,10 +29,10 @@ export class User extends BaseEntity {
 	@Column({ type: "text" })
 	firstName: string;
 
-	@Column({ type: "text" })
+	@Column({ nullable: true })
 	lastName: string;
 
-	@Column({ type: "text" })
+	@Column({ nullable: true })
 	password: string;
 
 	@Column({
@@ -42,7 +42,7 @@ export class User extends BaseEntity {
 	})
 	profilePhoto: string;
 
-	@Column() email: string;
+	@Column({ nullable: true }) email: string;
 
 	@Column({ default: false }) isEmailVerified: boolean;
 

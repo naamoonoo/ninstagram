@@ -3,10 +3,10 @@ type User {
 	fbId: String
 	googleId: String
 	firstName: String!
-	lastName: String!
-	password: String!
+	lastName: String
+	password: String
 	profilePhoto: String
-	email: String!
+	email: String
 	isEmailVerified: Boolean
 	phone: String
 	isPhoneVerified: Boolean

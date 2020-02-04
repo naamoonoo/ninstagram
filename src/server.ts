@@ -8,18 +8,22 @@ import logger from "morgan";
 import { SubscriptionServer } from "subscriptions-transport-ws";
 import { decodeJWT } from "./middlewares";
 // import path from "path";
+import authRoutes from "./routes/authRoutes";
 import schema from "./schema";
 import { JWT, SUBSCRIPTION_ENDPOINT } from "./types/constants";
 import { openDBConn } from "./utils/databaseConn";
 import { verifyJWT } from "./utils/jwt";
+import passport from "./utils/passport";
 
 const app = express();
 
 app.use(cors());
 app.use(helmet());
 app.use(logger("dev"));
+app.use(passport.initialize());
 app.use(decodeJWT);
 
+authRoutes(app);
 const PORT = process.env.PORT || "4000";
 
 const pubsub = new PubSub();

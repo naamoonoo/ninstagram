@@ -1,7 +1,11 @@
 import React from "react";
 import * as S from "./ProfileStyle";
 
-interface IProps {}
+interface IProps {
+	id: string;
+	fullName: string;
+	profilePhoto?: string;
+}
 
 const ProfilePresenter: React.FC<IProps> = () => {
 	return (

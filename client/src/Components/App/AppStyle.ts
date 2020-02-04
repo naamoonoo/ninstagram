@@ -10,5 +10,5 @@ export const Body = styled.div`
 	display: block;
 	justify-content: center;
 	align-items: center;
-	margin: 75px 20px 0 20px;
+	padding: 75px 20px 0 20px;
 `;

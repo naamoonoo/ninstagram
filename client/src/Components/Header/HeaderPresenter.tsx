@@ -4,15 +4,15 @@ import { ReactComponent as Menu } from "../../assets/icons/menu.svg";
 import { history } from "../../utils/history";
 import * as S from "./HeaderStyle";
 
-interface IProps {
-	isHome: boolean;
-}
+interface IProps {}
 
-const HeaderPresenter: React.FC<IProps> = ({ isHome }) => {
+const HeaderPresenter: React.FC<IProps> = ({}) => {
+	const isHome = false;
+	console.log(window.location.href);
 	return (
 		<S.Container>
 			{isHome && (
-				<S.Back onClick={history.goBack}>
+				<S.Back onClick={() => history.goBack()}>
 					<Back />
 				</S.Back>
 			)}

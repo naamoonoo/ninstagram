@@ -1,3 +1,4 @@
 export const Routes = {
-	HOME: "/"
+	HOME: "/",
+	NEW_PHOTO: "/new-photo"
 };

@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface IProps {
+	hovered?: boolean;
+}
+export const Container = styled.button<IProps>`
 	position: fixed;
 	bottom: 15px;
 	left: 0;
@@ -21,7 +24,7 @@ export const Container = styled.div`
 		#285aeb 90%
 	);
 	fill: black;
-	opacity: 0.1;
+	opacity: ${props => (props.hovered ? 1 : 0.1)};
 
 	/* shadow */
 	-moz-box-shadow: 5px 5px 5px 1px #ccc;
@@ -35,8 +38,6 @@ export const Container = styled.div`
 	&:hover {
 		cursor: pointer;
 		fill: white;
-		/* width: 50.5px;
-		height: 50.5px; */
 		opacity: 1;
 	}
 `;

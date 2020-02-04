@@ -7,19 +7,21 @@ import { ReactComponent as EditMenu } from "../../assets/icons/menu-dot.svg";
 import Profile from "../Profile";
 import * as S from "./FeedStyle";
 
-interface IProps {}
+interface IProps {
+	photo: string;
+	text: string;
+	user: any;
+}
 
-const FeedPresenter: React.FC<IProps> = () => {
+const FeedPresenter: React.FC<IProps> = ({ photo, text, user }) => {
 	const liked = false;
 	return (
 		<S.Container>
 			<S.Header>
-				<Profile />
+				<Profile {...user} />
 				<S.Time>2h</S.Time>
 			</S.Header>
-			<S.Image
-				src={"https://simpleicon.com/wp-content/uploads/user1.svg"}
-			/>
+			<S.Image src={photo} />
 			<S.Infos>
 				<S.Like isLiked={liked}>
 					{liked ? <LikeFull /> : <LikeEmpty />}
@@ -31,6 +33,7 @@ const FeedPresenter: React.FC<IProps> = () => {
 					<EditMenu />
 				</S.EditMenu>
 			</S.Infos>
+			{text}
 		</S.Container>
 	);
 };

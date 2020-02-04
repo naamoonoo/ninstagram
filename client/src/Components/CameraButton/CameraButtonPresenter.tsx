@@ -6,11 +6,16 @@ import * as S from "./CameraButtonStyle";
 interface IProps {
 	onClick?: () => void;
 	className?: any;
+	hovered?: boolean;
 }
 
-const CameraButtonPresenter: React.FC<IProps> = ({ onClick, className }) => {
+const CameraButtonPresenter: React.FC<IProps> = ({
+	onClick,
+	className,
+	hovered
+}) => {
 	return (
-		<S.Container className={className}>
+		<S.Container className={className} onClick={onClick} hovered={hovered}>
 			<Camera />
 		</S.Container>
 	);

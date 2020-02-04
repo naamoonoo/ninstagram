@@ -1,52 +1,76 @@
-import { ApolloServer } from "apollo-server-express";
+import { ApolloServer, PubSub } from "apollo-server-express";
 import cors from "cors";
 import express from "express";
+import { execute, subscribe } from "graphql";
 import helmet from "helmet";
+import { createServer } from "http";
 import logger from "morgan";
+import { SubscriptionServer } from "subscriptions-transport-ws";
 import { decodeJWT } from "./middlewares";
 // import path from "path";
+import authRoutes from "./routes/authRoutes";
 import schema from "./schema";
+import { JWT, SUBSCRIPTION_ENDPOINT } from "./types/constants";
 import { openDBConn } from "./utils/databaseConn";
+import { verifyJWT } from "./utils/jwt";
+import passport from "./utils/passport";
 
 const app = express();
 
 app.use(cors());
 app.use(helmet());
 app.use(logger("dev"));
+app.use(passport.initialize());
 app.use(decodeJWT);
 
-const server = new ApolloServer({
+authRoutes(app);
+const PORT = process.env.PORT || "4000";
+
+const pubsub = new PubSub();
+
+const graphql = new ApolloServer({
 	schema,
-	context: ({ req }) => {
-		return { req };
+	context: async ({ req }) => {
+		return { req, pubsub };
+	},
+	subscriptions: {
+		path: SUBSCRIPTION_ENDPOINT
 	}
 });
 
-server.applyMiddleware({ app });
-
-app.get("/hello", (req, res) => {
-	res.send("world!");
-});
-
-app.get("/status", (req, res) => {
-	res.send("ok");
-});
+graphql.applyMiddleware({ app });
 
 const listen = async () => {
 	await openDBConn();
 
-	const PORT =
-		process.env.PORT || process.env.NODE_ENV === "test" ? "0" : "4000";
-
-	return app.listen(PORT, () => {
+	const server = createServer(app);
+	return server.listen(PORT, () => {
+		// tslint:disable-next-line: no-unused-expression
+		new SubscriptionServer(
+			{
+				execute,
+				subscribe,
+				schema,
+				onConnect: async connectionParam => {
+					const token = connectionParam[JWT];
+					if (token) {
+						const user = await verifyJWT(token);
+						return { user, pubsub };
+					}
+					throw new Error("No jwt, Can't subscribe");
+				}
+			},
+			{
+				server
+			}
+		);
 		console.log(
-			`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
+			`🚀 Server ready at http://localhost:${PORT}${graphql.graphqlPath}`
 		);
 	});
 };
 
 export default {
 	getApp: () => app,
-	getServer: () => server,
 	listen
 };

@@ -1,0 +1,8 @@
+type DeleteFeedResponse {
+	res: Boolean!
+	error: String
+}
+
+type Mutation {
+	DeleteFeed(feedId: String!): DeleteFeedResponse!
+}

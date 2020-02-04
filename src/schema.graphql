@@ -1,3 +1,43 @@
+type CreateCommentResponse {
+  res: Boolean!
+  error: String
+}
+
+type Mutation {
+  CreateComment(feedId: String!, comment: String!): CreateCommentResponse!
+  DeleteComment(commentId: String!): DeleteCommentResponse!
+  UpdateComment(commentId: String!, comment: String!): UpdateCommentResponse!
+  CreateFeed(photo: String!, text: String!): CreateFeedResponse!
+  DeleteFeed(feedId: String!): DeleteFeedResponse!
+  UpdateFeed(feedId: String!, text: String, photo: String): UpdateFeedResponse!
+  CreateLike(feedId: String!): CreateLikeResponse!
+  DeleteLike(feedId: String!): DeleteLikeResponse!
+  EmailSignIn(email: String!, password: String!): EmailSignInResponse!
+  EmailSignUp(firstName: String!, lastName: String!, password: String!, email: String!): EmailSignUpResponse!
+  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
+  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
+}
+
+type DeleteCommentResponse {
+  res: Boolean!
+  error: String
+}
+
+type GetCommentsResponse {
+  res: Boolean!
+  error: String
+  comments: [Comment]
+}
+
+type Query {
+  GetComments(feedId: String!): GetCommentsResponse!
+  GetFeed(feedId: String!): GetFeedResponse!
+  GetFeeds(page: Int!): GetFeedsResponse!
+  GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
+  GetUserFeed: GetUserFeedResponse!
+  GetCurrentUser: GetCurrentUserResponse!
+}
+
 type Comment {
   id: String!
   comment: String
@@ -7,14 +47,42 @@ type Comment {
   updateAt: String!
 }
 
-type GetUserFeedResponse {
+type UpdateCommentResponse {
   res: Boolean!
   error: String
 }
 
-type Query {
-  GetUserFeed: GetUserFeedResponse!
-  GetCurrentUser: GetCurrentUserResponse!
+type CreateFeedResponse {
+  res: Boolean!
+  error: String
+}
+
+type DeleteFeedResponse {
+  res: Boolean!
+  error: String
+}
+
+type GetFeedResponse {
+  res: Boolean!
+  error: String
+  feed: Feed
+}
+
+type GetFeedsResponse {
+  res: Boolean!
+  error: String
+  feeds: [Feed]
+}
+
+type GetFeedsByUserResponse {
+  res: Boolean!
+  error: String
+  feeds: [Feed]
+}
+
+type GetUserFeedResponse {
+  res: Boolean!
+  error: String
 }
 
 type Feed {
@@ -22,23 +90,43 @@ type Feed {
   photo: String!
   text: String
   user: User
-  likes: [User]
+  likes: [Like]
   comments: [Comment]
   createAt: String!
   updateAt: String!
+}
+
+type Subscription {
+  SubscribeFeed: Feed
+}
+
+type UpdateFeedResponse {
+  res: Boolean!
+  error: String
+}
+
+type CreateLikeResponse {
+  res: Boolean!
+  error: String
+}
+
+type DeleteLikeResponse {
+  res: Boolean!
+  error: String
+}
+
+type Like {
+  id: String!
+  user: User!
+  feed: Feed!
+  createAt: String
+  updateAt: String
 }
 
 type EmailSignInResponse {
   res: Boolean!
   error: String
   token: String
-}
-
-type Mutation {
-  EmailSignIn(email: String!, password: String!): EmailSignInResponse!
-  EmailSignUp(firstName: String!, lastName: String!, password: String!, email: String!): EmailSignUpResponse!
-  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
-  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
 }
 
 type EmailSignUpResponse {
@@ -66,7 +154,7 @@ type User {
   phone: String
   isPhoneVerified: Boolean
   feeds: [Feed]
-  likes: [Feed]
+  likes: [Like]
   comments: [Comment]
   createAt: String!
   updateAt: String!

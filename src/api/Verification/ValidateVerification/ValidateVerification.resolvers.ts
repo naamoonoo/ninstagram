@@ -1,6 +1,6 @@
-import { PHONE } from "../../../constants";
 import { User } from "../../../entities/User";
 import { Verification } from "../../../entities/Verification";
+import { PHONE } from "../../../types/constants";
 import {
 	ValidateVerificationMutationArgs,
 	ValidateVerificationResponse

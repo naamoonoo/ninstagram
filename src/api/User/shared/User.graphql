@@ -3,15 +3,15 @@ type User {
 	fbId: String
 	googleId: String
 	firstName: String!
-	lastName: String!
-	password: String!
+	lastName: String
+	password: String
 	profilePhoto: String
-	email: String!
+	email: String
 	isEmailVerified: Boolean
 	phone: String
 	isPhoneVerified: Boolean
 	feeds: [Feed]
-	likes: [Feed]
+	likes: [Like]
 	comments: [Comment]
 	createAt: String!
 	updateAt: String!

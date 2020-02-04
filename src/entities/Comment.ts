@@ -4,7 +4,7 @@ import {
 	CreateDateColumn,
 	Entity,
 	JoinColumn,
-	OneToMany,
+	ManyToOne,
 	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
@@ -14,7 +14,7 @@ import { User } from "./User";
 
 @Entity()
 export class Comment extends BaseEntity {
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
 	@Column({ type: "text", nullable: false })
@@ -27,7 +27,7 @@ export class Comment extends BaseEntity {
 	@JoinColumn()
 	user: User;
 
-	@OneToMany(
+	@ManyToOne(
 		type => Feed,
 		feed => feed.comments
 	)

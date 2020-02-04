@@ -6,18 +6,18 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
-	ManyToMany,
 	OneToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
-import { BCRYPT_ROUNDS } from "../constants";
+import { BCRYPT_ROUNDS } from "../types/constants";
 import { Comment } from "./Comment";
 import { Feed } from "./Feed";
+import { Like } from "./Like";
 
 @Entity()
 export class User extends BaseEntity {
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
 	@Column({ type: "text", nullable: true, unique: true })
@@ -29,10 +29,10 @@ export class User extends BaseEntity {
 	@Column({ type: "text" })
 	firstName: string;
 
-	@Column({ type: "text" })
+	@Column({ nullable: true })
 	lastName: string;
 
-	@Column({ type: "text" })
+	@Column({ nullable: true })
 	password: string;
 
 	@Column({
@@ -42,7 +42,7 @@ export class User extends BaseEntity {
 	})
 	profilePhoto: string;
 
-	@Column() email: string;
+	@Column({ nullable: true }) email: string;
 
 	@Column({ default: false }) isEmailVerified: boolean;
 
@@ -56,11 +56,11 @@ export class User extends BaseEntity {
 	)
 	feeds: Feed[];
 
-	@ManyToMany(
-		type => Feed,
-		feed => feed.likes
+	@OneToMany(
+		type => Like,
+		like => like.user
 	)
-	likes: Feed[];
+	likes: Like[];
 
 	@OneToMany(
 		type => Comment,

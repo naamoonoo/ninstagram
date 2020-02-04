@@ -1,0 +1,1 @@
+export const NEW_FEED_CREATED = "NEW_FEED_CREATED";

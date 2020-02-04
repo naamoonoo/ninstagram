@@ -1,0 +1,9 @@
+type GetFeedsByUserResponse {
+	res: Boolean!
+	error: String
+	feeds: [Feed]
+}
+
+type Query {
+	GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
+}

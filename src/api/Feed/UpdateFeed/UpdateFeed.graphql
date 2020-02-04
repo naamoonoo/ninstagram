@@ -1,0 +1,12 @@
+type UpdateFeedResponse {
+	res: Boolean!
+	error: String
+}
+
+type Mutation {
+	UpdateFeed(
+		feedId: String!
+		text: String
+		photo: String
+	): UpdateFeedResponse!
+}

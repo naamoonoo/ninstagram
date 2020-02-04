@@ -1,0 +1,7 @@
+type Like {
+	id: String!
+	user: User!
+	feed: Feed!
+	createAt: String
+	updateAt: String
+}

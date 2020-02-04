@@ -1,8 +1,8 @@
-import { EMAIL, PHONE } from "../../../constants";
 import { Verification } from "../../../entities/Verification";
 import { getApi } from "../../../testUtils/api";
 import "../../../testUtils/database";
 import { getQuery } from "../../../testUtils/getQuery";
+import { EMAIL, PHONE } from "../../../types/constants";
 
 describe("[api]RequestVerification", () => {
 	let api;

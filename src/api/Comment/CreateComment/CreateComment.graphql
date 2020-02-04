@@ -1,0 +1,8 @@
+type CreateCommentResponse {
+	res: Boolean!
+	error: String
+}
+
+type Mutation {
+	CreateComment(feedId: String!, comment: String!): CreateCommentResponse!
+}

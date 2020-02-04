@@ -20,7 +20,7 @@ export const sendVerificationMail = async (to: string, key: string) => {
 	// 	process.env.NODE_ENV === "development"
 	// 		? `http://localhost:4000/verification/config?to=${to}&key=${key}`
 	// 		: "";
-	const url = `http://localhost:4000/verification/config?to=${to}&key=${key}`;
+	const url = `http://localhost:3000/verification/${key}`;
 	const html = `
 		<div>your verfication key is <u>${key}</u></div>
 		<div>or click <a href=${url}>here</a> to verify your email</div>

@@ -7,11 +7,11 @@ import {
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
-import { EMAIL, PHONE } from "../constants";
+import { EMAIL, PHONE } from "../types/constants";
 
 @Entity()
 export class Verification extends BaseEntity {
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
 	@Column({ type: "text", enum: { EMAIL, PHONE } })

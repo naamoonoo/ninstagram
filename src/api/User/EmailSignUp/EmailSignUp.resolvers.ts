@@ -1,12 +1,9 @@
 import { User } from "../../../entities/User";
-import { Verification } from "../../../entities/Verification";
-import { EMAIL } from "../../../types/constants";
 import {
 	EmailSignUpMutationArgs,
 	EmailSignUpResponse
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
-import { sendVerificationMail } from "../../../utils/email";
 import { createJWT } from "../../../utils/jwt";
 import { DB_ERROR, EXISTED } from "./Errors";
 
@@ -40,13 +37,6 @@ const resolvers: Resolvers = {
 					};
 				}
 				const token = createJWT(newUser.id);
-				const newVerification = await Verification.create({
-					payload: email,
-					type: EMAIL
-				}).save();
-				if (newVerification) {
-					await sendVerificationMail(email, newVerification.key);
-				}
 				return {
 					res: true,
 					error: null,

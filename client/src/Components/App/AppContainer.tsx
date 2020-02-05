@@ -9,12 +9,14 @@ import { IS_LOGGED_IN } from "./AppQueries.local";
 import * as S from "./AppStyle";
 
 const AppContainer: React.FC = () => {
-	const { data } = useQuery(IS_LOGGED_IN);
+	const { data: { auth: { isLoggedIn = false } = {} } = {} } = useQuery(
+		IS_LOGGED_IN
+	);
 
 	return (
 		<S.Container>
 			<ThemeProvider theme={theme}>
-				<AppPresenter data={data} />
+				<AppPresenter isLoggedIn={isLoggedIn} />
 			</ThemeProvider>
 			<ToastContainer draggable={true} position={"bottom-center"} />
 		</S.Container>

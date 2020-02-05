@@ -94,13 +94,39 @@ export const Upload = styled.div`
 	min-height: 400px;
 	border-top: 1px solid lightgrey;
 	border-bottom: 1px solid lightgrey;
-	display: flex;
+	display: block;
 	align-items: center;
 	justify-content: center;
 `;
 
 export const UploadInput = styled.input`
-	opacity: 1;
-	width: 100%;
-	height: 100%;
+	color: white;
+	opacity: 0;
+	height: 180px;
+	&:focus {
+		outline: none;
+	}
+`;
+
+export const UploadLabel = styled.label`
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 28px;
+
+	&:hover {
+		filter: blur(1px);
+		-webkit-filter: blur(1px);
+		transition: filter 0.5s;
+	}
+	& img {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 160px;
+		height: 160px;
+		border-radius: 50%;
+		overflow: hidden;
+	}
 `;

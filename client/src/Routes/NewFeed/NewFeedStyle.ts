@@ -83,3 +83,15 @@ export const Image = styled.img`
 	border-bottom: 1px solid lightgrey;
 	overflow: hidden;
 `;
+
+export const TextInput = styled.input`
+	width: 100%;
+	min-height: 100px;
+	font-size: 1.1em;
+	border: none;
+	padding: 10px 20px;
+	white-space: pre-wrap;
+	&:focus {
+		border-bottom: 1px solid lightsteelblue;
+	}
+`;

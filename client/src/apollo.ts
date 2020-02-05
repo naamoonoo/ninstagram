@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 const isDev = process.env.NODE_ENV === "development";
 
 const getToken = () => {
-	const token = localStorage.getItem("X-JWT");
+	const token = localStorage.getItem("jwt-token");
 	if (token) {
 		return token;
 	} else {
@@ -24,7 +24,7 @@ const cache = new InMemoryCache();
 const authMiddleware = new ApolloLink((operation: Operation, forward: any) => {
 	operation.setContext({
 		headers: {
-			"X-JWT": getToken()
+			"jwt-token": getToken()
 		}
 	});
 	return forward(operation);
@@ -39,7 +39,7 @@ const httpLink = new HttpLink({
 const wsLink = new WebSocketLink({
 	options: {
 		connectionParams: {
-			"X-JWT": getToken()
+			"jwt-token": getToken()
 		},
 		reconnect: true
 	},
@@ -75,13 +75,13 @@ const localStateLink = withClientState({
 	defaults: {
 		auth: {
 			__typename: "Auth",
-			isLoggedIn: Boolean(localStorage.getItem("X-JWT"))
+			isLoggedIn: Boolean(localStorage.getItem("jwt-token"))
 		}
 	},
 	resolvers: {
 		Mutation: {
 			userLogIn: (_: any, { token }: any, { cache: appCache }: any) => {
-				localStorage.setItem("X-JWT", token);
+				localStorage.setItem("jwt-token", token);
 				appCache.writeData({
 					data: {
 						auth: {
@@ -93,7 +93,7 @@ const localStateLink = withClientState({
 				return null;
 			},
 			userLogOut: (_: any, __: any, { cache: appCache }: any) => {
-				localStorage.removeItem("X-JWT");
+				localStorage.removeItem("jwt-token");
 				appCache.writeData({
 					data: {
 						auth: {

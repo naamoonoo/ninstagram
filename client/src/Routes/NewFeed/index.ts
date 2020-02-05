@@ -1,3 +1,3 @@
-import NewFeedContainer from './NewFeedContainer'
+import NewFeedContainer from "./NewFeedContainer";
 
-	export default NewFeedContainer
+export default NewFeedContainer;

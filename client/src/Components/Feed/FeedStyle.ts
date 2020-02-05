@@ -40,6 +40,7 @@ export const Infos = styled.div`
 	display: flex;
 	align-items: center;
 	position: relative;
+	border-bottom: 1px solid lightgrey;
 `;
 
 interface LikeProps {
@@ -67,4 +68,13 @@ export const EditMenu = styled.div`
 	position: absolute;
 	right: 15px;
 	fill: lightgrey;
+`;
+
+export const Text = styled.span`
+	padding: 10px 20px;
+	/* font-size: 0.9em; */
+	min-height: 80px;
+	display: flex;
+	align-items: center;
+	font-weight: lighter;
 `;

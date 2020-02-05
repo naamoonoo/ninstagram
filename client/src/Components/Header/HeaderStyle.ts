@@ -20,6 +20,7 @@ export const Title = styled.div`
 	font-size: 20px;
 	color: ${props => props.theme.darkGreyColor};
 	font-weight: lighter;
+	cursor: pointer;
 `;
 
 export const Back = styled.div`

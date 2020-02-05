@@ -14,6 +14,7 @@ export const GET_FEEDS = gql`
 					firstName
 					profilePhoto
 				}
+				updateAt
 			}
 		}
 	}

@@ -12,7 +12,7 @@ interface IProps extends RouteComponentProps {
 
 const HeaderPresenter: React.FC<IProps> = ({ history, match, isLoggedIn }) => {
 	const isHome = match.url === "/feeds";
-	const path = isLoggedIn ? Routes.MY_PAGE : Routes.LOGIN;
+	const path = isLoggedIn ? Routes.USER_PAGE : Routes.LOGIN;
 	return (
 		<S.Container>
 			{!isHome && (

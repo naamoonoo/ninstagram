@@ -5,11 +5,15 @@ export const Container = styled.div`
 	align-items: center;
 `;
 
-export const ProfileImg = styled.img`
+interface IImageProps {
+	size?: string;
+}
+
+export const ProfileImg = styled.img<IImageProps>`
 	border-radius: 50%;
 	overflow: hidden;
-	width: 25px;
-	height: 25px;
+	width: ${props => props.size || "25px"};
+	height: ${props => props.size || "25px"};
 	margin: 0 10px;
 	border: 1px solid lightgrey;
 	&:hover {
@@ -17,7 +21,11 @@ export const ProfileImg = styled.img`
 	}
 `;
 
-export const Name = styled.span`
+interface INameeProps {
+	fontSize?: string;
+}
+export const Name = styled.span<INameeProps>`
+	font-size: ${props => props.fontSize || "0.9em"};
 	cursor: pointer;
 	color: darkgrey;
 	&:hover {

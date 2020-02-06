@@ -3,6 +3,9 @@ export const Routes = {
 	NEW_PHOTO: "/new-photo",
 	NEW_FEED: "/new-feed",
 	LOGIN: "/login",
-	MY_PAGE: "/my-page",
-	AUTH: "/auth/:token"
+	USER_PAGE: "/user-page",
+	USER_PAGE_FORM: "/user-page/:userId",
+	AUTH: "/auth/:token",
+	FEED: "/feed",
+	FEED_FORM: "/feed/:id"
 };

@@ -51,6 +51,7 @@ export const Like = styled.div<LikeProps>`
 	position: relative;
 	left: 15px;
 	fill: ${props => props.isLiked && "red"};
+	cursor: pointer;
 `;
 
 interface MessageProps {
@@ -62,6 +63,7 @@ export const Message = styled.div<MessageProps>`
 	left: 30px;
 	fill: ${props => props.commentShow && "grey"};
 	transform: scaleX(-1);
+	cursor: pointer;
 `;
 
 export const EditMenu = styled.div`
@@ -77,4 +79,10 @@ export const Text = styled.span`
 	display: flex;
 	align-items: center;
 	font-weight: lighter;
+`;
+
+export const Comments = styled.div`
+	border-top: 1px solid lightgrey;
+	width: 100%;
+	padding: 5px 10px;
 `;

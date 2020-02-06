@@ -8,19 +8,40 @@ interface IProps {
 	data: any;
 	onReachToEnd: () => void;
 	history: any;
+	onLike: any;
+	onDisLike: any;
+	userData: any;
 }
-
-const renderFeed = (feeds: any[]) => {
-	return feeds.map(feed => {
-		return <Feed key={feed.id} {...feed} />;
-	});
-};
 
 const FeedsPresenter: React.FC<IProps> = ({
 	data: { GetFeeds: { feeds = [] } = {} } = {},
 	onReachToEnd,
-	history
+	history,
+	onLike,
+	onDisLike,
+	userData: { GetCurrentUser: { user = {} } = {} } = {}
 }) => {
+	const renderFeed = (feeds: any[]) => {
+		return feeds.map(feed => {
+			const liked =
+				user &&
+				user.likes &&
+				user.likes.findIndex((like: any) => like.feedId === feed.id) >=
+					0;
+			return (
+				<Feed
+					key={feed.id}
+					{...feed}
+					onLike={onLike}
+					onDisLike={onDisLike}
+					liked={liked}
+				/>
+			);
+		});
+	};
+
+	console.log(user);
+	// console.log(user.likes.inclues())
 	window.onscroll = () => {
 		if (
 			window.innerHeight + document.documentElement.scrollTop ===
@@ -32,7 +53,7 @@ const FeedsPresenter: React.FC<IProps> = ({
 
 	return (
 		<S.Container>
-			{renderFeed(feeds)}
+			{user && feeds && renderFeed(feeds)}
 			<CameraButton onClick={() => history.push(Routes.NEW_PHOTO)} />
 		</S.Container>
 	);

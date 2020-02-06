@@ -6,6 +6,7 @@ import NewFeed from "../../Routes/NewFeed";
 import NewPhoto from "../../Routes/NewPhoto";
 import { Routes } from "../../Routes/routes";
 import SocialLogin from "../../Routes/SocialLogin";
+import UserPage from "../../Routes/UserPage";
 import Header from "../Header";
 import * as S from "./AppStyle";
 
@@ -29,6 +30,12 @@ const AppPresenter: React.FC<IProps> = ({ isLoggedIn }) => {
 					<Route path={Routes.NEW_FEED} component={NewFeed} />
 					<Route path={Routes.LOGIN} component={Login} />
 					<Route path={Routes.AUTH} component={SocialLogin} />
+					<Route path={Routes.USER_PAGE_FORM} component={UserPage} />
+					<Route
+						path={Routes.USER_PAGE}
+						exact={true}
+						component={UserPage}
+					/>
 					{/* <Redirect path={"*"} to={Routes.HOME} /> */}
 				</S.Body>
 			</BrowserRouter>

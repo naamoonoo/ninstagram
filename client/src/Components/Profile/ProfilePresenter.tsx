@@ -1,7 +1,7 @@
 import React from "react";
-import * as S from "./ProfileStyle";
-import { forceHistory } from "../../utils/history";
 import { Routes } from "../../Routes/routes";
+import { forceHistory } from "../../utils/history";
+import * as S from "./ProfileStyle";
 
 interface IProps {
 	id: string;

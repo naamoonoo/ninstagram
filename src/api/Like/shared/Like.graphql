@@ -2,6 +2,8 @@ type Like {
 	id: String!
 	user: User!
 	feed: Feed!
+	feedId: String
+	userId: String
 	createAt: String
 	updateAt: String
 }

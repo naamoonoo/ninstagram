@@ -2,7 +2,7 @@ import { Express } from "express";
 import passport from "../utils/passport";
 
 const url =
-	process.env.NODE_ENV === "developement"
+	process.env.NODE_ENV === "development"
 		? "http://localhost:3000"
 		: "https://project-ninstagram.heroku.com";
 

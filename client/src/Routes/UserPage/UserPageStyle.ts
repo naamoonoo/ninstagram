@@ -40,3 +40,11 @@ export const Image = styled.img`
 		height: auto;
 	} */
 `;
+
+export const Logout = styled.button`
+	border: none;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background-color: darkred;
+`;

@@ -6,11 +6,15 @@ import * as S from "./UserPageStyle";
 interface IProps {
 	userData: any;
 	history: any;
+	isCurrentUser: boolean;
+	logOutMutation: any;
 }
 
 const UserPagePresenter: React.FC<IProps> = ({
 	userData: { GetUserById: { user = {} } = {} } = {},
-	history
+	history,
+	isCurrentUser,
+	logOutMutation
 }) => {
 	const renderPhotos = (feeds: any[]) => {
 		return feeds.map(feed => {
@@ -31,6 +35,9 @@ const UserPagePresenter: React.FC<IProps> = ({
 			<S.PhotoContainer>
 				{user.feeds && renderPhotos(user.feeds)}
 			</S.PhotoContainer>
+			{isCurrentUser && (
+				<S.Logout onClick={() => logOutMutation()}>Logout</S.Logout>
+			)}
 		</S.Container>
 	);
 };

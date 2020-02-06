@@ -18,7 +18,7 @@ const resolvers: Resolvers = {
 				const user: User = req.user;
 				const { feedId } = args;
 				try {
-					Like.delete({ user, feedId });
+					Like.delete({ userId: user.id, feedId });
 					return {
 						res: true,
 						error: null

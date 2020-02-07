@@ -7,8 +7,8 @@ import { createServer } from "http";
 import logger from "morgan";
 import { SubscriptionServer } from "subscriptions-transport-ws";
 import { decodeJWT } from "./middlewares";
-// import path from "path";
 import authRoutes from "./routes/authRoutes";
+import prodRoutes from "./routes/prodRoutes";
 import schema from "./schema";
 import { JWT, SUBSCRIPTION_ENDPOINT } from "./types/constants";
 import { openDBConn } from "./utils/databaseConn";
@@ -16,6 +16,8 @@ import { verifyJWT } from "./utils/jwt";
 import passport from "./utils/passport";
 
 const app = express();
+const PORT = process.env.PORT || "4000";
+const pubsub = new PubSub();
 
 app.use(cors());
 app.use(helmet());
@@ -24,11 +26,9 @@ app.use(passport.initialize());
 app.use(decodeJWT);
 
 authRoutes(app);
-const PORT = process.env.PORT || "4000";
+prodRoutes(app);
 
-const pubsub = new PubSub();
-
-const graphql = new ApolloServer({
+const graphqlServer = new ApolloServer({
 	schema,
 	context: async ({ req }) => {
 		return { req, pubsub };
@@ -38,14 +38,13 @@ const graphql = new ApolloServer({
 	}
 });
 
-graphql.applyMiddleware({ app });
+graphqlServer.applyMiddleware({ app });
 
 const listen = async () => {
 	await openDBConn();
 
 	const server = createServer(app);
-	return server.listen(PORT, () => {
-		// tslint:disable-next-line: no-unused-expression
+	const getSubscriptionServer = () =>
 		new SubscriptionServer(
 			{
 				execute,
@@ -64,8 +63,11 @@ const listen = async () => {
 				server
 			}
 		);
+
+	return server.listen(PORT, () => {
+		getSubscriptionServer();
 		console.log(
-			`🚀 Server ready at http://localhost:${PORT}${graphql.graphqlPath}`
+			`🚀 Server ready at http://localhost:${PORT}${graphqlServer.graphqlPath}`
 		);
 	});
 };

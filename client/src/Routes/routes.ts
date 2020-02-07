@@ -1,0 +1,11 @@
+export const Routes = {
+	HOME: "/feeds",
+	NEW_PHOTO: "/new-photo",
+	NEW_FEED: "/new-feed",
+	LOGIN: "/login",
+	USER_PAGE: "/user-page",
+	USER_PAGE_FORM: "/user-page/:userId",
+	AUTH: "/auth/:token",
+	FEED: "/feed",
+	FEED_FORM: "/feed/:id"
+};

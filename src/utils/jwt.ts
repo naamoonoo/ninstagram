@@ -13,9 +13,12 @@ export const verifyJWT = async (token: string): Promise<User | undefined> => {
 		);
 		if (verifyResult && verifyResult.id) {
 			const { id } = verifyResult;
-			const user = await User.findOne({
-				id
-			});
+			const user = await User.findOne(
+				{
+					id
+				},
+				{ relations: ["likes"] }
+			);
 			return user;
 		}
 		return undefined;

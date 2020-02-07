@@ -1,6 +1,11 @@
 import { Express } from "express";
 import passport from "../utils/passport";
 
+const url =
+	process.env.NODE_ENV === "development"
+		? "http://localhost:3000"
+		: "https://project-ninstagram.heroku.com";
+
 export default (app: Express) => {
 	app.get("/api/auth/facebook", passport.authenticate("facebook"));
 
@@ -10,7 +15,7 @@ export default (app: Express) => {
 			session: false
 		}),
 		(req, res) => {
-			res.redirect(`http://localhost:3000/auth/${req.authInfo}`);
+			res.redirect(`${url}/auth/${req.authInfo}`);
 		}
 	);
 
@@ -23,7 +28,7 @@ export default (app: Express) => {
 			failureRedirect: "/api/auth/google"
 		}),
 		(req, res) => {
-			res.redirect(`http://localhost:3000/auth/${req.authInfo}`);
+			res.redirect(`${url}/auth/${req.authInfo}`);
 		}
 	);
 };

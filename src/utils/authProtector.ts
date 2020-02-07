@@ -1,4 +1,4 @@
-export const NO_JWT_ERROR = "No JWT authorized, need to login first";
+export const NO_JWT_ERROR = "To fully enjoy ninstagram, please Login first :)";
 
 export const authProtector = authResolverFunction => async (
 	parent,

@@ -34,15 +34,17 @@ type Query {
   GetFeed(feedId: String!): GetFeedResponse!
   GetFeeds(page: Int!): GetFeedsResponse!
   GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
-  GetUserFeed: GetUserFeedResponse!
   GetCurrentUser: GetCurrentUserResponse!
+  GetUserById(userId: String!): GetUserByIdResponse!
 }
 
 type Comment {
   id: String!
   comment: String
   user: User
+  userId: String
   feed: Feed
+  feedId: String
   createAt: String!
   updateAt: String!
 }
@@ -80,11 +82,6 @@ type GetFeedsByUserResponse {
   feeds: [Feed]
 }
 
-type GetUserFeedResponse {
-  res: Boolean!
-  error: String
-}
-
 type Feed {
   id: String!
   photo: String!
@@ -119,6 +116,8 @@ type Like {
   id: String!
   user: User!
   feed: Feed!
+  feedId: String
+  userId: String
   createAt: String
   updateAt: String
 }
@@ -141,15 +140,21 @@ type GetCurrentUserResponse {
   user: User
 }
 
+type GetUserByIdResponse {
+  res: Boolean!
+  error: String
+  user: User
+}
+
 type User {
   id: String!
   fbId: String
   googleId: String
   firstName: String!
-  lastName: String!
-  password: String!
+  lastName: String
+  password: String
   profilePhoto: String
-  email: String!
+  email: String
   isEmailVerified: Boolean
   phone: String
   isPhoneVerified: Boolean

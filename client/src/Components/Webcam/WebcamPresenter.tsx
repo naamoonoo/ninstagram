@@ -29,6 +29,7 @@ const WebcamPresenter: React.FC<IProps> = ({ onCapture }) => {
 				width={"100%"}
 				screenshotFormat="image/jpeg"
 				videoConstraints={videoConstraints}
+				mirrored={true}
 			/>
 			<CameraButton onClick={capture} hovered={true} />
 		</React.Fragment>

@@ -7,5 +7,6 @@ export const Routes = {
 	USER_PAGE_FORM: "/user-page/:userId",
 	AUTH: "/auth/:token",
 	FEED: "/feed",
-	FEED_FORM: "/feed/:id"
+	FEED_FORM: "/feed/:id",
+	SIGN_UP: "sign-up"
 };

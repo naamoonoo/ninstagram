@@ -1,12 +1,20 @@
-import React from 'react';
-	import LoginPresenter from './LoginPresenter';
+import React from "react";
+import { useMultiInputs } from "../../utils/hooks";
+import LoginPresenter from "./LoginPresenter";
 
-	const LoginContainer: React.FC = () => {
+const LoginContainer: React.FC = () => {
+	const [inputs, onChangeInput, inputLabels] = useMultiInputs([
+		"email",
+		"password"
+	]);
 
-		return (
-				<LoginPresenter />
-		);
-	};
+	return (
+		<LoginPresenter
+			inputs={inputs}
+			onChangeHandler={onChangeInput}
+			inputLabels={inputLabels}
+		/>
+	);
+};
 
-	export default LoginContainer;
-	
+export default LoginContainer;

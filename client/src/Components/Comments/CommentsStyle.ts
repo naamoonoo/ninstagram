@@ -43,7 +43,11 @@ export const DeleteButton = styled.div`
 	fill: darkred;
 	opacity: 0.3;
 	transform: all 1s linear;
+	border-radius: 50%;
+	overflow: hidden;
 	& :hover {
-		opacity: 0.2;
+		opacity: 1;
+		border-radius: 50%;
+		background-color: lightgrey;
 	}
 `;

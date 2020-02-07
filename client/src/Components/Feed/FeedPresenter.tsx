@@ -18,7 +18,7 @@ interface IProps {
 	liked?: boolean;
 	onLike?: any;
 	onDisLike?: any;
-	comments?: any[];
+	isCurrentUser?: boolean;
 }
 
 const FeedPresenter: React.FC<IProps> = ({
@@ -31,7 +31,7 @@ const FeedPresenter: React.FC<IProps> = ({
 	liked,
 	onLike,
 	onDisLike,
-	comments
+	isCurrentUser
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const [isDbClicked, setIsDbClicked] = useState(false);
@@ -72,7 +72,7 @@ const FeedPresenter: React.FC<IProps> = ({
 				>
 					{commentShow ? <CommentFull /> : <CommentEmpty />}
 				</S.Message>
-				{isHovered && (
+				{isHovered && isCurrentUser && (
 					<S.EditMenu>
 						<EditMenu />
 					</S.EditMenu>

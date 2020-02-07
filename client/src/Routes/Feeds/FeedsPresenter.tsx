@@ -35,6 +35,7 @@ const FeedsPresenter: React.FC<IProps> = ({
 					onLike={onLike}
 					onDisLike={onDisLike}
 					liked={liked}
+					isCurrentUser={user.id === feed.user.id}
 				/>
 			);
 		});

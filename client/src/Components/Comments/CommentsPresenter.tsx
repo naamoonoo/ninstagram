@@ -25,7 +25,7 @@ const CommentsPresenter: React.FC<IProps> = ({
 			<S.CommentContainer key={id}>
 				<Profile {...commentUser} />
 				<S.Text>{comment}</S.Text>
-				{user.id === commentUser.id && (
+				{user && user.id === commentUser.id && (
 					<S.DeleteButton
 						onClick={() =>
 							deleteCommentMuataion({

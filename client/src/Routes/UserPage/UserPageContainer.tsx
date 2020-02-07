@@ -5,7 +5,6 @@ import { GET_CURRENT_USER } from "../../SharedQueries";
 import { USER_LOG_OUT } from "../../SharedQueries.local";
 import UserPagePresenter from "./UserPagePresenter";
 import { GET_USER_BY_ID } from "./UserPageQueries";
-import { Routes } from "../routes";
 
 interface IParams {
 	userId: string;
@@ -22,22 +21,16 @@ const UserPageContainer: React.FC<IProps> = ({
 	useQuery(GET_CURRENT_USER, {
 		onCompleted: ({
 			GetCurrentUser: {
-				res,
 				user: { id }
 			}
 		}) => {
-			if (res) {
-				getUserByIdQuery({
-					variables: {
-						userId: userId || id
-					}
-				});
-			} else {
-				history.push(Routes.HOME);
-			}
+			getUserByIdQuery({
+				variables: {
+					userId: userId || id
+				}
+			});
 		}
 	});
-
 	const [logOutMutation] = useMutation(USER_LOG_OUT);
 
 	return (

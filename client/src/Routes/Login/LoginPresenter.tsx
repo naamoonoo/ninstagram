@@ -8,12 +8,16 @@ interface IProps {
 	inputs: any;
 	inputLabels: string[];
 	onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	isLogin: boolean;
+	onSubmitHandler: any;
 }
 
 const LoginPresenter: React.FC<IProps> = ({
 	inputs,
 	onChangeHandler,
-	inputLabels
+	inputLabels,
+	isLogin,
+	onSubmitHandler
 }) => {
 	const renderInputs = (inputs: any, inputLabels: string[]) => {
 		return inputLabels.map(label => (
@@ -26,11 +30,18 @@ const LoginPresenter: React.FC<IProps> = ({
 		));
 	};
 
+	const head = isLogin ? "LOGIN" : "SIGN UP";
+	const text = isLogin ? "sign up" : "login";
+	const routes = isLogin ? Routes.SIGN_UP : Routes.LOGIN;
 	return (
 		<S.Container>
-			<S.Header>LOGIN</S.Header>
-			<S.Form>{renderInputs(inputs, inputLabels)}</S.Form>
-			<S.Button color="darkgrey">Login</S.Button>
+			<S.Header>{head}</S.Header>
+			<S.Form onSubmit={onSubmitHandler}>
+				{renderInputs(inputs, inputLabels)}
+			</S.Form>
+			<S.Button color="darkgrey" onClick={onSubmitHandler}>
+				{head}
+			</S.Button>
 			<S.Button
 				color="#DB4437"
 				onClick={() => forceHistory.push("/api/auth/google")}
@@ -43,7 +54,7 @@ const LoginPresenter: React.FC<IProps> = ({
 			>
 				facebook
 			</S.Button>
-			<S.LinkExtend to={Routes.SIGN_UP}>or go to sign up</S.LinkExtend>
+			<S.LinkExtend to={routes}>or go to {text}</S.LinkExtend>
 		</S.Container>
 	);
 };

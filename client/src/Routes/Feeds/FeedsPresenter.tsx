@@ -1,5 +1,7 @@
 import React from "react";
+import { ReactComponent as ToTop } from "../../assets/icons/TopButton.svg";
 import CameraButton from "../../Components/CameraButton";
+
 import Feed from "../../Components/Feed";
 import { Routes } from "../routes";
 import * as S from "./FeedsStyle";
@@ -11,6 +13,8 @@ interface IProps {
 	onLike: any;
 	onDisLike: any;
 	userData: any;
+	newFeed: boolean;
+	setNewFeed: any;
 }
 
 const FeedsPresenter: React.FC<IProps> = ({
@@ -19,7 +23,9 @@ const FeedsPresenter: React.FC<IProps> = ({
 	history,
 	onLike,
 	onDisLike,
-	userData: { GetCurrentUser: { user = {} } = {} } = {}
+	userData: { GetCurrentUser: { user = {} } = {} } = {},
+	newFeed,
+	setNewFeed
 }) => {
 	const renderFeed = (feeds: any[]) => {
 		return feeds.map(feed => {
@@ -50,8 +56,18 @@ const FeedsPresenter: React.FC<IProps> = ({
 		}
 	};
 
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0 });
+		setNewFeed(false);
+	};
+
 	return (
 		<S.Container>
+			{newFeed && (
+				<S.NewFeed onClick={scrollToTop}>
+					<ToTop width={200} height={50} />
+				</S.NewFeed>
+			)}
 			{user && feeds && renderFeed(feeds)}
 			{user && user.id && (
 				<CameraButton onClick={() => history.push(Routes.NEW_PHOTO)} />

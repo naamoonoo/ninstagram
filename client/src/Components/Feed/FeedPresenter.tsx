@@ -4,7 +4,9 @@ import { ReactComponent as CommentFull } from "../../assets/icons/comment-full.s
 import { ReactComponent as LikeEmpty } from "../../assets/icons/like-empty.svg";
 import { ReactComponent as LikeFull } from "../../assets/icons/like-full.svg";
 import { ReactComponent as EditMenu } from "../../assets/icons/menu-dot.svg";
+import { Routes } from "../../Routes/routes";
 import { getTimeDiff } from "../../utils/getTimeDiff";
+import { forceHistory } from "../../utils/history";
 import Comments from "../Comments";
 import Profile from "../Profile";
 import * as S from "./FeedStyle";
@@ -19,6 +21,8 @@ interface IProps {
 	onLike?: any;
 	onDisLike?: any;
 	isCurrentUser?: boolean;
+	unfoldComment?: boolean;
+	isUpdate?: boolean;
 }
 
 const FeedPresenter: React.FC<IProps> = ({
@@ -31,9 +35,11 @@ const FeedPresenter: React.FC<IProps> = ({
 	liked,
 	onLike,
 	onDisLike,
-	isCurrentUser
+	isCurrentUser,
+	unfoldComment = false,
+	isUpdate = false
 }) => {
-	const [isHovered, setIsHovered] = useState(false);
+	const [isHovered, setIsHovered] = useState(unfoldComment);
 	const [commentShow, setCommentShow] = useState(false);
 	const numTime = parseInt(updateAt, 10);
 	const time = isNaN(numTime) ? "now" : getTimeDiff(new Date(numTime));
@@ -55,22 +61,28 @@ const FeedPresenter: React.FC<IProps> = ({
 			</S.Header>
 
 			<S.Image src={photo} onDoubleClick={likeHandler} />
-			<S.Infos>
-				<S.Like isLiked={liked || false} onClick={likeHandler}>
-					{liked ? <LikeFull /> : <LikeEmpty />}
-				</S.Like>
-				<S.Message
-					commentShow={commentShow}
-					onClick={() => setCommentShow(!commentShow)}
-				>
-					{commentShow ? <CommentFull /> : <CommentEmpty />}
-				</S.Message>
-				{isHovered && isCurrentUser && (
-					<S.EditMenu>
-						<EditMenu />
-					</S.EditMenu>
-				)}
-			</S.Infos>
+			{!isUpdate && (
+				<S.Infos>
+					<S.Like isLiked={liked || false} onClick={likeHandler}>
+						{liked ? <LikeFull /> : <LikeEmpty />}
+					</S.Like>
+					<S.Message
+						commentShow={commentShow}
+						onClick={() => setCommentShow(!commentShow)}
+					>
+						{commentShow ? <CommentFull /> : <CommentEmpty />}
+					</S.Message>
+					{isHovered && isCurrentUser && (
+						<S.EditMenu
+							onClick={() =>
+								forceHistory.push(Routes.FEED + `/${id}`)
+							}
+						>
+							<EditMenu />
+						</S.EditMenu>
+					)}
+				</S.Infos>
+			)}
 			{children || <S.Text>{text}</S.Text>}
 			{commentShow && id && (
 				<S.Comments>

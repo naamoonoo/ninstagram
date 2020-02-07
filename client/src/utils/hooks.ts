@@ -1,4 +1,4 @@
-import { ReactEventHandler, useEffect, useState } from "react";
+import { ReactEventHandler, useEffect, useState, useRef } from "react";
 
 export const useTitle = (initialTitle: string) => {
 	const [title, setTitle] = useState(initialTitle);
@@ -69,4 +69,15 @@ export const useMultiInputs = (
 		setInput({ ...inputs, [name]: value });
 	};
 	return [inputs, onChangeHandler, inputParams];
+};
+
+export const useInputFocus = () => {
+	const ref = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		if (ref && ref.current) {
+			ref.current.focus();
+		}
+	}, [ref]);
+	return ref;
 };

@@ -18,6 +18,7 @@ const LoginPresenter: React.FC<IProps> = ({
 	const renderInputs = (inputs: any, inputLabels: string[]) => {
 		return inputLabels.map(label => (
 			<Input
+				key={label}
 				label={label}
 				value={inputs[label]}
 				onChange={onChangeHandler}

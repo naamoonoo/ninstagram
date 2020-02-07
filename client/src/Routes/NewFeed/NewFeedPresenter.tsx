@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React from "react";
 import CameraButton from "../../Components/CameraButton";
 import Feed from "../../Components/Feed";
 import * as S from "./NewFeedStyle";

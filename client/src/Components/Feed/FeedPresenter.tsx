@@ -34,7 +34,6 @@ const FeedPresenter: React.FC<IProps> = ({
 	isCurrentUser
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
-	const [isDbClicked, setIsDbClicked] = useState(false);
 	const [commentShow, setCommentShow] = useState(false);
 	const numTime = parseInt(updateAt, 10);
 	const time = isNaN(numTime) ? "now" : getTimeDiff(new Date(numTime));
@@ -43,12 +42,6 @@ const FeedPresenter: React.FC<IProps> = ({
 			return onDisLike({ variables: { feedId: id } });
 		}
 		return onLike({ variables: { feedId: id } });
-	};
-	const onDoubleClickHandler = () => {
-		setIsDbClicked(true);
-		setTimeout(() => {
-			setIsDbClicked(false);
-		}, 1000);
 	};
 
 	return (

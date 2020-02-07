@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IInputs } from "../../types/types";
 import * as S from "./InputStyle";
 
 interface IProps {

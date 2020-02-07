@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React from "react";
 import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 import { ReactComponent as PhotoUploadIcon } from "../../assets/icons/photoUpload.svg";
 import CameraButton from "../../Components/CameraButton";

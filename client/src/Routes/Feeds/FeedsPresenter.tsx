@@ -53,7 +53,9 @@ const FeedsPresenter: React.FC<IProps> = ({
 	return (
 		<S.Container>
 			{user && feeds && renderFeed(feeds)}
-			<CameraButton onClick={() => history.push(Routes.NEW_PHOTO)} />
+			{user && user.id && (
+				<CameraButton onClick={() => history.push(Routes.NEW_PHOTO)} />
+			)}
 		</S.Container>
 	);
 };

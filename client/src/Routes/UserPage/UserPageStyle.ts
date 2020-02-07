@@ -46,7 +46,7 @@ export const Button = styled.button`
 	height: 30px;
 	width: 200px;
 	color: white;
-	background-color: darkred;
+	background-color: #db4437;
 	margin: 10px auto 0 auto;
 	font-weight: bold;
 	text-transform: uppercase;

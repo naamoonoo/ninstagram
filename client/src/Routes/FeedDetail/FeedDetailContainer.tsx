@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { toast } from "react-toastify";
+import { GET_CURRENT_USER } from "../../SharedQueries";
 import {
 	DeleteFeed,
 	DeleteFeedVariables,
@@ -10,7 +11,7 @@ import {
 	UpdateFeed,
 	UpdateFeedVariables
 } from "../../types/api";
-import { useInput, useInputFocus } from "../../utils/hooks";
+import { useInput } from "../../utils/hooks";
 import { Routes } from "../routes";
 import FeedDetailPresenter from "./FeedDetailPresenter";
 import { DELETE_FEED, GET_FEED, UPDATE_FEED } from "./FeedDetailQueries";
@@ -26,8 +27,8 @@ const FeedDetailContainer: React.FC<IProps> = ({
 		history.push(Routes.HOME);
 	}
 
-	const ref = useInputFocus();
 	const [input, onChangeInput, setInput] = useInput("");
+	const { data: userData } = useQuery(GET_CURRENT_USER);
 	const { data: feedData } = useQuery<GetFeed, GetFeedVariables>(GET_FEED, {
 		variables: { feedId },
 		onCompleted: ({ GetFeed: { res, feed } }) => {
@@ -72,8 +73,8 @@ const FeedDetailContainer: React.FC<IProps> = ({
 
 	return (
 		<FeedDetailPresenter
+			userData={userData}
 			feedData={feedData}
-			ref={ref}
 			input={input}
 			onChangeInput={onChangeInput}
 			updateMutation={updateMutation}

@@ -39,8 +39,8 @@ const FeedPresenter: React.FC<IProps> = ({
 	unfoldComment = false,
 	isUpdate = false
 }) => {
-	const [isHovered, setIsHovered] = useState(unfoldComment);
-	const [commentShow, setCommentShow] = useState(false);
+	const [isHovered, setIsHovered] = useState(false);
+	const [commentShow, setCommentShow] = useState(unfoldComment);
 	const numTime = parseInt(updateAt, 10);
 	const time = isNaN(numTime) ? "now" : getTimeDiff(new Date(numTime));
 	const likeHandler = () => {

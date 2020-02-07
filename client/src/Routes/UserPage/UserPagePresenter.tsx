@@ -39,7 +39,7 @@ const UserPagePresenter: React.FC<IProps> = ({
 				/>
 			</S.ProfileContainer>
 			<S.PhotoContainer>
-				{user.feeds && renderPhotos(user.feeds)}
+				{user && user.feeds && renderPhotos(user.feeds)}
 			</S.PhotoContainer>
 			{isCurrentUser && (
 				<S.Button

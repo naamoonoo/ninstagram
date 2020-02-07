@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ReactComponent as ToTop } from "../../assets/icons/TopButton.svg";
 import CameraButton from "../../Components/CameraButton";
 
@@ -47,14 +47,18 @@ const FeedsPresenter: React.FC<IProps> = ({
 		});
 	};
 
-	window.onscroll = () => {
-		if (
-			window.innerHeight + document.documentElement.scrollTop ===
-			document.documentElement.offsetHeight
-		) {
-			onReachToEnd();
-		}
-	};
+	useEffect(() => {
+		const scrollDetect = () => {
+			if (
+				window.innerHeight + document.documentElement.scrollTop ===
+				document.documentElement.offsetHeight
+			) {
+				onReachToEnd();
+			}
+		};
+		window.addEventListener("scroll", scrollDetect);
+		return () => window.removeEventListener("scroll", scrollDetect);
+	}, [document.documentElement.scrollTop]);
 
 	const scrollToTop = () => {
 		window.scrollTo({ top: 0 });

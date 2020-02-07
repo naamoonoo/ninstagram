@@ -1,4 +1,4 @@
-import { ReactEventHandler, useEffect, useState, useRef } from "react";
+import { ReactEventHandler, useEffect, useRef, useState } from "react";
 
 export const useTitle = (initialTitle: string) => {
 	const [title, setTitle] = useState(initialTitle);
@@ -78,6 +78,6 @@ export const useInputFocus = () => {
 		if (ref && ref.current) {
 			ref.current.focus();
 		}
-	}, [ref]);
+	}, [ref, ref.current]);
 	return ref;
 };

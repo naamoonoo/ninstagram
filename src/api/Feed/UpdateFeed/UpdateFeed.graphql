@@ -4,9 +4,5 @@ type UpdateFeedResponse {
 }
 
 type Mutation {
-	UpdateFeed(
-		feedId: String!
-		text: String
-		photo: String
-	): UpdateFeedResponse!
+	UpdateFeed(feedId: String!, text: String): UpdateFeedResponse!
 }

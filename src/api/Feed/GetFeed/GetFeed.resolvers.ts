@@ -13,7 +13,10 @@ const resolvers: Resolvers = {
 				{ req }
 			): Promise<GetFeedResponse> => {
 				try {
-					const feed = await Feed.findOne({ id: args.feedId });
+					const feed = await Feed.findOne(
+						{ id: args.feedId },
+						{ relations: ["user"] }
+					);
 					if (!feed) {
 						return {
 							res: false,

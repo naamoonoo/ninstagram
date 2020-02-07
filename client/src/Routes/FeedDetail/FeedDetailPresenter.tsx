@@ -4,8 +4,8 @@ import Feed from "../../Components/Feed";
 import * as S from "./FeedDetailStyle";
 
 interface IProps {
+	userData: any;
 	feedData: any;
-	ref: React.RefObject<HTMLInputElement>;
 	input: string;
 	onChangeInput: (event: React.ChangeEvent<Element>) => any;
 	updateMutation: any;
@@ -13,13 +13,14 @@ interface IProps {
 }
 
 const FeedDetailPresenter: React.FC<IProps> = ({
+	userData: { GetCurrentUser: { user = {} } = {} } = {},
 	feedData: { GetFeed: { feed = {} } = {} } = {},
-	ref,
 	input,
 	onChangeInput,
 	updateMutation,
 	deleteMutation
 }) => {
+	const isOwner = user && feed && feed.user && user.id === feed.user.id;
 	return (
 		<S.Container>
 			<Feed
@@ -29,10 +30,26 @@ const FeedDetailPresenter: React.FC<IProps> = ({
 				isUpdate={true}
 				unfoldComment={true}
 			>
-				<S.TextInput ref={ref} value={input} onChange={onChangeInput} />
+				{isOwner && (
+					<S.TextInput value={input} onChange={onChangeInput} />
+				)}
 			</Feed>
-			<S.Button onClick={deleteMutation}>DELETE</S.Button>
-			<CameraButton hovered={true} onClick={updateMutation} />
+			{isOwner && (
+				<S.ButtonContainer>
+					<S.Button
+						style={{ backgroundColor: "#3b5998" }}
+						onClick={updateMutation}
+					>
+						UPDATE
+					</S.Button>
+					<S.Button
+						style={{ backgroundColor: "#DB4437" }}
+						onClick={deleteMutation}
+					>
+						DELETE
+					</S.Button>
+				</S.ButtonContainer>
+			)}
 		</S.Container>
 	);
 };

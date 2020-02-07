@@ -1,12 +1,11 @@
 import React from "react";
-import { BrowserRouter, Redirect, Route } from "react-router-dom";
-import Feeds from "../../Routes/Feeds";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import FeedDetail from "../../Routes/FeedDetail";
+import Feeds from "../../Routes/Feeds";
 import Login from "../../Routes/Login";
 import NewFeed from "../../Routes/NewFeed";
 import NewPhoto from "../../Routes/NewPhoto";
 import { Routes } from "../../Routes/routes";
-import SignUp from "../../Routes/SignUp";
 import SocialLogin from "../../Routes/SocialLogin";
 import UserPage from "../../Routes/UserPage";
 import Header from "../Header";
@@ -27,21 +26,30 @@ const AppPresenter: React.FC<IProps> = ({ isLoggedIn }) => {
 					)}
 				/>
 				<S.Body>
-					<Route path={Routes.HOME} exact={true} component={Feeds} />
-					<Route path={Routes.NEW_PHOTO} component={NewPhoto} />
-					<Route path={Routes.NEW_FEED} component={NewFeed} />
-					<Route path={Routes.SIGN_UP} component={Login} />
-					<Route path={Routes.LOGIN} component={Login} />
-					<Route path={Routes.AUTH} component={SocialLogin} />
-					<Route path={Routes.FEED_FORM} component={FeedDetail} />
-					<Route path={Routes.USER_PAGE_FORM} component={UserPage} />
-					<Route
-						path={Routes.USER_PAGE}
-						exact={true}
-						component={UserPage}
-					/>
+					<Switch>
+						<Route
+							path={Routes.HOME}
+							exact={true}
+							component={Feeds}
+						/>
+						<Route path={Routes.NEW_PHOTO} component={NewPhoto} />
+						<Route path={Routes.NEW_FEED} component={NewFeed} />
+						<Route path={Routes.SIGN_UP} component={Login} />
+						<Route path={Routes.LOGIN} component={Login} />
+						<Route path={Routes.AUTH} component={SocialLogin} />
+						<Route path={Routes.FEED_FORM} component={FeedDetail} />
+						<Route
+							path={Routes.USER_PAGE_FORM}
+							component={UserPage}
+						/>
+						<Route
+							path={Routes.USER_PAGE}
+							exact={true}
+							component={UserPage}
+						/>
+						<Redirect path={"*"} to={Routes.HOME} />
+					</Switch>
 				</S.Body>
-				{/* <Redirect path={"*"} to={Routes.HOME} /> */}
 			</BrowserRouter>
 			{/* {isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes />} */}
 		</S.Container>

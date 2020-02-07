@@ -8,6 +8,7 @@ import {
 	CreateLikeVariables,
 	DeleteLike,
 	DeleteLikeVariables,
+	GetCurrentUser,
 	GetFeeds,
 	GetFeedsVariables
 } from "../../types/api";
@@ -25,7 +26,9 @@ interface IProps extends RouteComponentProps {}
 const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 	const [newFeed, setNewFeed] = useState(false);
 	const [page, setPage] = useState(1);
-	const { data: userData, refetch: userRefetch } = useQuery(GET_CURRENT_USER);
+	const { data: userData, refetch: userRefetch } = useQuery<GetCurrentUser>(
+		GET_CURRENT_USER
+	);
 	const { data, refetch, refetch: feedRefetch } = useQuery<
 		GetFeeds,
 		GetFeedsVariables

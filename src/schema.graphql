@@ -9,11 +9,12 @@ type Mutation {
   UpdateComment(commentId: String!, comment: String!): UpdateCommentResponse!
   CreateFeed(photo: String!, text: String!): CreateFeedResponse!
   DeleteFeed(feedId: String!): DeleteFeedResponse!
-  UpdateFeed(feedId: String!, text: String, photo: String): UpdateFeedResponse!
+  UpdateFeed(feedId: String!, text: String): UpdateFeedResponse!
   CreateLike(feedId: String!): CreateLikeResponse!
   DeleteLike(feedId: String!): DeleteLikeResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
-  EmailSignUp(firstName: String!, lastName: String!, password: String!, email: String!): EmailSignUpResponse!
+  EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!
+  UpdateUser(phone: String, email: String, password: String, newPassword: String, profilePhoto: String): UpdateUserResponse!
   RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
   ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
 }
@@ -163,6 +164,11 @@ type User {
   comments: [Comment]
   createAt: String!
   updateAt: String!
+}
+
+type UpdateUserResponse {
+  res: Boolean!
+  error: String
 }
 
 type RequestVerificationResponse {

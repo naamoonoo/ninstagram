@@ -51,7 +51,12 @@ export const useMultiInputs = (
 ): [
 	{ [key: string]: string },
 	(event: React.ChangeEvent<HTMLInputElement>) => void,
-	string[]
+	string[],
+	React.Dispatch<
+		React.SetStateAction<{
+			[key: string]: string;
+		}>
+	>
 ] => {
 	const initialInput: { [key: string]: string } = {};
 
@@ -68,7 +73,7 @@ export const useMultiInputs = (
 
 		setInput({ ...inputs, [name]: value });
 	};
-	return [inputs, onChangeHandler, inputParams];
+	return [inputs, onChangeHandler, inputParams, setInput];
 };
 
 export const useInputFocus = () => {

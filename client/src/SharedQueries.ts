@@ -11,9 +11,8 @@ export const GET_CURRENT_USER = gql`
 				likes {
 					feedId
 				}
-				# feeds{
-
-				# }
+				email
+				phone
 			}
 		}
 	}

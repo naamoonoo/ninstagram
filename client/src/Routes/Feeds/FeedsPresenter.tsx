@@ -38,8 +38,8 @@ const FeedsPresenter: React.FC<IProps> = ({
 				<Feed
 					key={feed.id}
 					{...feed}
-					onLike={onLike}
-					onDisLike={onDisLike}
+					onLike={user && user.likes && onLike}
+					onDisLike={user && user.likes && onDisLike}
 					liked={liked}
 					isCurrentUser={user.id === feed.user.id}
 				/>

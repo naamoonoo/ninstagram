@@ -8,5 +8,9 @@ export const Routes = {
 	AUTH: "/auth/:token",
 	FEED: "/feed",
 	FEED_FORM: "/feed/:feedId",
-	SIGN_UP: "/sign-up"
+	SIGN_UP: "/sign-up",
+	VERIFICATION: "/verify",
+	VERIFICATION_FORM: "/verify/:type/:key",
+	CHANGE_PASSWORD: "/chagne-password",
+	FORGET_PASSWORD: "/forget-password"
 };

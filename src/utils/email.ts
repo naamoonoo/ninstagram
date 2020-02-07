@@ -20,11 +20,7 @@ export const sendVerificationMail = async (to: string, key: string) => {
 	const transporter = await getTransporter();
 
 	const subject = "[Ninstagram]Verify your email";
-	// const url =
-	// 	process.env.NODE_ENV === "development"
-	// 		? `http://localhost:4000/verification/config?to=${to}&key=${key}`
-	// 		: "";
-	const fullUrl = `${url}/verification/${key}`;
+	const fullUrl = `${url}/verify/email/${key}`;
 	const html = `
 		<div>your verfication key is <u>${key}</u></div>
 		<div>or click <a href=${fullUrl}>here</a> to verify your email</div>

@@ -43,6 +43,14 @@ export const Infos = styled.div`
 	border-bottom: 1px solid lightgrey;
 `;
 
+export const Info = styled.span`
+	color: grey;
+	position: relative;
+	left: 45px;
+	font-weight: lighter;
+	font-size: 14px;
+`;
+
 interface LikeProps {
 	isLiked: boolean;
 }

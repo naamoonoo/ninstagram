@@ -43,6 +43,7 @@ const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 		onCompleted: ({ CreateLike: { res, error } }) => {
 			if (res) {
 				userRefetch();
+				feedRefetch();
 			} else {
 				toast.error(error);
 			}
@@ -54,6 +55,7 @@ const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 			onCompleted: ({ DeleteLike: { res, error } }) => {
 				if (res) {
 					userRefetch();
+					feedRefetch();
 				} else {
 					toast.error(error);
 				}

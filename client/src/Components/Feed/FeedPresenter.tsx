@@ -23,6 +23,7 @@ interface IProps {
 	isCurrentUser?: boolean;
 	unfoldComment?: boolean;
 	isUpdate?: boolean;
+	likes?: any[];
 }
 
 const FeedPresenter: React.FC<IProps> = ({
@@ -37,13 +38,17 @@ const FeedPresenter: React.FC<IProps> = ({
 	onDisLike,
 	isCurrentUser,
 	unfoldComment = false,
-	isUpdate = false
+	isUpdate = false,
+	likes
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const [commentShow, setCommentShow] = useState(unfoldComment);
 	const numTime = parseInt(updateAt, 10);
 	const time = isNaN(numTime) ? "now" : getTimeDiff(new Date(numTime));
 	const likeHandler = () => {
+		if (!onDisLike || !onLike) {
+			return;
+		}
 		if (liked) {
 			return onDisLike({ variables: { feedId: id } });
 		}
@@ -72,6 +77,7 @@ const FeedPresenter: React.FC<IProps> = ({
 					>
 						{commentShow ? <CommentFull /> : <CommentEmpty />}
 					</S.Message>
+					{likes && <S.Info>{likes.length} likes</S.Info>}
 					{isHovered && isCurrentUser && (
 						<S.EditMenu
 							onClick={() =>

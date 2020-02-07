@@ -1,0 +1,16 @@
+type UpdateUserResponse {
+	res: Boolean!
+	error: String
+}
+
+type Mutation {
+	UpdateUser(
+		phone: String
+		isEmailVerified: Boolean
+		isPhoneVerified: Boolean
+		email: String
+		password: String
+		newPassword: String
+		profilePhoto: String
+	): UpdateUserResponse!
+}

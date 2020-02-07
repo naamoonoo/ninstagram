@@ -37,10 +37,33 @@ const UserPagePresenter: React.FC<IProps> = ({
 					fontSize={"1.2em"}
 					clickable={false}
 				/>
+				{isCurrentUser && (
+					<S.Infos>
+						<S.Info
+							onClick={() =>
+								history.push(Routes.VERIFICATION + `/email/no`)
+							}
+						>
+							EMAIL {user.isEmailVerified ? "✅" : "❌"}
+						</S.Info>
+						<S.Info
+							onClick={() =>
+								history.push(Routes.VERIFICATION + `/phone/no`)
+							}
+						>
+							PHONE {user.isPhoneVerified ? "✅" : "❌"}
+						</S.Info>
+						<S.Info
+							onClick={() => history.push(Routes.CHANGE_PASSWORD)}
+						>
+							PASSWORD ⚙️
+						</S.Info>
+					</S.Infos>
+				)}
 			</S.ProfileContainer>
-			<S.PhotoContainer>
-				{user && user.feeds && renderPhotos(user.feeds)}
-			</S.PhotoContainer>
+			{user && user.feeds && user.feeds.length > 0 && (
+				<S.PhotoContainer>{renderPhotos(user.feeds)}</S.PhotoContainer>
+			)}
 			{isCurrentUser && (
 				<S.Button
 					onClick={() => {

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-	max-width: 700px;
+	max-width: 800px;
+	/* width: 80%; */
 	display: inline;
 	justify-content: center;
 	align-items: center;
@@ -10,14 +11,49 @@ export const Container = styled.div`
 `;
 
 export const ProfileContainer = styled.div`
-	margin: 20px 40px 40px 40px;
-	width: 100%;
+	display: flex;
+	max-width: 750px;
+	margin: 20px auto 40px auto;
+	position: relative;
+	align-items: center;
+`;
+
+export const Infos = styled.div`
+	height: 100%;
+	width: 150px;
+	position: absolute;
+	right: 0px;
+	align-items: center;
+	display: block;
+`;
+
+export const Info = styled.div`
+	margin: 5px 0;
+	color: darkgrey;
+	font-weight: bold;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	letter-spacing: 1px;
+	font-size: 1.1em;
+	cursor: pointer;
+	&:hover {
+		color: black;
+		text-decoration: underline;
+	}
+`;
+
+export const Verification = styled(Info)`
+	cursor: pointer;
+	& :hover {
+		color: black;
+	}
 `;
 
 export const PhotoContainer = styled.div`
 	padding: 5px;
 	border: 1px solid lightgrey;
-	max-width: 750px;
+	max-width: 800px;
 	margin: 0 auto;
 	display: table;
 	justify-content: center;
@@ -25,7 +61,6 @@ export const PhotoContainer = styled.div`
 `;
 
 export const Image = styled.img`
-	/* float: left; */
 	width: 33%;
 	max-height: 150px;
 	overflow: hidden;
@@ -34,11 +69,6 @@ export const Image = styled.img`
 	cursor: pointer;
 	bottom: 0;
 	top: 0;
-
-	/* &:hover {
-		width: 60%;
-		height: auto;
-	} */
 `;
 
 export const Button = styled.button`

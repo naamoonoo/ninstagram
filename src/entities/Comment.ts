@@ -3,9 +3,7 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
-	JoinColumn,
 	ManyToOne,
-	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
@@ -20,18 +18,23 @@ export class Comment extends BaseEntity {
 	@Column({ type: "text", nullable: false })
 	comment: string;
 
-	@OneToOne(
+	@ManyToOne(
 		type => User,
 		user => user.comments
 	)
-	@JoinColumn()
 	user: User;
+
+	@Column({ nullable: true })
+	userId: string;
 
 	@ManyToOne(
 		type => Feed,
 		feed => feed.comments
 	)
 	feed: Feed;
+
+	@Column({ nullable: true })
+	feedId: string;
 
 	@CreateDateColumn() createAt: string;
 

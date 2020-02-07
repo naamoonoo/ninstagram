@@ -42,7 +42,9 @@ type Comment {
   id: String!
   comment: String
   user: User
+  userId: String
   feed: Feed
+  feedId: String
   createAt: String!
   updateAt: String!
 }

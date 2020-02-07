@@ -27,7 +27,12 @@ const resolvers: Resolvers = {
 							error: NONE_EXISTED_FEED_COMMENT
 						};
 					}
-					await Comment.create({ user, feed, comment }).save();
+					await Comment.create({
+						comment,
+						user,
+						feed
+					}).save();
+
 					return {
 						res: true,
 						error: null

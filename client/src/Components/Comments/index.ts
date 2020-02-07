@@ -1,3 +1,3 @@
-import CommentsPresenter from './CommentsPresenter'
+import CommentsContainer from "./CommentsContainer";
 
-export default CommentsPresenter
+export default CommentsContainer;

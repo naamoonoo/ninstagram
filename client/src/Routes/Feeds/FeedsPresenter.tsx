@@ -40,8 +40,6 @@ const FeedsPresenter: React.FC<IProps> = ({
 		});
 	};
 
-	console.log(user);
-	// console.log(user.likes.inclues())
 	window.onscroll = () => {
 		if (
 			window.innerHeight + document.documentElement.scrollTop ===

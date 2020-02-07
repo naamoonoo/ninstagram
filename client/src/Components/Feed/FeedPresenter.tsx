@@ -5,6 +5,7 @@ import { ReactComponent as LikeEmpty } from "../../assets/icons/like-empty.svg";
 import { ReactComponent as LikeFull } from "../../assets/icons/like-full.svg";
 import { ReactComponent as EditMenu } from "../../assets/icons/menu-dot.svg";
 import { getTimeDiff } from "../../utils/getTimeDiff";
+import Comments from "../Comments";
 import Profile from "../Profile";
 import * as S from "./FeedStyle";
 
@@ -17,6 +18,7 @@ interface IProps {
 	liked?: boolean;
 	onLike?: any;
 	onDisLike?: any;
+	comments?: any[];
 }
 
 const FeedPresenter: React.FC<IProps> = ({
@@ -28,7 +30,8 @@ const FeedPresenter: React.FC<IProps> = ({
 	children,
 	liked,
 	onLike,
-	onDisLike
+	onDisLike,
+	comments
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const [isDbClicked, setIsDbClicked] = useState(false);
@@ -76,7 +79,11 @@ const FeedPresenter: React.FC<IProps> = ({
 				)}
 			</S.Infos>
 			{children || <S.Text>{text}</S.Text>}
-			{commentShow && <S.Comments>comments</S.Comments>}
+			{commentShow && id && (
+				<S.Comments>
+					<Comments feedId={id} />
+				</S.Comments>
+			)}
 		</S.Container>
 	);
 };

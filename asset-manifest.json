@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.js": "/ninstagram/static/js/main.9652b7bd.chunk.js",
+    "main.js.map": "/ninstagram/static/js/main.9652b7bd.chunk.js.map",
+    "runtime-main.js": "/ninstagram/static/js/runtime-main.aa88f905.js",
+    "runtime-main.js.map": "/ninstagram/static/js/runtime-main.aa88f905.js.map",
+    "static/css/2.c829125e.chunk.css": "/ninstagram/static/css/2.c829125e.chunk.css",
+    "static/js/2.b8d1c5e2.chunk.js": "/ninstagram/static/js/2.b8d1c5e2.chunk.js",
+    "static/js/2.b8d1c5e2.chunk.js.map": "/ninstagram/static/js/2.b8d1c5e2.chunk.js.map",
+    "index.html": "/ninstagram/index.html",
+    "precache-manifest.7c92435a242670dc7173c383c1ce10f5.js": "/ninstagram/precache-manifest.7c92435a242670dc7173c383c1ce10f5.js",
+    "service-worker.js": "/ninstagram/service-worker.js",
+    "static/css/2.c829125e.chunk.css.map": "/ninstagram/static/css/2.c829125e.chunk.css.map",
+    "static/js/2.b8d1c5e2.chunk.js.LICENSE.txt": "/ninstagram/static/js/2.b8d1c5e2.chunk.js.LICENSE.txt",
+    "static/media/TopButton.4bd05c92.svg": "/ninstagram/static/media/TopButton.4bd05c92.svg",
+    "static/media/backArrow.0c50775d.svg": "/ninstagram/static/media/backArrow.0c50775d.svg",
+    "static/media/camera.b60cb1d7.svg": "/ninstagram/static/media/camera.b60cb1d7.svg",
+    "static/media/comment-empty.f81d7b25.svg": "/ninstagram/static/media/comment-empty.f81d7b25.svg",
+    "static/media/comment-full.a91cd832.svg": "/ninstagram/static/media/comment-full.a91cd832.svg",
+    "static/media/delete.540a3dde.svg": "/ninstagram/static/media/delete.540a3dde.svg",
+    "static/media/like-empty.b15629e0.svg": "/ninstagram/static/media/like-empty.b15629e0.svg",
+    "static/media/like-full.88bf2af2.svg": "/ninstagram/static/media/like-full.88bf2af2.svg",
+    "static/media/login.a9b2f936.svg": "/ninstagram/static/media/login.a9b2f936.svg",
+    "static/media/menu-dot.f4059304.svg": "/ninstagram/static/media/menu-dot.f4059304.svg",
+    "static/media/photoUpload.e94bed21.svg": "/ninstagram/static/media/photoUpload.e94bed21.svg",
+    "static/media/user.e81447c9.svg": "/ninstagram/static/media/user.e81447c9.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aa88f905.js",
+    "static/css/2.c829125e.chunk.css",
+    "static/js/2.b8d1c5e2.chunk.js",
+    "static/js/main.9652b7bd.chunk.js"
+  ]
+}

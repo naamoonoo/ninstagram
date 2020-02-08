@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/ninstagram/static/js/main.9652b7bd.chunk.js",
-    "main.js.map": "/ninstagram/static/js/main.9652b7bd.chunk.js.map",
+    "main.js": "/ninstagram/static/js/main.fd82f9d7.chunk.js",
+    "main.js.map": "/ninstagram/static/js/main.fd82f9d7.chunk.js.map",
     "runtime-main.js": "/ninstagram/static/js/runtime-main.aa88f905.js",
     "runtime-main.js.map": "/ninstagram/static/js/runtime-main.aa88f905.js.map",
     "static/css/2.c829125e.chunk.css": "/ninstagram/static/css/2.c829125e.chunk.css",
     "static/js/2.b8d1c5e2.chunk.js": "/ninstagram/static/js/2.b8d1c5e2.chunk.js",
     "static/js/2.b8d1c5e2.chunk.js.map": "/ninstagram/static/js/2.b8d1c5e2.chunk.js.map",
     "index.html": "/ninstagram/index.html",
-    "precache-manifest.7c92435a242670dc7173c383c1ce10f5.js": "/ninstagram/precache-manifest.7c92435a242670dc7173c383c1ce10f5.js",
+    "precache-manifest.507cc752e62b0ea56bec642894d85abb.js": "/ninstagram/precache-manifest.507cc752e62b0ea56bec642894d85abb.js",
     "service-worker.js": "/ninstagram/service-worker.js",
     "static/css/2.c829125e.chunk.css.map": "/ninstagram/static/css/2.c829125e.chunk.css.map",
     "static/js/2.b8d1c5e2.chunk.js.LICENSE.txt": "/ninstagram/static/js/2.b8d1c5e2.chunk.js.LICENSE.txt",
@@ -29,6 +29,6 @@
     "static/js/runtime-main.aa88f905.js",
     "static/css/2.c829125e.chunk.css",
     "static/js/2.b8d1c5e2.chunk.js",
-    "static/js/main.9652b7bd.chunk.js"
+    "static/js/main.fd82f9d7.chunk.js"
   ]
 }

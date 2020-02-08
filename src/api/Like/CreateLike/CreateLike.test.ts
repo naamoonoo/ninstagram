@@ -16,9 +16,8 @@ describe("[Like]CreateLike", () => {
 	beforeAll(async () => {
 		user = await User.create({
 			firstName: "test",
-			lastName: "jest",
 			email: "test@test.com",
-			password: "test123!!"
+			password: "Test123!!"
 		}).save();
 		feed = await Feed.create({
 			text: `test feed`,

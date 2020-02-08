@@ -13,9 +13,8 @@ describe("[Feed]UpdateFeed", () => {
 	beforeAll(async () => {
 		user = await User.create({
 			firstName: "test",
-			lastName: "jest",
 			email: "test@test.com",
-			password: "test123!!"
+			password: "Test123!!"
 		}).save();
 		token = createJWT(user.id);
 	});
@@ -28,7 +27,6 @@ describe("[Feed]UpdateFeed", () => {
 				UpdateFeed(
 					feedId: $feedId
 					text: $text
-					photo: $photo
 				){
 					res
 					error
@@ -38,14 +36,13 @@ describe("[Feed]UpdateFeed", () => {
 	it("expect to pass", async () => {
 		const feedCreated = await Feed.create({
 			text: `test feed`,
-			photo: "___",
-			user
+			user,
+			photo: "______"
 		}).save();
 
 		const variables = {
 			feedId: feedCreated.id,
-			text: "text Updated",
-			photo: "___"
+			text: "text Updated"
 		};
 
 		const response = await api

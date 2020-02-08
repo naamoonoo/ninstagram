@@ -15,7 +15,6 @@ describe("[User]EmailSignUp", () => {
 	const query = `mutation {
 			EmailSignUp(
 				firstName: $firstName
-				lastName: $lastName
 				password: $password
 				email: $email
 			) {
@@ -27,9 +26,8 @@ describe("[User]EmailSignUp", () => {
 
 	it("should pass with valid data", async () => {
 		const variables = {
-			firstName: "$firstName",
-			lastName: "$lastName",
-			password: "$password12",
+			firstName: "firstName",
+			password: "$passworD12!",
 			email: "email@email.com"
 		};
 		const response = await api
@@ -49,9 +47,8 @@ describe("[User]EmailSignUp", () => {
 
 	it("should fail, existed user case", async () => {
 		const variables = {
-			firstName: "$firstName",
-			lastName: "$lastName",
-			password: "$password12",
+			firstName: "firstName",
+			password: "$passworD12!",
 			email: "email@email.com"
 		};
 		const response = await api

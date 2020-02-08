@@ -1,14 +1,26 @@
+import { User } from "../../../entities/User";
 import { Verification } from "../../../entities/Verification";
 import { getApi } from "../../../testUtils/api";
 import "../../../testUtils/database";
 import { getQuery } from "../../../testUtils/getQuery";
-import { EMAIL, PHONE } from "../../../types/constants";
+import { EMAIL, JWT, PHONE } from "../../../types/constants";
+import { createJWT } from "../../../utils/jwt";
 
 describe("[Verification]ValidateVerification", () => {
 	let api;
+	let token;
+
+	beforeAll(async () => {
+		const user = await User.create({
+			firstName: "test",
+			email: "test@test.com",
+			password: "Test123!!"
+		}).save();
+		token = createJWT(user.id);
+	});
 
 	beforeEach(() => {
-		api = getApi();
+		api = getApi().set(JWT, token);
 	});
 
 	const query = `mutation {

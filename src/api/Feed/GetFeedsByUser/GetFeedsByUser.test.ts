@@ -14,9 +14,8 @@ describe("[Feed]GetFeedsByUser", () => {
 	beforeAll(async () => {
 		user = await User.create({
 			firstName: "test",
-			lastName: "jest",
 			email: "test@test.com",
-			password: "test123!!"
+			password: "Test123!!"
 		}).save();
 		token = createJWT(user.id);
 	});

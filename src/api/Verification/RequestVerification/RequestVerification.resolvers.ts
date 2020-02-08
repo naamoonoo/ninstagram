@@ -38,12 +38,6 @@ const resolvers: Resolvers = {
 
 				const { key, payload: to } = newVerification;
 
-				// if (type === PHONE) {
-				// 	sendVerificationSMS(to, key);
-				// } else {
-				// 	await sendVerificationMail(to, key);
-				// }
-
 				if (process.env.NODE_ENV === "production") {
 					if (type === PHONE) {
 						sendVerificationSMS(to, key);

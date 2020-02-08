@@ -29,8 +29,8 @@ describe("[User]EmailSignUp", () => {
 		const variables = {
 			firstName: "$firstName",
 			lastName: "$lastName",
-			password: "$password",
-			email: "$email"
+			password: "$password12",
+			email: "email@email.com"
 		};
 		const response = await api
 			.send({ query: getQuery(query, variables) })
@@ -51,8 +51,8 @@ describe("[User]EmailSignUp", () => {
 		const variables = {
 			firstName: "$firstName",
 			lastName: "$lastName",
-			password: "$password",
-			email: "$email"
+			password: "$password12",
+			email: "email@email.com"
 		};
 		const response = await api
 			.send({ query: getQuery(query, variables) })

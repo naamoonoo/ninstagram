@@ -18,7 +18,7 @@ describe("[Like]DeleteLike", () => {
 			firstName: "test",
 			lastName: "jest",
 			email: "test@test.com",
-			password: "test"
+			password: "test123!!"
 		}).save();
 		feed = await Feed.create({
 			text: `test feed`,

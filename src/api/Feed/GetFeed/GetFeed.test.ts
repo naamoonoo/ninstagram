@@ -16,7 +16,7 @@ describe("[Feed]GetFeed", () => {
 			firstName: "test",
 			lastName: "jest",
 			email: "test@test.com",
-			password: "test"
+			password: "test123!!"
 		}).save();
 		token = createJWT(user.id);
 	});

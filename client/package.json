@@ -26,6 +26,7 @@
     "react-webcam": "^5.0.0",
     "styled-components": "^5.0.0",
     "styled-reset": "^4.1.0",
+    "subscriptions-transport-ws": "^0.9.16",
     "typescript": "~3.7.2"
   },
   "scripts": {

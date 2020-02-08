@@ -14,7 +14,7 @@ type Mutation {
   DeleteLike(feedId: String!): DeleteLikeResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
   EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!
-  UpdateUser(phone: String, email: String, password: String, newPassword: String, profilePhoto: String): UpdateUserResponse!
+  UpdateUser(phone: String, isEmailVerified: Boolean, isPhoneVerified: Boolean, email: String, password: String, newPassword: String, profilePhoto: String): UpdateUserResponse!
   RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
   ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
 }

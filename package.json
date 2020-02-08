@@ -38,7 +38,9 @@
     ]
   },
   "nodemonConfig": {
-    "ignore": ["client/*"],
+    "ignore": [
+      "client/*"
+    ],
     "delay": "2500"
   },
   "author": "naamoonoo",

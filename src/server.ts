@@ -26,11 +26,10 @@ app.use(passport.initialize());
 app.use(decodeJWT);
 app.use(express.static(path.join(__dirname, "client/build")));
 
+authRoutes(app);
 app.get("/*", (req, res) => {
 	res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
-
-authRoutes(app);
 // prodRoutes(app);
 
 const graphqlServer = new ApolloServer({

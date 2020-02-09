@@ -65,7 +65,13 @@ const FeedPresenter: React.FC<IProps> = ({
 				<S.Time>{time}</S.Time>
 			</S.Header>
 
-			<S.Image src={photo} onDoubleClick={likeHandler} />
+			<S.Image
+				src={
+					photo ||
+					"https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"
+				}
+				onDoubleClick={likeHandler}
+			/>
 			{!isUpdate && (
 				<S.Infos>
 					<S.Like isLiked={liked || false} onClick={likeHandler}>

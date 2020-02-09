@@ -15,9 +15,9 @@
     "prebuild": "rm -rf build",
     "postinstall": "npm run tsc",
     "build:server": "tsc",
-    "build:client": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "built:client": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "build": "concurrently npm:build:*",
-    "postbuild": "cp ./src/api/**/**/*.graphql ./build/api/ && mkdir ./build/client && cp -av ./client/build ./build/client/",
+    "postbuild": "cp ./src/api/**/**/*.graphql ./build/api/",
     "start": "NODE_ENV=production node ./build/index.js"
   },
   "jest": {

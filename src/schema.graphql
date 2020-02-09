@@ -1,192 +1,210 @@
 type CreateCommentResponse {
-  res: Boolean!
-  error: String
+	res: Boolean!
+	error: String
 }
 
 type Mutation {
-  CreateComment(feedId: String!, comment: String!): CreateCommentResponse!
-  DeleteComment(commentId: String!): DeleteCommentResponse!
-  UpdateComment(commentId: String!, comment: String!): UpdateCommentResponse!
-  CreateFeed(photo: String!, text: String!): CreateFeedResponse!
-  DeleteFeed(feedId: String!): DeleteFeedResponse!
-  UpdateFeed(feedId: String!, text: String): UpdateFeedResponse!
-  CreateLike(feedId: String!): CreateLikeResponse!
-  DeleteLike(feedId: String!): DeleteLikeResponse!
-  EmailSignIn(email: String!, password: String!): EmailSignInResponse!
-  EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!
-  UpdateUser(phone: String, isEmailVerified: Boolean, isPhoneVerified: Boolean, email: String, password: String, newPassword: String, profilePhoto: String): UpdateUserResponse!
-  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
-  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
+	CreateComment(feedId: String!, comment: String!): CreateCommentResponse!
+	DeleteComment(commentId: String!): DeleteCommentResponse!
+	UpdateComment(commentId: String!, comment: String!): UpdateCommentResponse!
+	CreateFeed(photo: String!, text: String!): CreateFeedResponse!
+	DeleteFeed(feedId: String!): DeleteFeedResponse!
+	UpdateFeed(feedId: String!, text: String): UpdateFeedResponse!
+	CreateLike(feedId: String!): CreateLikeResponse!
+	DeleteLike(feedId: String!): DeleteLikeResponse!
+	EmailSignIn(email: String!, password: String!): EmailSignInResponse!
+	EmailSignUp(
+		firstName: String!
+		password: String!
+		email: String!
+	): EmailSignUpResponse!
+	UpdateUser(
+		phone: String
+		isEmailVerified: Boolean
+		isPhoneVerified: Boolean
+		email: String
+		password: String
+		newPassword: String
+		profilePhoto: String
+	): UpdateUserResponse!
+	RequestVerification(
+		type: String!
+		payload: String!
+	): RequestVerificationResponse!
+	ValidateVerification(
+		payload: String!
+		key: String!
+	): ValidateVerificationResponse!
 }
 
 type DeleteCommentResponse {
-  res: Boolean!
-  error: String
+	res: Boolean!
+	error: String
 }
 
 type GetCommentsResponse {
-  res: Boolean!
-  error: String
-  comments: [Comment]
+	res: Boolean!
+	error: String
+	comments: [Comment]
 }
 
 type Query {
-  GetComments(feedId: String!): GetCommentsResponse!
-  GetFeed(feedId: String!): GetFeedResponse!
-  GetFeeds(page: Int!): GetFeedsResponse!
-  GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
-  GetCurrentUser: GetCurrentUserResponse!
-  GetUserById(userId: String!): GetUserByIdResponse!
+	GetComments(feedId: String!): GetCommentsResponse!
+	GetFeed(feedId: String!): GetFeedResponse!
+	GetFeeds(page: Int!): GetFeedsResponse!
+	GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
+	GetCurrentUser: GetCurrentUserResponse!
+	GetUserById(userId: String!): GetUserByIdResponse!
 }
 
 type Comment {
-  id: String!
-  comment: String
-  user: User
-  userId: String
-  feed: Feed
-  feedId: String
-  createAt: String!
-  updateAt: String!
+	id: String!
+	comment: String
+	user: User
+	userId: String
+	feed: Feed
+	feedId: String
+	createAt: String!
+	updateAt: String!
 }
 
 type UpdateCommentResponse {
-  res: Boolean!
-  error: String
+	res: Boolean!
+	error: String
 }
 
 type CreateFeedResponse {
-  res: Boolean!
-  error: String
+	res: Boolean!
+	error: String
 }
 
 type DeleteFeedResponse {
-  res: Boolean!
-  error: String
+	res: Boolean!
+	error: String
 }
 
 type GetFeedResponse {
-  res: Boolean!
-  error: String
-  feed: Feed
+	res: Boolean!
+	error: String
+	feed: Feed
 }
 
 type GetFeedsResponse {
-  res: Boolean!
-  error: String
-  feeds: [Feed]
+	res: Boolean!
+	error: String
+	feeds: [Feed]
 }
 
 type GetFeedsByUserResponse {
-  res: Boolean!
-  error: String
-  feeds: [Feed]
+	res: Boolean!
+	error: String
+	feeds: [Feed]
 }
 
 type Feed {
-  id: String!
-  photo: String!
-  text: String
-  user: User
-  likes: [Like]
-  comments: [Comment]
-  createAt: String!
-  updateAt: String!
+	id: String!
+	photo: String!
+	text: String
+	user: User
+	likes: [Like]
+	comments: [Comment]
+	createAt: String!
+	updateAt: String!
 }
 
 type Subscription {
-  SubscribeFeed: Feed
+	SubscribeFeed: Feed
 }
 
 type UpdateFeedResponse {
-  res: Boolean!
-  error: String
+	res: Boolean!
+	error: String
 }
 
 type CreateLikeResponse {
-  res: Boolean!
-  error: String
+	res: Boolean!
+	error: String
 }
 
 type DeleteLikeResponse {
-  res: Boolean!
-  error: String
+	res: Boolean!
+	error: String
 }
 
 type Like {
-  id: String!
-  user: User!
-  feed: Feed!
-  feedId: String
-  userId: String
-  createAt: String
-  updateAt: String
+	id: String!
+	user: User!
+	feed: Feed!
+	feedId: String
+	userId: String
+	createAt: String
+	updateAt: String
 }
 
 type EmailSignInResponse {
-  res: Boolean!
-  error: String
-  token: String
+	res: Boolean!
+	error: String
+	token: String
 }
 
 type EmailSignUpResponse {
-  res: Boolean!
-  error: String
-  token: String
+	res: Boolean!
+	error: String
+	token: String
 }
 
 type GetCurrentUserResponse {
-  res: Boolean!
-  error: String
-  user: User
+	res: Boolean!
+	error: String
+	user: User
 }
 
 type GetUserByIdResponse {
-  res: Boolean!
-  error: String
-  user: User
+	res: Boolean!
+	error: String
+	user: User
 }
 
 type User {
-  id: String!
-  fbId: String
-  googleId: String
-  firstName: String!
-  lastName: String
-  password: String
-  profilePhoto: String
-  email: String
-  isEmailVerified: Boolean
-  phone: String
-  isPhoneVerified: Boolean
-  feeds: [Feed]
-  likes: [Like]
-  comments: [Comment]
-  createAt: String!
-  updateAt: String!
+	id: String!
+	fbId: String
+	googleId: String
+	firstName: String!
+	lastName: String
+	password: String
+	profilePhoto: String
+	email: String
+	isEmailVerified: Boolean
+	phone: String
+	isPhoneVerified: Boolean
+	feeds: [Feed]
+	likes: [Like]
+	comments: [Comment]
+	createAt: String!
+	updateAt: String!
 }
 
 type UpdateUserResponse {
-  res: Boolean!
-  error: String
+	res: Boolean!
+	error: String
 }
 
 type RequestVerificationResponse {
-  res: Boolean!
-  error: String
+	res: Boolean!
+	error: String
 }
 
 type Verification {
-  id: String!
-  type: String!
-  payload: String!
-  key: String!
-  isVerified: Boolean!
-  createAt: String!
-  updateAt: String!
+	id: String!
+	type: String!
+	payload: String!
+	key: String!
+	isVerified: Boolean!
+	createAt: String!
+	updateAt: String!
 }
 
 type ValidateVerificationResponse {
-  res: Boolean!
-  error: String
+	res: Boolean!
+	error: String
 }

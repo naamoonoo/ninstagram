@@ -5,7 +5,7 @@ import { execute, subscribe } from "graphql";
 import helmet from "helmet";
 import { createServer } from "http";
 import logger from "morgan";
-import path from "path";
+// import path from "path";
 import { SubscriptionServer } from "subscriptions-transport-ws";
 import { decodeJWT } from "./middlewares";
 import authRoutes from "./routes/authRoutes";
@@ -24,15 +24,16 @@ app.use(helmet());
 app.use(logger("dev"));
 app.use(passport.initialize());
 app.use(decodeJWT);
-app.use(express.static(path.join(__dirname, "client/build")));
+// app.use(express.static(path.join(__dirname, "client/build")));
 
 authRoutes(app);
-app.get("/*", (req, res) => {
-	res.sendFile(path.join(__dirname, "client/build/index.html"));
-});
+// app.get("/*", (req, res) => {
+// 	res.sendFile(path.join(__dirname, "client/build/index.html"));
+// });
 // prodRoutes(app);
 
 const graphqlServer = new ApolloServer({
+	playground: true,
 	schema,
 	context: async ({ req }) => {
 		return { req, pubsub };

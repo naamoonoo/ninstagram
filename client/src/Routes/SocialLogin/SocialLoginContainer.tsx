@@ -25,7 +25,7 @@ const SocialLoginPresenter: React.FC<IProps> = ({
 
 	useEffect(() => {
 		loginMutation();
-	}, []);
+	}, [loginMutation]);
 	return <S.Container>SocialLogin</S.Container>;
 };
 

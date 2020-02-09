@@ -12,6 +12,10 @@ export const GET_USER_BY_ID = gql`
 					id
 					photo
 				}
+				isEmailVerified
+				isPhoneVerified
+				email
+				phone
 			}
 		}
 	}

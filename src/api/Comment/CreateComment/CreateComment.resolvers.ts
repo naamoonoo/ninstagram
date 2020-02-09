@@ -7,6 +7,7 @@ import {
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
 import { authProtector } from "../../../utils/authProtector";
+import { sendNewComment } from "../../../utils/email";
 import { NONE_EXISTED_FEED_COMMENT } from "./errors";
 
 const resolvers: Resolvers = {
@@ -33,6 +34,9 @@ const resolvers: Resolvers = {
 						feed
 					}).save();
 
+					if (process.env.NODE_ENV === "production") {
+						await sendNewComment(user.email, feedId);
+					}
 					return {
 						res: true,
 						error: null

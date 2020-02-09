@@ -1,5 +1,5 @@
-import { PHONE } from "../../../types/constants";
 import { Verification } from "../../../entities/Verification";
+import { PHONE } from "../../../types/constants";
 import {
 	RequestVerificationMutationArgs,
 	RequestVerificationResponse
@@ -37,6 +37,7 @@ const resolvers: Resolvers = {
 				}).save();
 
 				const { key, payload: to } = newVerification;
+
 				if (process.env.NODE_ENV === "production") {
 					if (type === PHONE) {
 						sendVerificationSMS(to, key);

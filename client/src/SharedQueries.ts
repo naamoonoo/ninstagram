@@ -3,6 +3,7 @@ import { gql } from "apollo-boost";
 export const GET_CURRENT_USER = gql`
 	query GetCurrentUser {
 		GetCurrentUser {
+			res
 			user {
 				id
 				firstName
@@ -10,9 +11,8 @@ export const GET_CURRENT_USER = gql`
 				likes {
 					feedId
 				}
-				# feeds{
-
-				# }
+				email
+				phone
 			}
 		}
 	}

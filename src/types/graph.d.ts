@@ -1,4 +1,4 @@
-export const typeDefs = ["type CreateCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype Mutation {\n  CreateComment(feedId: String!, comment: String!): CreateCommentResponse!\n  DeleteComment(commentId: String!): DeleteCommentResponse!\n  UpdateComment(commentId: String!, comment: String!): UpdateCommentResponse!\n  CreateFeed(photo: String!, text: String!): CreateFeedResponse!\n  DeleteFeed(feedId: String!): DeleteFeedResponse!\n  UpdateFeed(feedId: String!, text: String, photo: String): UpdateFeedResponse!\n  CreateLike(feedId: String!): CreateLikeResponse!\n  DeleteLike(feedId: String!): DeleteLikeResponse!\n  EmailSignIn(email: String!, password: String!): EmailSignInResponse!\n  EmailSignUp(firstName: String!, lastName: String!, password: String!, email: String!): EmailSignUpResponse!\n  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!\n  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!\n}\n\ntype DeleteCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype GetCommentsResponse {\n  res: Boolean!\n  error: String\n  comments: [Comment]\n}\n\ntype Query {\n  GetComments(feedId: String!): GetCommentsResponse!\n  GetFeed(feedId: String!): GetFeedResponse!\n  GetFeeds(page: Int!): GetFeedsResponse!\n  GetFeedsByUser(userId: String!): GetFeedsByUserResponse!\n  GetCurrentUser: GetCurrentUserResponse!\n  GetUserById(userId: String!): GetUserByIdResponse!\n}\n\ntype Comment {\n  id: String!\n  comment: String\n  user: User\n  userId: String\n  feed: Feed\n  feedId: String\n  createAt: String!\n  updateAt: String!\n}\n\ntype UpdateCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype CreateFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype DeleteFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype GetFeedResponse {\n  res: Boolean!\n  error: String\n  feed: Feed\n}\n\ntype GetFeedsResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype GetFeedsByUserResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype Feed {\n  id: String!\n  photo: String!\n  text: String\n  user: User\n  likes: [Like]\n  comments: [Comment]\n  createAt: String!\n  updateAt: String!\n}\n\ntype Subscription {\n  SubscribeFeed: Feed\n}\n\ntype UpdateFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype CreateLikeResponse {\n  res: Boolean!\n  error: String\n}\n\ntype DeleteLikeResponse {\n  res: Boolean!\n  error: String\n}\n\ntype Like {\n  id: String!\n  user: User!\n  feed: Feed!\n  feedId: String\n  userId: String\n  createAt: String\n  updateAt: String\n}\n\ntype EmailSignInResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype EmailSignUpResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype GetCurrentUserResponse {\n  res: Boolean!\n  error: String\n  user: User\n}\n\ntype GetUserByIdResponse {\n  res: Boolean!\n  error: String\n  user: User\n}\n\ntype User {\n  id: String!\n  fbId: String\n  googleId: String\n  firstName: String!\n  lastName: String\n  password: String\n  profilePhoto: String\n  email: String\n  isEmailVerified: Boolean\n  phone: String\n  isPhoneVerified: Boolean\n  feeds: [Feed]\n  likes: [Like]\n  comments: [Comment]\n  createAt: String!\n  updateAt: String!\n}\n\ntype RequestVerificationResponse {\n  res: Boolean!\n  error: String\n}\n\ntype Verification {\n  id: String!\n  type: String!\n  payload: String!\n  key: String!\n  isVerified: Boolean!\n  createAt: String!\n  updateAt: String!\n}\n\ntype ValidateVerificationResponse {\n  res: Boolean!\n  error: String\n}\n"];
+export const typeDefs = ["type CreateCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype Mutation {\n  CreateComment(feedId: String!, comment: String!): CreateCommentResponse!\n  DeleteComment(commentId: String!): DeleteCommentResponse!\n  UpdateComment(commentId: String!, comment: String!): UpdateCommentResponse!\n  CreateFeed(photo: String!, text: String!): CreateFeedResponse!\n  DeleteFeed(feedId: String!): DeleteFeedResponse!\n  UpdateFeed(feedId: String!, text: String): UpdateFeedResponse!\n  CreateLike(feedId: String!): CreateLikeResponse!\n  DeleteLike(feedId: String!): DeleteLikeResponse!\n  EmailSignIn(email: String!, password: String!): EmailSignInResponse!\n  EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!\n  UpdateUser(phone: String, isEmailVerified: Boolean, isPhoneVerified: Boolean, email: String, password: String, newPassword: String, profilePhoto: String): UpdateUserResponse!\n  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!\n  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!\n}\n\ntype DeleteCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype GetCommentsResponse {\n  res: Boolean!\n  error: String\n  comments: [Comment]\n}\n\ntype Query {\n  GetComments(feedId: String!): GetCommentsResponse!\n  GetFeed(feedId: String!): GetFeedResponse!\n  GetFeeds(page: Int!): GetFeedsResponse!\n  GetFeedsByUser(userId: String!): GetFeedsByUserResponse!\n  GetCurrentUser: GetCurrentUserResponse!\n  GetUserById(userId: String!): GetUserByIdResponse!\n}\n\ntype Comment {\n  id: String!\n  comment: String\n  user: User\n  userId: String\n  feed: Feed\n  feedId: String\n  createAt: String!\n  updateAt: String!\n}\n\ntype UpdateCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype CreateFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype DeleteFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype GetFeedResponse {\n  res: Boolean!\n  error: String\n  feed: Feed\n}\n\ntype GetFeedsResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype GetFeedsByUserResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype Feed {\n  id: String!\n  photo: String!\n  text: String\n  user: User\n  likes: [Like]\n  comments: [Comment]\n  createAt: String!\n  updateAt: String!\n}\n\ntype Subscription {\n  SubscribeFeed: Feed\n}\n\ntype UpdateFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype CreateLikeResponse {\n  res: Boolean!\n  error: String\n}\n\ntype DeleteLikeResponse {\n  res: Boolean!\n  error: String\n}\n\ntype Like {\n  id: String!\n  user: User!\n  feed: Feed!\n  feedId: String\n  userId: String\n  createAt: String\n  updateAt: String\n}\n\ntype EmailSignInResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype EmailSignUpResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype GetCurrentUserResponse {\n  res: Boolean!\n  error: String\n  user: User\n}\n\ntype GetUserByIdResponse {\n  res: Boolean!\n  error: String\n  user: User\n}\n\ntype User {\n  id: String!\n  fbId: String\n  googleId: String\n  firstName: String!\n  lastName: String\n  password: String\n  profilePhoto: String\n  email: String\n  isEmailVerified: Boolean\n  phone: String\n  isPhoneVerified: Boolean\n  feeds: [Feed]\n  likes: [Like]\n  comments: [Comment]\n  createAt: String!\n  updateAt: String!\n}\n\ntype UpdateUserResponse {\n  res: Boolean!\n  error: String\n}\n\ntype RequestVerificationResponse {\n  res: Boolean!\n  error: String\n}\n\ntype Verification {\n  id: String!\n  type: String!\n  payload: String!\n  key: String!\n  isVerified: Boolean!\n  createAt: String!\n  updateAt: String!\n}\n\ntype ValidateVerificationResponse {\n  res: Boolean!\n  error: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -128,6 +128,7 @@ export interface Mutation {
   DeleteLike: DeleteLikeResponse;
   EmailSignIn: EmailSignInResponse;
   EmailSignUp: EmailSignUpResponse;
+  UpdateUser: UpdateUserResponse;
   RequestVerification: RequestVerificationResponse;
   ValidateVerification: ValidateVerificationResponse;
 }
@@ -158,7 +159,6 @@ export interface DeleteFeedMutationArgs {
 export interface UpdateFeedMutationArgs {
   feedId: string;
   text: string | null;
-  photo: string | null;
 }
 
 export interface CreateLikeMutationArgs {
@@ -176,9 +176,18 @@ export interface EmailSignInMutationArgs {
 
 export interface EmailSignUpMutationArgs {
   firstName: string;
-  lastName: string;
   password: string;
   email: string;
+}
+
+export interface UpdateUserMutationArgs {
+  phone: string | null;
+  isEmailVerified: boolean | null;
+  isPhoneVerified: boolean | null;
+  email: string | null;
+  password: string | null;
+  newPassword: string | null;
+  profilePhoto: string | null;
 }
 
 export interface RequestVerificationMutationArgs {
@@ -241,6 +250,11 @@ export interface EmailSignUpResponse {
   res: boolean;
   error: string | null;
   token: string | null;
+}
+
+export interface UpdateUserResponse {
+  res: boolean;
+  error: string | null;
 }
 
 export interface RequestVerificationResponse {

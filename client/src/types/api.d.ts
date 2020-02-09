@@ -85,6 +85,113 @@ export interface GetCommentsVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: ChangePassword
+// ====================================================
+
+export interface ChangePassword_UpdateUser {
+	__typename: "UpdateUserResponse";
+	res: boolean;
+	error: string | null;
+}
+
+export interface ChangePassword {
+	UpdateUser: ChangePassword_UpdateUser;
+}
+
+export interface ChangePasswordVariables {
+	password?: string | null;
+	newPassword?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetFeed
+// ====================================================
+
+export interface GetFeed_GetFeed_feed_user {
+	__typename: "User";
+	id: string;
+	firstName: string;
+	profilePhoto: string | null;
+}
+
+export interface GetFeed_GetFeed_feed {
+	__typename: "Feed";
+	id: string;
+	photo: string;
+	text: string | null;
+	user: GetFeed_GetFeed_feed_user | null;
+	updateAt: string;
+}
+
+export interface GetFeed_GetFeed {
+	__typename: "GetFeedResponse";
+	res: boolean;
+	error: string | null;
+	feed: GetFeed_GetFeed_feed | null;
+}
+
+export interface GetFeed {
+	GetFeed: GetFeed_GetFeed;
+}
+
+export interface GetFeedVariables {
+	feedId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: UpdateFeed
+// ====================================================
+
+export interface UpdateFeed_UpdateFeed {
+	__typename: "UpdateFeedResponse";
+	res: boolean;
+	error: string | null;
+}
+
+export interface UpdateFeed {
+	UpdateFeed: UpdateFeed_UpdateFeed;
+}
+
+export interface UpdateFeedVariables {
+	feedId: string;
+	text?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: DeleteFeed
+// ====================================================
+
+export interface DeleteFeed_DeleteFeed {
+	__typename: "DeleteFeedResponse";
+	res: boolean;
+	error: string | null;
+}
+
+export interface DeleteFeed {
+	DeleteFeed: DeleteFeed_DeleteFeed;
+}
+
+export interface DeleteFeedVariables {
+	feedId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetFeeds
 // ====================================================
 
@@ -95,12 +202,18 @@ export interface GetFeeds_GetFeeds_feeds_user {
 	profilePhoto: string | null;
 }
 
+export interface GetFeeds_GetFeeds_feeds_likes {
+	__typename: "Like";
+	userId: string | null;
+}
+
 export interface GetFeeds_GetFeeds_feeds {
 	__typename: "Feed";
 	id: string;
 	photo: string;
 	text: string | null;
 	user: GetFeeds_GetFeeds_feeds_user | null;
+	likes: (GetFeeds_GetFeeds_feeds_likes | null)[] | null;
 	updateAt: string;
 }
 
@@ -168,6 +281,72 @@ export interface DeleteLikeVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL subscription operation: SubscribeFeed
+// ====================================================
+
+export interface SubscribeFeed_SubscribeFeed {
+	__typename: "Feed";
+	id: string;
+}
+
+export interface SubscribeFeed {
+	SubscribeFeed: SubscribeFeed_SubscribeFeed | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: EmailSignIn
+// ====================================================
+
+export interface EmailSignIn_EmailSignIn {
+	__typename: "EmailSignInResponse";
+	res: boolean;
+	error: string | null;
+	token: string | null;
+}
+
+export interface EmailSignIn {
+	EmailSignIn: EmailSignIn_EmailSignIn;
+}
+
+export interface EmailSignInVariables {
+	email: string;
+	password: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: EmailSignUp
+// ====================================================
+
+export interface EmailSignUp_EmailSignUp {
+	__typename: "EmailSignUpResponse";
+	res: boolean;
+	error: string | null;
+	token: string | null;
+}
+
+export interface EmailSignUp {
+	EmailSignUp: EmailSignUp_EmailSignUp;
+}
+
+export interface EmailSignUpVariables {
+	username: string;
+	email: string;
+	password: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetCurrentUserNewFeed
 // ====================================================
 
@@ -228,6 +407,10 @@ export interface GetUserById_GetUserById_user {
 	firstName: string;
 	profilePhoto: string | null;
 	feeds: (GetUserById_GetUserById_user_feeds | null)[] | null;
+	isEmailVerified: boolean | null;
+	isPhoneVerified: boolean | null;
+	email: string | null;
+	phone: string | null;
 }
 
 export interface GetUserById_GetUserById {
@@ -250,6 +433,52 @@ export interface GetUserByIdVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: RequestVerification
+// ====================================================
+
+export interface RequestVerification_RequestVerification {
+	__typename: "RequestVerificationResponse";
+	res: boolean;
+	error: string | null;
+}
+
+export interface RequestVerification {
+	RequestVerification: RequestVerification_RequestVerification;
+}
+
+export interface RequestVerificationVariables {
+	type: string;
+	payload: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ValidateVerification
+// ====================================================
+
+export interface ValidateVerification_ValidateVerification {
+	__typename: "ValidateVerificationResponse";
+	res: boolean;
+	error: string | null;
+}
+
+export interface ValidateVerification {
+	ValidateVerification: ValidateVerification_ValidateVerification;
+}
+
+export interface ValidateVerificationVariables {
+	payload: string;
+	key: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetCurrentUser
 // ====================================================
 
@@ -264,10 +493,13 @@ export interface GetCurrentUser_GetCurrentUser_user {
 	firstName: string;
 	profilePhoto: string | null;
 	likes: (GetCurrentUser_GetCurrentUser_user_likes | null)[] | null;
+	email: string | null;
+	phone: string | null;
 }
 
 export interface GetCurrentUser_GetCurrentUser {
 	__typename: "GetCurrentUserResponse";
+	res: boolean;
 	user: GetCurrentUser_GetCurrentUser_user | null;
 }
 

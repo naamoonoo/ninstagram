@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React from "react";
 import CameraButton from "../../Components/CameraButton";
 import Feed from "../../Components/Feed";
 import * as S from "./NewFeedStyle";
@@ -15,9 +15,10 @@ const NewFeedPresenter: React.FC<IProps> = ({
 	photo,
 	text,
 	onChageText,
-	userData: { GetCurrentUserNewFeed: { user = null } = {} } = {},
+	userData: { GetCurrentUser: { user = {} } = {} } = {},
 	onClickHandler
 }) => {
+	console.log(user);
 	return (
 		<S.Container>
 			<Feed photo={photo} text={text} user={user} updateAt={"now"}>

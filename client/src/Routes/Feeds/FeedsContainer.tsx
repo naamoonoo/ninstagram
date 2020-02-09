@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery, useSubscription } from "@apollo/react-hooks";
 import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,18 +8,31 @@ import {
 	CreateLikeVariables,
 	DeleteLike,
 	DeleteLikeVariables,
+	GetCurrentUser,
 	GetFeeds,
 	GetFeedsVariables
 } from "../../types/api";
+import { Routes } from "../routes";
 import FeedsPresenter from "./FeedsPresenter";
-import { GET_FEEDS, LIKE_CREATE, LIKE_DELETE } from "./FeedsQueries";
+import {
+	GET_FEEDS,
+	LIKE_CREATE,
+	LIKE_DELETE,
+	SUBSCRIBE_FEED
+} from "./FeedsQueries";
 
 interface IProps extends RouteComponentProps {}
 
-const FeedsContainer: React.FC<IProps> = ({ history }) => {
+const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
+	const [newFeed, setNewFeed] = useState(false);
 	const [page, setPage] = useState(1);
-	const { data: userData, refetch: userRefetch } = useQuery(GET_CURRENT_USER);
-	const { data, refetch } = useQuery<GetFeeds, GetFeedsVariables>(GET_FEEDS, {
+	const { data: userData, refetch: userRefetch } = useQuery<GetCurrentUser>(
+		GET_CURRENT_USER
+	);
+	const { data, refetch, refetch: feedRefetch } = useQuery<
+		GetFeeds,
+		GetFeedsVariables
+	>(GET_FEEDS, {
 		fetchPolicy: "cache-and-network",
 		variables: {
 			page
@@ -30,6 +43,7 @@ const FeedsContainer: React.FC<IProps> = ({ history }) => {
 		onCompleted: ({ CreateLike: { res, error } }) => {
 			if (res) {
 				userRefetch();
+				feedRefetch();
 			} else {
 				toast.error(error);
 			}
@@ -41,6 +55,7 @@ const FeedsContainer: React.FC<IProps> = ({ history }) => {
 			onCompleted: ({ DeleteLike: { res, error } }) => {
 				if (res) {
 					userRefetch();
+					feedRefetch();
 				} else {
 					toast.error(error);
 				}
@@ -48,9 +63,18 @@ const FeedsContainer: React.FC<IProps> = ({ history }) => {
 		}
 	);
 
+	useSubscription(SUBSCRIBE_FEED, {
+		onSubscriptionData: () => {
+			setNewFeed(true);
+			feedRefetch();
+		}
+	});
+
 	const onReachToEnd = () => {
-		setPage(page + 1);
-		refetch();
+		if (match.path === Routes.HOME) {
+			setPage(page + 1);
+			refetch();
+		}
 	};
 
 	return (
@@ -61,6 +85,8 @@ const FeedsContainer: React.FC<IProps> = ({ history }) => {
 			onLike={onLike}
 			onDisLike={onDisLike}
 			userData={userData}
+			newFeed={newFeed}
+			setNewFeed={setNewFeed}
 		/>
 	);
 };

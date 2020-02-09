@@ -4,7 +4,9 @@ import { ReactComponent as CommentFull } from "../../assets/icons/comment-full.s
 import { ReactComponent as LikeEmpty } from "../../assets/icons/like-empty.svg";
 import { ReactComponent as LikeFull } from "../../assets/icons/like-full.svg";
 import { ReactComponent as EditMenu } from "../../assets/icons/menu-dot.svg";
+import { Routes } from "../../Routes/routes";
 import { getTimeDiff } from "../../utils/getTimeDiff";
+import { forceHistory } from "../../utils/history";
 import Comments from "../Comments";
 import Profile from "../Profile";
 import * as S from "./FeedStyle";
@@ -18,7 +20,10 @@ interface IProps {
 	liked?: boolean;
 	onLike?: any;
 	onDisLike?: any;
-	comments?: any[];
+	isCurrentUser?: boolean;
+	unfoldComment?: boolean;
+	isUpdate?: boolean;
+	likes?: any[];
 }
 
 const FeedPresenter: React.FC<IProps> = ({
@@ -31,24 +36,23 @@ const FeedPresenter: React.FC<IProps> = ({
 	liked,
 	onLike,
 	onDisLike,
-	comments
+	isCurrentUser,
+	unfoldComment = false,
+	isUpdate = false,
+	likes
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
-	const [isDbClicked, setIsDbClicked] = useState(false);
-	const [commentShow, setCommentShow] = useState(false);
+	const [commentShow, setCommentShow] = useState(unfoldComment);
 	const numTime = parseInt(updateAt, 10);
 	const time = isNaN(numTime) ? "now" : getTimeDiff(new Date(numTime));
 	const likeHandler = () => {
+		if (!onDisLike || !onLike) {
+			return;
+		}
 		if (liked) {
 			return onDisLike({ variables: { feedId: id } });
 		}
 		return onLike({ variables: { feedId: id } });
-	};
-	const onDoubleClickHandler = () => {
-		setIsDbClicked(true);
-		setTimeout(() => {
-			setIsDbClicked(false);
-		}, 1000);
 	};
 
 	return (
@@ -61,23 +65,36 @@ const FeedPresenter: React.FC<IProps> = ({
 				<S.Time>{time}</S.Time>
 			</S.Header>
 
-			<S.Image src={photo} onDoubleClick={likeHandler} />
-			<S.Infos>
-				<S.Like isLiked={liked || false} onClick={likeHandler}>
-					{liked ? <LikeFull /> : <LikeEmpty />}
-				</S.Like>
-				<S.Message
-					commentShow={commentShow}
-					onClick={() => setCommentShow(!commentShow)}
-				>
-					{commentShow ? <CommentFull /> : <CommentEmpty />}
-				</S.Message>
-				{isHovered && (
-					<S.EditMenu>
-						<EditMenu />
-					</S.EditMenu>
-				)}
-			</S.Infos>
+			<S.Image
+				src={
+					photo ||
+					"https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"
+				}
+				onDoubleClick={likeHandler}
+			/>
+			{!isUpdate && (
+				<S.Infos>
+					<S.Like isLiked={liked || false} onClick={likeHandler}>
+						{liked ? <LikeFull /> : <LikeEmpty />}
+					</S.Like>
+					<S.Message
+						commentShow={commentShow}
+						onClick={() => setCommentShow(!commentShow)}
+					>
+						{commentShow ? <CommentFull /> : <CommentEmpty />}
+					</S.Message>
+					{likes && <S.Info>{likes.length} likes</S.Info>}
+					{isHovered && isCurrentUser && (
+						<S.EditMenu
+							onClick={() =>
+								forceHistory.push(Routes.FEED + `/${id}`)
+							}
+						>
+							<EditMenu />
+						</S.EditMenu>
+					)}
+				</S.Infos>
+			)}
 			{children || <S.Text>{text}</S.Text>}
 			{commentShow && id && (
 				<S.Comments>

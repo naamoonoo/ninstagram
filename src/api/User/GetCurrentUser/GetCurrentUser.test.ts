@@ -18,7 +18,7 @@ describe("[User]GetCurrentUser", () => {
 	beforeAll(async () => {
 		const userCreated = await User.create({
 			...variables,
-			password: "password"
+			password: "password!123"
 		}).save();
 		token = createJWT(userCreated!.id);
 	});

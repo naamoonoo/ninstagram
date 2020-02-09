@@ -13,7 +13,7 @@ export const Container = styled.div`
 	-webkit-box-shadow: 0 8px 10px -6px black;
 	-moz-box-shadow: 0 8px 10px -6px black;
 	box-shadow: 0 8px 10px -6px black;
-	/* background-color: lightgrey; */
+	z-index: 2;
 `;
 
 export const Title = styled.div`

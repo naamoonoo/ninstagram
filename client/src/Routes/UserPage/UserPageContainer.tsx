@@ -31,7 +31,6 @@ const UserPageContainer: React.FC<IProps> = ({
 			});
 		}
 	});
-
 	const [logOutMutation] = useMutation(USER_LOG_OUT);
 
 	return (

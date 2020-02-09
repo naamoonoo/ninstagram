@@ -1,16 +1,16 @@
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import React, { useState } from "react";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import React from "react";
 import { RouteComponentProps } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
-	GetCurrentUserNewFeed,
 	CreateFeed,
-	CreateFeedVariables
+	CreateFeedVariables,
+	GetCurrentUserNewFeed
 } from "../../types/api";
 import { useInput } from "../../utils/hooks";
 import { Routes } from "../routes";
 import NewFeedPresenter from "./NewFeedPresenter";
-import { GET_CURRENT_USER_NEW_FEED, CREATE_FEED } from "./NewFeedQueries";
-import { toast } from "react-toastify";
+import { CREATE_FEED, GET_CURRENT_USER_NEW_FEED } from "./NewFeedQueries";
 
 interface IProps extends RouteComponentProps<{}, {}, { photo: string }> {}
 

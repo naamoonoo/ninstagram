@@ -9,6 +9,7 @@ interface IProps {
 	profilePhoto?: string;
 	size?: string;
 	fontSize?: string;
+	clickable: boolean;
 }
 
 const ProfilePresenter: React.FC<IProps> = ({
@@ -16,12 +17,17 @@ const ProfilePresenter: React.FC<IProps> = ({
 	firstName,
 	profilePhoto,
 	size = "25px",
-	fontSize = "0.9em"
+	fontSize = "0.9em",
+	clickable = true
 }) => {
+	const onClickHandler = () => {
+		if (!clickable) {
+			return;
+		}
+		forceHistory.push(Routes.USER_PAGE + `/${id}`);
+	};
 	return (
-		<S.Container
-			onClick={() => forceHistory.push(Routes.USER_PAGE + `/${id}`)}
-		>
+		<S.Container onClick={onClickHandler}>
 			<S.ProfileImg src={profilePhoto} size={size} />
 			<S.Name fontSize={fontSize}>{firstName}</S.Name>
 		</S.Container>

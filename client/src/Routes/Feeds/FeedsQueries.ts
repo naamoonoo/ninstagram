@@ -14,20 +14,14 @@ export const GET_FEEDS = gql`
 					firstName
 					profilePhoto
 				}
+				likes {
+					userId
+				}
 				updateAt
 			}
 		}
 	}
 `;
-
-// export const UPDATE_FEED = gql`
-// 	mutation UpdateFeed($feedId: String!, $text: String, $photo: String) {
-// 		UpdateFeed(feedId: $feedId, text: $text, photo: $photo) {
-// 			res
-// 			error
-// 		}
-// 	}
-// `;
 
 export const LIKE_CREATE = gql`
 	mutation CreateLike($feedId: String!) {
@@ -43,6 +37,14 @@ export const LIKE_DELETE = gql`
 		DeleteLike(feedId: $feedId) {
 			res
 			error
+		}
+	}
+`;
+
+export const SUBSCRIBE_FEED = gql`
+	subscription SubscribeFeed {
+		SubscribeFeed {
+			id
 		}
 	}
 `;

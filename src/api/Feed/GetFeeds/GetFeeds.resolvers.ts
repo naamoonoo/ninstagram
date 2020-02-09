@@ -17,7 +17,7 @@ const resolvers: Resolvers = {
 					order: {
 						updateAt: "DESC"
 					},
-					relations: ["user"]
+					relations: ["user", "likes"]
 				});
 				return {
 					res: true,

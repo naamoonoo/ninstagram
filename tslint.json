@@ -4,6 +4,7 @@
 	  "exclude": ["node_modules/**/*."]
 	},
 	"rules": {
+		"no-string-literal": false,
 		"no-empty-interface": false,
 		"no-shadowed-variable": false,
 		"no-console": false,

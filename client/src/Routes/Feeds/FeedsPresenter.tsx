@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { ReactComponent as ToTop } from "../../assets/icons/TopButton.svg";
 import CameraButton from "../../Components/CameraButton";
+
 import Feed from "../../Components/Feed";
 import { Routes } from "../routes";
 import * as S from "./FeedsStyle";
@@ -11,6 +13,8 @@ interface IProps {
 	onLike: any;
 	onDisLike: any;
 	userData: any;
+	newFeed: boolean;
+	setNewFeed: any;
 }
 
 const FeedsPresenter: React.FC<IProps> = ({
@@ -19,7 +23,9 @@ const FeedsPresenter: React.FC<IProps> = ({
 	history,
 	onLike,
 	onDisLike,
-	userData: { GetCurrentUser: { user = {} } = {} } = {}
+	userData: { GetCurrentUser: { user = {} } = {} } = {},
+	newFeed,
+	setNewFeed
 }) => {
 	const renderFeed = (feeds: any[]) => {
 		return feeds.map(feed => {
@@ -32,27 +38,44 @@ const FeedsPresenter: React.FC<IProps> = ({
 				<Feed
 					key={feed.id}
 					{...feed}
-					onLike={onLike}
-					onDisLike={onDisLike}
+					onLike={user && user.likes && onLike}
+					onDisLike={user && user.likes && onDisLike}
 					liked={liked}
+					isCurrentUser={user.id === feed.user.id}
 				/>
 			);
 		});
 	};
 
-	window.onscroll = () => {
-		if (
-			window.innerHeight + document.documentElement.scrollTop ===
-			document.documentElement.offsetHeight
-		) {
-			onReachToEnd();
-		}
+	useEffect(() => {
+		const scrollDetect = () => {
+			if (
+				window.innerHeight + document.documentElement.scrollTop ===
+				document.documentElement.offsetHeight
+			) {
+				onReachToEnd();
+			}
+		};
+		window.addEventListener("scroll", scrollDetect);
+		return () => window.removeEventListener("scroll", scrollDetect);
+	}, [document.documentElement.scrollTop]);
+
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0 });
+		setNewFeed(false);
 	};
 
 	return (
 		<S.Container>
+			{newFeed && (
+				<S.NewFeed onClick={scrollToTop}>
+					<ToTop width={200} height={50} />
+				</S.NewFeed>
+			)}
 			{user && feeds && renderFeed(feeds)}
-			<CameraButton onClick={() => history.push(Routes.NEW_PHOTO)} />
+			{user && user.id && (
+				<CameraButton onClick={() => history.push(Routes.NEW_PHOTO)} />
+			)}
 		</S.Container>
 	);
 };

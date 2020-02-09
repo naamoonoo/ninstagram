@@ -42,11 +42,11 @@ export class User extends BaseEntity {
 	})
 	profilePhoto: string;
 
-	@Column({ nullable: true }) email: string;
+	@Column({ nullable: true, unique: true }) email: string;
 
 	@Column({ default: false }) isEmailVerified: boolean;
 
-	@Column({ nullable: true }) phone: string;
+	@Column({ nullable: true, unique: true }) phone: string;
 
 	@Column({ default: false }) isPhoneVerified: boolean;
 

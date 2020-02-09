@@ -15,7 +15,6 @@ describe("[User]EmailSignUp", () => {
 	const query = `mutation {
 			EmailSignUp(
 				firstName: $firstName
-				lastName: $lastName
 				password: $password
 				email: $email
 			) {
@@ -27,10 +26,9 @@ describe("[User]EmailSignUp", () => {
 
 	it("should pass with valid data", async () => {
 		const variables = {
-			firstName: "$firstName",
-			lastName: "$lastName",
-			password: "$password",
-			email: "$email"
+			firstName: "firstName",
+			password: "$passworD12!",
+			email: "email@email.com"
 		};
 		const response = await api
 			.send({ query: getQuery(query, variables) })
@@ -49,10 +47,9 @@ describe("[User]EmailSignUp", () => {
 
 	it("should fail, existed user case", async () => {
 		const variables = {
-			firstName: "$firstName",
-			lastName: "$lastName",
-			password: "$password",
-			email: "$email"
+			firstName: "firstName",
+			password: "$passworD12!",
+			email: "email@email.com"
 		};
 		const response = await api
 			.send({ query: getQuery(query, variables) })

@@ -1,7 +1,6 @@
 import React, { useCallback, useRef } from "react";
 import Webcam from "react-webcam";
 import CameraButton from "../CameraButton";
-import * as S from "./WebcamStyle";
 
 interface IProps {
 	onCapture: any;
@@ -20,7 +19,7 @@ const WebcamPresenter: React.FC<IProps> = ({ onCapture }) => {
 				onCapture(newPicture);
 			}
 		}
-	}, [webcamRef]);
+	}, [webcamRef, onCapture]);
 	return (
 		<React.Fragment>
 			<Webcam
@@ -29,6 +28,7 @@ const WebcamPresenter: React.FC<IProps> = ({ onCapture }) => {
 				width={"100%"}
 				screenshotFormat="image/jpeg"
 				videoConstraints={videoConstraints}
+				mirrored={true}
 			/>
 			<CameraButton onClick={capture} hovered={true} />
 		</React.Fragment>

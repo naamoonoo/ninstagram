@@ -43,7 +43,6 @@ describe("[Feed]DeleteFeed", () => {
 			.send({ query: getQuery(query, variables) })
 			.expect(200)
 			.then(response => response.body.data.DeleteFeed);
-		console.log(response);
 		const { res, error } = response;
 		expect(res).toBeTruthy();
 		expect(error).toBeNull();

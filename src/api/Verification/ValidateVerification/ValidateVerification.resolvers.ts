@@ -35,13 +35,19 @@ const resolvers: Resolvers = {
 						{ isVerified: true }
 					);
 					if (verification.type === PHONE) {
-						user.phone = verification.payload;
-						user.isPhoneVerified = true;
-						user.save();
+						await User.update(
+							{ id: user.id },
+							{
+								isPhoneVerified: true
+							}
+						);
 					} else {
-						user.email = verification.payload;
-						user.isEmailVerified = true;
-						user.save();
+						await User.update(
+							{ id: user.id },
+							{
+								isEmailVerified: true
+							}
+						);
 					}
 					return {
 						res: true,

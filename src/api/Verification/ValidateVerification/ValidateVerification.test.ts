@@ -9,9 +9,10 @@ import { createJWT } from "../../../utils/jwt";
 describe("[Verification]ValidateVerification", () => {
 	let api;
 	let token;
+	let user;
 
 	beforeAll(async () => {
-		const user = await User.create({
+		user = await User.create({
 			firstName: "test",
 			email: "test@test.com",
 			password: "Test123!!"
@@ -24,7 +25,7 @@ describe("[Verification]ValidateVerification", () => {
 	});
 
 	const query = `mutation {
-			ValidateVerification(key:$key payload:$payload ){
+			ValidateVerification(key:$key payload:$payload){
 				res
 				error
 			}
@@ -48,9 +49,10 @@ describe("[Verification]ValidateVerification", () => {
 			.expect(200)
 			.then(response => response.body.data.ValidateVerification);
 		const { res, error } = response;
-
 		expect(res).toBeTruthy();
 		expect(error).toBeNull();
+		const updatedUser = await User.findOne({ id: user.id });
+		expect(updatedUser?.isEmailVerified).toBeTruthy();
 	});
 
 	it("PHONE validate verification", async () => {
@@ -72,5 +74,7 @@ describe("[Verification]ValidateVerification", () => {
 		const { res, error } = response;
 		expect(res).toBeTruthy();
 		expect(error).toBeNull();
+		const updatedUser = await User.findOne({ id: user.id });
+		expect(updatedUser?.isPhoneVerified).toBeTruthy();
 	});
 });

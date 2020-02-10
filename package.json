@@ -22,7 +22,8 @@
   },
   "jest": {
     "testPathIgnorePatterns": [
-      "<rootDir>/node_modules/"
+      "<rootDir>/node_modules/",
+      "<rootDir>/build/"
     ],
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"

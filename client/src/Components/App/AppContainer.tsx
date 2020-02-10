@@ -6,7 +6,6 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
 import AppPresenter from "./AppPresenter";
 import { IS_LOGGED_IN } from "./AppQueries.local";
-import * as S from "./AppStyle";
 
 const AppContainer: React.FC = () => {
 	const { data: { auth: { isLoggedIn = false } = {} } = {} } = useQuery(
@@ -14,12 +13,12 @@ const AppContainer: React.FC = () => {
 	);
 
 	return (
-		<S.Container>
+		<React.Fragment>
 			<ThemeProvider theme={theme}>
 				<AppPresenter isLoggedIn={isLoggedIn} />
 			</ThemeProvider>
 			<ToastContainer draggable={true} position={"bottom-center"} />
-		</S.Container>
+		</React.Fragment>
 	);
 };
 

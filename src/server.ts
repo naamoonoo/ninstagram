@@ -27,12 +27,14 @@ app.use(decodeJWT);
 app.use(express.static(path.join(__dirname, "client/build")));
 
 authRoutes(app);
-app.get("/*", (req, res) => {
-	res.sendFile(path.join(__dirname, "client/build/index.html"));
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
+
 // prodRoutes(app);
 
 const graphqlServer = new ApolloServer({
+	playground: true,
 	schema,
 	context: async ({ req }) => {
 		return { req, pubsub };

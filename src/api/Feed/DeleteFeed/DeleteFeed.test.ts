@@ -11,6 +11,7 @@ describe("[Feed]DeleteFeed", () => {
 	let api;
 	let token;
 	let user;
+
 	beforeAll(async () => {
 		user = await User.create({
 			firstName: "test",
@@ -42,6 +43,7 @@ describe("[Feed]DeleteFeed", () => {
 			.send({ query: getQuery(query, variables) })
 			.expect(200)
 			.then(response => response.body.data.DeleteFeed);
+		console.log(response);
 		const { res, error } = response;
 		expect(res).toBeTruthy();
 		expect(error).toBeNull();

@@ -8,8 +8,7 @@ import logger from "morgan";
 import path from "path";
 import { SubscriptionServer } from "subscriptions-transport-ws";
 import { decodeJWT } from "./middlewares";
-// import authRoutes from "./routes/authRoutes";
-// import prodRoutes from "./routes/prodRoutes";
+import authRoutes from "./routes/authRoutes";
 import schema from "./schema";
 import { JWT, SUBSCRIPTION_ENDPOINT } from "./types/constants";
 import { openDBConn } from "./utils/databaseConn";
@@ -41,7 +40,7 @@ const graphqlServer = new ApolloServer({
 
 graphqlServer.applyMiddleware({ app });
 
-// authRoutes(app);
+authRoutes(app);
 app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });

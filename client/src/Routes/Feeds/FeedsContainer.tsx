@@ -27,7 +27,12 @@ const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 	const [newFeed, setNewFeed] = useState(false);
 	const [page, setPage] = useState(1);
 	const { data: userData, refetch: userRefetch } = useQuery<GetCurrentUser>(
-		GET_CURRENT_USER
+		GET_CURRENT_USER,
+		{
+			onCompleted: ({ GetCurrentUser }) => {
+				console.log(GetCurrentUser);
+			}
+		}
 	);
 	const { data, refetch, refetch: feedRefetch } = useQuery<
 		GetFeeds,
@@ -36,6 +41,9 @@ const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 		fetchPolicy: "cache-and-network",
 		variables: {
 			page
+		},
+		onCompleted: ({ GetFeeds }) => {
+			console.log(GetFeeds);
 		}
 	});
 

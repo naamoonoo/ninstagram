@@ -5,5 +5,5 @@ type GetCurrentUserResponse {
 }
 
 type Query {
-	GetCurrentUser: GetCurrentUserResponse!
+	GetCurrentUser: GetCurrentUserResponse
 }

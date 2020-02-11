@@ -44,7 +44,7 @@ const wsLink = new WebSocketLink({
 		reconnect: true
 	},
 	uri: isDev
-		? "ws://localhost:4000/subscription"
+		? "ws://localhost:4000/graphql"
 		: "wss://project-ninstagram.herokuapp.com/subscription"
 });
 
@@ -59,11 +59,13 @@ const combinedLinks = split(
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
 	if (graphQLErrors) {
-		graphQLErrors.map(({ message }) => toast.error(`${message}`));
+		graphQLErrors.map(({ message }) =>
+			toast.error(`Unexpected error: ${message}`)
+		);
 	}
-	// if (networkError) {
-	// 	toast.error(`Network error: ${networkError}`);
-	// }
+	if (networkError) {
+		toast.error(`Network error: ${networkError}`);
+	}
 });
 
 // should fix localStorage => localStorage

@@ -19,6 +19,8 @@ const resolvers: Resolvers = {
 				const user: User = req.user;
 				const { feedId } = args;
 				try {
+					//should delete like and comment first
+
 					const res = await Feed.delete({ id: feedId, user });
 					if (res.affected === 1) {
 						return {

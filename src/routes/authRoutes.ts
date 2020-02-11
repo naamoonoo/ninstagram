@@ -4,7 +4,7 @@ import passport from "../utils/passport";
 const url =
 	process.env.NODE_ENV === "development"
 		? "http://localhost:3000"
-		: "https://project-ninstagram.heroku.com";
+		: "https://project-ninstagram.herokuapp.com";
 
 export default (app: Express) => {
 	app.get("/api/auth/facebook", passport.authenticate("facebook"));

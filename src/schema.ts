@@ -8,7 +8,7 @@ const allTypes: GraphQLSchema[] = fileLoader(
 );
 
 const allResolvers: any[] = fileLoader(
-	path.join(__dirname, "./api/**/*.resolvers.ts")
+	path.join(__dirname, "./api/**/*.resolvers.*")
 );
 
 const typeDefs = mergeTypes(allTypes);

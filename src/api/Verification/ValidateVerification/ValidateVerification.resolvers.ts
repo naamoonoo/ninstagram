@@ -38,6 +38,7 @@ const resolvers: Resolvers = {
 						await User.update(
 							{ id: user.id },
 							{
+								phone: payload,
 								isPhoneVerified: true
 							}
 						);
@@ -45,6 +46,7 @@ const resolvers: Resolvers = {
 						await User.update(
 							{ id: user.id },
 							{
+								email: payload,
 								isEmailVerified: true
 							}
 						);

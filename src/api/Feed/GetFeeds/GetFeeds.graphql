@@ -5,5 +5,5 @@ type GetFeedsResponse {
 }
 
 type Query {
-	GetFeeds(page: Int!): GetFeedsResponse!
+	GetFeeds(page: Int!): GetFeedsResponse
 }

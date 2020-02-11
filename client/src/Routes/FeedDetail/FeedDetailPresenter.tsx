@@ -10,6 +10,7 @@ interface IProps {
 	onChangeInput: (event: React.ChangeEvent<Element>) => any;
 	updateMutation: any;
 	deleteMutation: any;
+	updateProfilePhoto: any;
 }
 
 const FeedDetailPresenter: React.FC<IProps> = ({
@@ -18,7 +19,8 @@ const FeedDetailPresenter: React.FC<IProps> = ({
 	input,
 	onChangeInput,
 	updateMutation,
-	deleteMutation
+	deleteMutation,
+	updateProfilePhoto
 }) => {
 	const isOwner = user && feed && feed.user && user.id === feed.user.id;
 	return (
@@ -36,6 +38,18 @@ const FeedDetailPresenter: React.FC<IProps> = ({
 			</Feed>
 			{isOwner && (
 				<S.ButtonContainer>
+					<S.Button
+						style={{ backgroundColor: "#0F9D58" }}
+						onClick={() =>
+							updateProfilePhoto({
+								variables: {
+									profilePhoto: feed.photo
+								}
+							})
+						}
+					>
+						SET AS PROFILE
+					</S.Button>
 					<S.Button
 						style={{ backgroundColor: "#3b5998" }}
 						onClick={updateMutation}

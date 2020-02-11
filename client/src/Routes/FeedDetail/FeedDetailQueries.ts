@@ -36,3 +36,12 @@ export const DELETE_FEED = gql`
 		}
 	}
 `;
+
+export const UPDATE_PROFILE_PHOTO = gql`
+	mutation UpdateProfilePhoto($profilePhoto: String!) {
+		UpdateUser(profilePhoto: $profilePhoto) {
+			res
+			error
+		}
+	}
+`;

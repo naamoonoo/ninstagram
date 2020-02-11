@@ -9,12 +9,19 @@ import {
 	GetFeed,
 	GetFeedVariables,
 	UpdateFeed,
-	UpdateFeedVariables
+	UpdateFeedVariables,
+	UpdateProfilePhoto,
+	UpdateProfilePhotoVariables
 } from "../../types/api";
 import { useInput } from "../../utils/hooks";
 import { Routes } from "../routes";
 import FeedDetailPresenter from "./FeedDetailPresenter";
-import { DELETE_FEED, GET_FEED, UPDATE_FEED } from "./FeedDetailQueries";
+import {
+	DELETE_FEED,
+	GET_FEED,
+	UPDATE_FEED,
+	UPDATE_PROFILE_PHOTO
+} from "./FeedDetailQueries";
 
 interface IProps extends RouteComponentProps<{ feedId: string }> {}
 const FeedDetailContainer: React.FC<IProps> = ({
@@ -28,7 +35,7 @@ const FeedDetailContainer: React.FC<IProps> = ({
 	}
 
 	const [input, onChangeInput, setInput] = useInput("");
-	const { data: userData } = useQuery(GET_CURRENT_USER);
+	const { data: userData, refetch: userRefetch } = useQuery(GET_CURRENT_USER);
 	const { data: feedData } = useQuery<GetFeed, GetFeedVariables>(GET_FEED, {
 		variables: { feedId },
 		onCompleted: ({ GetFeed: { res, feed } }) => {
@@ -71,6 +78,19 @@ const FeedDetailContainer: React.FC<IProps> = ({
 		}
 	);
 
+	const [updateProfilePhoto] = useMutation<
+		UpdateProfilePhoto,
+		UpdateProfilePhotoVariables
+	>(UPDATE_PROFILE_PHOTO, {
+		onCompleted: ({ UpdateUser: { res, error } }) => {
+			if (res) {
+				userRefetch();
+			} else {
+				toast.error(error);
+			}
+		}
+	});
+
 	return (
 		<FeedDetailPresenter
 			userData={userData}
@@ -79,6 +99,7 @@ const FeedDetailContainer: React.FC<IProps> = ({
 			onChangeInput={onChangeInput}
 			updateMutation={updateMutation}
 			deleteMutation={deleteMutation}
+			updateProfilePhoto={updateProfilePhoto}
 		/>
 	);
 };

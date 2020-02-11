@@ -192,6 +192,28 @@ export interface DeleteFeedVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: UpdateProfilePhoto
+// ====================================================
+
+export interface UpdateProfilePhoto_UpdateUser {
+	__typename: "UpdateUserResponse";
+	res: boolean;
+	error: string | null;
+}
+
+export interface UpdateProfilePhoto {
+	UpdateUser: UpdateProfilePhoto_UpdateUser;
+}
+
+export interface UpdateProfilePhotoVariables {
+	profilePhoto: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetFeeds
 // ====================================================
 

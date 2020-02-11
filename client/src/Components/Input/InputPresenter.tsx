@@ -5,9 +5,15 @@ interface IProps {
 	label: string;
 	value: string;
 	onChange: any;
+	placeholder?: string;
 }
 
-const InputPresenter: React.FC<IProps> = ({ label, value, onChange }) => {
+const InputPresenter: React.FC<IProps> = ({
+	label,
+	value,
+	onChange,
+	placeholder
+}) => {
 	const [isFocused, setIsFocused] = useState(false);
 	const type = label.search("password") >= 0 ? "password" : "text";
 	return (
@@ -21,6 +27,7 @@ const InputPresenter: React.FC<IProps> = ({ label, value, onChange }) => {
 				onFocus={() => setIsFocused(true)}
 				onBlur={() => setIsFocused(false)}
 				onChange={onChange}
+				placeholder={placeholder}
 			/>
 		</S.Container>
 	);

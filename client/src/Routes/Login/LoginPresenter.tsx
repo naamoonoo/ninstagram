@@ -55,7 +55,9 @@ const LoginPresenter: React.FC<IProps> = ({
 				facebook
 			</S.Button>
 			<S.LinkExtend to={routes}>go to {text}</S.LinkExtend>
-			<S.LinkExtend to={routes}>find my password</S.LinkExtend>
+			<S.LinkExtend to={Routes.FORGET_PASSWORD}>
+				find my password
+			</S.LinkExtend>
 		</S.Container>
 	);
 };

@@ -14,6 +14,7 @@ type Mutation {
   DeleteLike(feedId: String!): DeleteLikeResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
   EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!
+  ResetPassword(email: String, phone: String, password: String!): ResetPasswordResponse!
   UpdateUser(phone: String, isEmailVerified: Boolean, isPhoneVerified: Boolean, email: String, password: String, newPassword: String, profilePhoto: String): UpdateUserResponse!
   RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
   ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
@@ -37,6 +38,7 @@ type Query {
   GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
   GetCurrentUser: GetCurrentUserResponse!
   GetUserById(userId: String!): GetUserByIdResponse!
+  ForgetPassword(type: String!, payload: String!): ForgetPasswordResponse!
 }
 
 type Comment {
@@ -147,6 +149,12 @@ type GetUserByIdResponse {
   user: User
 }
 
+type ResetPasswordResponse {
+  res: Boolean!
+  error: String
+  token: String
+}
+
 type User {
   id: String!
   fbId: String
@@ -169,6 +177,12 @@ type User {
 type UpdateUserResponse {
   res: Boolean!
   error: String
+}
+
+type ForgetPasswordResponse {
+  res: Boolean!
+  error: String
+  key: String
 }
 
 type RequestVerificationResponse {

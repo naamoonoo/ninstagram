@@ -320,6 +320,55 @@ export interface SubscribeFeed {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: ForgetPassword
+// ====================================================
+
+export interface ForgetPassword_ForgetPassword {
+	__typename: "ForgetPasswordResponse";
+	res: boolean;
+	error: string | null;
+	key: string | null;
+}
+
+export interface ForgetPassword {
+	ForgetPassword: ForgetPassword_ForgetPassword;
+}
+
+export interface ForgetPasswordVariables {
+	type: string;
+	payload: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ResetPassword
+// ====================================================
+
+export interface ResetPassword_ResetPassword {
+	__typename: "ResetPasswordResponse";
+	res: boolean;
+	error: string | null;
+	token: string | null;
+}
+
+export interface ResetPassword {
+	ResetPassword: ResetPassword_ResetPassword;
+}
+
+export interface ResetPasswordVariables {
+	email?: string | null;
+	phone?: string | null;
+	password: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: EmailSignIn
 // ====================================================
 

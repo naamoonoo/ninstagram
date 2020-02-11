@@ -59,13 +59,11 @@ const combinedLinks = split(
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
 	if (graphQLErrors) {
-		graphQLErrors.map(({ message }) =>
-			toast.error(`Unexpected error: ${message}`)
-		);
+		graphQLErrors.map(({ message }) => toast.error(message));
 	}
-	if (networkError) {
-		toast.error(`Network error: ${networkError}`);
-	}
+	// if (networkError) {
+	// 	toast.error(`Network error: ${networkError}`);
+	// }
 });
 
 // should fix localStorage => localStorage

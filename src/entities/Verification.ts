@@ -33,13 +33,15 @@ export class Verification extends BaseEntity {
 	@BeforeInsert()
 	createKey(): void {
 		if (this.type === PHONE) {
-			this.key = Math.random()
-				.toString(10)
-				.substr(2, 4);
+			this.key = this.generateKeyLengthOf(4);
 		} else if (this.type === EMAIL) {
-			this.key = Math.random()
-				.toString(36)
-				.substr(2, 8);
+			this.key = this.generateKeyLengthOf(8);
 		}
+	}
+
+	public generateKeyLengthOf(length: number): string {
+		return Math.random()
+			.toString(10)
+			.substr(2, length);
 	}
 }

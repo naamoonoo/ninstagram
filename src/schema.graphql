@@ -33,9 +33,9 @@ type GetCommentsResponse {
 type Query {
   GetComments(feedId: String!): GetCommentsResponse!
   GetFeed(feedId: String!): GetFeedResponse!
-  GetFeeds(page: Int!): GetFeedsResponse
+  GetFeeds(page: Int!): GetFeedsResponse!
   GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
-  GetCurrentUser: GetCurrentUserResponse
+  GetCurrentUser: GetCurrentUserResponse!
   GetUserById(userId: String!): GetUserByIdResponse!
 }
 

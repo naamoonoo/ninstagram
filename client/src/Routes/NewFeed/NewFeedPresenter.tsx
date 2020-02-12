@@ -18,7 +18,6 @@ const NewFeedPresenter: React.FC<IProps> = ({
 	userData: { GetCurrentUser: { user = {} } = {} } = {},
 	onClickHandler
 }) => {
-	console.log(user);
 	return (
 		<S.Container>
 			<Feed photo={photo} text={text} user={user} updateAt={"now"}>

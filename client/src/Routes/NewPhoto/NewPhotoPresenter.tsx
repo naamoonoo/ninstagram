@@ -13,9 +13,7 @@ interface IProps {
 	setSelected: any;
 	isCameraMode: boolean;
 	setIsCameraMode: any;
-	onUploadImage: (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => Promise<void>;
+	onUploadImage: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	history: any;
 }
 
@@ -83,7 +81,7 @@ const NewPhotoPresenter: React.FC<IProps> = ({
 					{selected ? (
 						<S.Image src={selected} />
 					) : (
-						<S.Upload>
+						<S.Upload onDropHandler={setSelected}>
 							<S.UploadInput
 								id={"photo"}
 								type="file"

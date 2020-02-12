@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import DragAndDrop from "../../Components/DargAndDrop";
 
 export const Container = styled.div`
 	display: block;
@@ -89,9 +90,9 @@ export const Icon = styled.div<IIconProp>`
 	fill: ${props => (props.selected ? "black" : "lightgrey")};
 `;
 
-export const Upload = styled.div`
+export const Upload = styled(DragAndDrop)`
 	width: 100%;
-	min-height: 400px;
+	min-height: 500px;
 	border-top: 1px solid lightgrey;
 	border-bottom: 1px solid lightgrey;
 	display: block;
@@ -102,7 +103,7 @@ export const Upload = styled.div`
 export const UploadInput = styled.input`
 	color: white;
 	opacity: 0;
-	height: 180px;
+	height: 100px;
 	&:focus {
 		outline: none;
 	}

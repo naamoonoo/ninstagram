@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
-import { fileUploader } from "../../utils/fileUploader";
+import { toast } from "react-toastify";
 import NewPhotoPresenter from "./NewPhotoPresenter";
 
 interface IProps extends RouteComponentProps {}
@@ -14,17 +14,21 @@ const NewPhotoContainer: React.FC<IProps> = ({ history }) => {
 		setPictures((oldPictures: string[]) => [...oldPictures, newPicture]);
 	};
 
-	const onUploadImage = async (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => {
+	const onUploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const {
 			target: { files }
 		} = event;
-		if (files) {
-			const photoUrl = await fileUploader(files);
-			if (photoUrl) {
-				setSelected(photoUrl);
-			}
+		if (files && files[0]) {
+			const file = files[0];
+			const reader = new FileReader();
+
+			reader.onload = (event: ProgressEvent<FileReader>) => {
+				if (event && event.target && event.target.result) {
+					setSelected(event.target.result as string);
+				}
+			};
+
+			reader.readAsDataURL(file);
 		}
 	};
 

@@ -22,7 +22,7 @@ const FeedDetailPresenter: React.FC<IProps> = ({
 	deleteMutation,
 	updateProfilePhoto
 }) => {
-	useTitle("Ninstagram | Feed");
+	useTitle("ninstagram | Feed");
 	const isOwner = user && feed && feed.user && user.id === feed.user.id;
 	return (
 		<S.Container>

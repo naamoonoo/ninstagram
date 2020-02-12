@@ -18,7 +18,7 @@ const UserPagePresenter: React.FC<IProps> = ({
 	isCurrentUser,
 	logOutMutation
 }) => {
-	useTitle("Ninstgram | User Page");
+	useTitle("ninstgram | User Page");
 	const renderPhotos = (feeds: any[]) => {
 		return feeds.map(feed => {
 			return (

@@ -18,7 +18,7 @@ const ChangePasswordPresenter: React.FC<IProps> = ({
 	inputLabels,
 	onSubmitHandler
 }) => {
-	useTitle("Ninstagram | Password Change");
+	useTitle("ninstagram | Password Change");
 	const renderInputs = (inputs: any, inputLabels: string[]) => {
 		return inputLabels.map(label => (
 			<Input

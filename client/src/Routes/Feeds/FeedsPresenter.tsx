@@ -28,7 +28,7 @@ const FeedsPresenter: React.FC<IProps> = ({
 	newFeed,
 	setNewFeed
 }) => {
-	useTitle("Ninstagram");
+	useTitle("ninstagram");
 	const renderFeed = (feeds: any[]) => {
 		return feeds.map(feed => {
 			const liked =

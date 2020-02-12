@@ -18,7 +18,9 @@ const InputPresenter: React.FC<IProps> = ({
 	const type = label.search("password") >= 0 ? "password" : "text";
 	return (
 		<S.Container>
-			<S.Label isFocused={isFocused}>{label}</S.Label>
+			{label.length > 0 && (
+				<S.Label isFocused={isFocused}>{label}</S.Label>
+			)}
 			<S.Input
 				type={type}
 				name={label}

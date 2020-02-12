@@ -20,7 +20,7 @@ const LoginPresenter: React.FC<IProps> = ({
 	isLogin,
 	onSubmitHandler
 }) => {
-	useTitle("Ninstgram | Login");
+	useTitle("ninstgram | Login");
 	const renderInputs = (inputs: any, inputLabels: string[]) => {
 		return inputLabels.map(label => (
 			<Input

@@ -17,8 +17,18 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-	font-size: 20px;
-	color: ${props => props.theme.darkGreyColor};
+	font-size: 22px;
+	background: radial-gradient(
+		circle at 30% 107%,
+		#fdf497 0%,
+		#fdf497 5%,
+		#fd5949 45%,
+		#d6249f 60%,
+		#285aeb 90%
+	);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 	font-weight: lighter;
 	cursor: pointer;
 `;

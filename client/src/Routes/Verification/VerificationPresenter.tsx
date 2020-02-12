@@ -20,7 +20,7 @@ const VerificationPresenter: React.FC<IProps> = ({
 	requestMutation,
 	validateMutation
 }) => {
-	useTitle("Ninstgram | Verification");
+	useTitle("ninstgram | Verification");
 	const renderInputs = (inputs: any, inputLabels: string[]) => {
 		return inputLabels.map(label => (
 			<Input

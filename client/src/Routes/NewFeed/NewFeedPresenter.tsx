@@ -10,6 +10,7 @@ interface IProps {
 	onChageText: any;
 	userData: any;
 	onClickHandler: () => void;
+	clickable: boolean;
 }
 
 const NewFeedPresenter: React.FC<IProps> = ({
@@ -17,9 +18,10 @@ const NewFeedPresenter: React.FC<IProps> = ({
 	text,
 	onChageText,
 	userData: { GetCurrentUser: { user = {} } = {} } = {},
-	onClickHandler
+	onClickHandler,
+	clickable
 }) => {
-	useTitle("Ninstgram | New Feed");
+	useTitle("ninstgram | New Feed");
 	return (
 		<S.Container>
 			<Feed photo={photo} text={text} user={user} updateAt={"now"}>
@@ -30,7 +32,12 @@ const NewFeedPresenter: React.FC<IProps> = ({
 					placeholder={"leave a comment..."}
 				/>
 			</Feed>
-			<CameraButton hovered={text.length > 0} onClick={onClickHandler} />
+			{clickable && (
+				<CameraButton
+					hovered={text.length > 0}
+					onClick={onClickHandler}
+				/>
+			)}
 		</S.Container>
 	);
 };

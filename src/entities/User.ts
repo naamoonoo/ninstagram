@@ -37,7 +37,7 @@ export class User extends BaseEntity {
 
 	@Column({
 		type: "text",
-		nullable: true,
+		nullable: false,
 		default: "https://simpleicon.com/wp-content/uploads/user1.svg"
 	})
 	profilePhoto: string;

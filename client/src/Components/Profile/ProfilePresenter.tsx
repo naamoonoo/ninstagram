@@ -6,10 +6,10 @@ import * as S from "./ProfileStyle";
 interface IProps {
 	id: string;
 	firstName: string;
-	profilePhoto?: string;
+	profilePhoto: string;
 	size?: string;
 	fontSize?: string;
-	clickable: boolean;
+	clickable?: boolean;
 }
 
 const ProfilePresenter: React.FC<IProps> = ({

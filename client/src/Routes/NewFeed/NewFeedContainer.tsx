@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import React from "react";
+import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
@@ -24,6 +24,7 @@ const NewFeedContainer: React.FC<IProps> = ({
 	if (!inputPhoto) {
 		history.push(Routes.HOME);
 	}
+	const [clickable, setClickable] = useState(true);
 	const [text, onChangeText] = useInput("");
 	const { data: userData } = useQuery<GetCurrentUserNewFeed>(
 		GET_CURRENT_USER_NEW_FEED
@@ -46,6 +47,8 @@ const NewFeedContainer: React.FC<IProps> = ({
 		if (text.length <= 0) {
 			return toast.error("Should leave a message...");
 		}
+		setClickable(false);
+		toast.done("Creating a new Feed...");
 		const photo = await base64Uploader(inputPhoto);
 		newFeedMutation({
 			variables: {
@@ -61,6 +64,7 @@ const NewFeedContainer: React.FC<IProps> = ({
 			onChageText={onChangeText}
 			userData={userData}
 			onClickHandler={onClickHandler}
+			clickable={clickable}
 		/>
 	);
 };

@@ -1,0 +1,9 @@
+type FindUserByUsernameResponse {
+	res: Boolean!
+	error: String
+	users: [User]
+}
+
+type Query {
+	FindUserByUsername(search: String!): FindUserByUsernameResponse!
+}

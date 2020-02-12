@@ -27,7 +27,7 @@ const ForgetMyPasswordPresenter: React.FC<IProps> = ({
 	const [payload, onChangePayload] = useInput("");
 	const [key, onChangeKey] = useInput("");
 	const label = isEmail ? "Email" : "Phone";
-	useTitle("Ninstagram | Forget Password");
+	useTitle("ninstagram | Forget Password");
 	const [inputs, onChangeHandle, inputLabels] = useMultiInputs([
 		"password",
 		"password confirm"

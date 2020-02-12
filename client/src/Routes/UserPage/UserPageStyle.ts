@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 	max-width: 800px;
-	/* width: 80%; */
 	display: inline;
 	justify-content: center;
 	align-items: center;
@@ -48,22 +47,18 @@ export const Info = styled.div`
 export const PhotoContainer = styled.div`
 	padding: 5px;
 	border: 1px solid lightgrey;
-	max-width: 800px;
+	max-width: 500px;
 	margin: 0 auto;
 	display: table;
-	justify-content: center;
-	align-items: center;
 `;
 
 export const Image = styled.img`
 	width: 33%;
-	max-height: 150px;
+	height: 160px;
 	overflow: hidden;
-	margin: auto;
+	float: left;
 	padding: 2px;
 	cursor: pointer;
-	bottom: 0;
-	top: 0;
 `;
 
 export const Button = styled.button`

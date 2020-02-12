@@ -33,9 +33,11 @@ type GetCommentsResponse {
 
 type Query {
   GetComments(feedId: String!): GetCommentsResponse!
+  FindFeedsByHashtag(search: String!): FindFeedsByHashtagResponse!
   GetFeed(feedId: String!): GetFeedResponse!
   GetFeeds(page: Int!): GetFeedsResponse!
   GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
+  FindUserByUsername(search: String!): FindUserByUsernameResponse!
   GetCurrentUser: GetCurrentUserResponse!
   GetUserById(userId: String!): GetUserByIdResponse!
   ForgetPassword(type: String!, payload: String!): ForgetPasswordResponse!
@@ -65,6 +67,12 @@ type CreateFeedResponse {
 type DeleteFeedResponse {
   res: Boolean!
   error: String
+}
+
+type FindFeedsByHashtagResponse {
+  res: Boolean!
+  error: String
+  feeds: [Feed]
 }
 
 type GetFeedResponse {
@@ -137,6 +145,12 @@ type EmailSignUpResponse {
   token: String
 }
 
+type FindUserByUsernameResponse {
+  res: Boolean!
+  error: String
+  users: [User]
+}
+
 type GetCurrentUserResponse {
   res: Boolean!
   error: String
@@ -162,7 +176,7 @@ type User {
   firstName: String!
   lastName: String
   password: String
-  profilePhoto: String
+  profilePhoto: String!
   email: String
   isEmailVerified: Boolean
   phone: String

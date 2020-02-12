@@ -30,7 +30,7 @@ const NewPhotoPresenter: React.FC<IProps> = ({
 	onUploadImage,
 	history
 }) => {
-	useTitle("Ninstgram | New Photo");
+	useTitle("ninstgram | New Photo");
 	const renderPreview = (pictures: string[]) => {
 		return pictures.map(picture => (
 			<S.Preview

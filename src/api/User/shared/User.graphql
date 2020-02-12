@@ -5,7 +5,7 @@ type User {
 	firstName: String!
 	lastName: String
 	password: String
-	profilePhoto: String
+	profilePhoto: String!
 	email: String
 	isEmailVerified: Boolean
 	phone: String

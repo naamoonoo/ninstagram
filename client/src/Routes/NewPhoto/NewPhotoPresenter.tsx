@@ -1,4 +1,5 @@
 import React from "react";
+import { isMobile } from "react-device-detect";
 import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 import { ReactComponent as PhotoUploadIcon } from "../../assets/icons/photoUpload.svg";
 import CameraButton from "../../Components/CameraButton";
@@ -38,26 +39,26 @@ const NewPhotoPresenter: React.FC<IProps> = ({
 		));
 	};
 
+	const changeMode = (isCameraMode: boolean) => {
+		setIsCameraMode(isCameraMode);
+		setSelected(undefined);
+		setPictures([]);
+	};
+
 	return (
 		<S.Container>
 			<S.Header>
-				<S.Icon
-					selected={isCameraMode}
-					onClick={() => {
-						setIsCameraMode(true);
-						setSelected(undefined);
-						setPictures([]);
-					}}
-				>
-					<CameraIcon />
-				</S.Icon>
+				{!isMobile && (
+					<S.Icon
+						selected={isCameraMode}
+						onClick={() => changeMode(true)}
+					>
+						<CameraIcon />
+					</S.Icon>
+				)}
 				<S.Icon
 					selected={!isCameraMode}
-					onClick={() => {
-						setIsCameraMode(false);
-						setSelected(undefined);
-						setPictures([]);
-					}}
+					onClick={() => changeMode(true)}
 				>
 					<PhotoUploadIcon />
 				</S.Icon>
@@ -89,7 +90,9 @@ const NewPhotoPresenter: React.FC<IProps> = ({
 								onChange={onUploadImage}
 							/>
 							<S.UploadLabel htmlFor="photo">
-								"click or drag your image"
+								{isMobile
+									? "Click here to take selfie or upload image"
+									: "click or drag your image"}
 							</S.UploadLabel>
 						</S.Upload>
 					)}

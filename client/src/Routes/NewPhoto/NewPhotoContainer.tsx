@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { isMobile } from "react-device-detect";
 import { RouteComponentProps } from "react-router-dom";
-import { toast } from "react-toastify";
 import NewPhotoPresenter from "./NewPhotoPresenter";
 
 interface IProps extends RouteComponentProps {}
@@ -8,7 +8,7 @@ interface IProps extends RouteComponentProps {}
 const NewPhotoContainer: React.FC<IProps> = ({ history }) => {
 	const [pictures, setPictures] = useState<string[]>([]);
 	const [selected, setSelected] = useState<string>();
-	const [isCameraMode, setIsCameraMode] = useState(true);
+	const [isCameraMode, setIsCameraMode] = useState(!isMobile);
 
 	const onCaptureHandler = (newPicture: string) => {
 		setPictures((oldPictures: string[]) => [...oldPictures, newPicture]);

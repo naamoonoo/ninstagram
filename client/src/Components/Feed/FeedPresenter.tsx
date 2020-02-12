@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { isMobile } from "react-device-detect";
 import { ReactComponent as CommentEmpty } from "../../assets/icons/comment-empty.svg";
 import { ReactComponent as CommentFull } from "../../assets/icons/comment-full.svg";
 import { ReactComponent as LikeEmpty } from "../../assets/icons/like-empty.svg";
@@ -84,7 +85,8 @@ const FeedPresenter: React.FC<IProps> = ({
 						{commentShow ? <CommentFull /> : <CommentEmpty />}
 					</S.Message>
 					{likes && <S.Info>{likes.length} likes</S.Info>}
-					{isHovered && isCurrentUser && (
+					{((isHovered && isCurrentUser) ||
+						(isMobile && isCurrentUser)) && (
 						<S.EditMenu
 							onClick={() =>
 								forceHistory.push(Routes.FEED + `/${id}`)

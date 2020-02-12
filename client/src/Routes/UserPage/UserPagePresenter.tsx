@@ -53,11 +53,15 @@ const UserPagePresenter: React.FC<IProps> = ({
 						>
 							PHONE {user.isPhoneVerified ? "✅" : "❌"}
 						</S.Info>
-						<S.Info
-							onClick={() => history.push(Routes.CHANGE_PASSWORD)}
-						>
-							PASSWORD ⚙️
-						</S.Info>
+						{!user.fbId && !user.googleId && (
+							<S.Info
+								onClick={() =>
+									history.push(Routes.CHANGE_PASSWORD)
+								}
+							>
+								PASSWORD ⚙️
+							</S.Info>
+						)}
 					</S.Infos>
 				)}
 			</S.ProfileContainer>

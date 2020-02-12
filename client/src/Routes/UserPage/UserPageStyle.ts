@@ -28,7 +28,7 @@ export const Infos = styled.div`
 `;
 
 export const Info = styled.div`
-	margin: 5px 0;
+	margin: 10px 0;
 	color: darkgrey;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -37,16 +37,11 @@ export const Info = styled.div`
 	letter-spacing: 1px;
 	font-size: 1.1em;
 	cursor: pointer;
+	border-left: 4px solid lightgrey;
+	padding-left: 5px;
 	&:hover {
 		color: black;
 		text-decoration: underline;
-	}
-`;
-
-export const Verification = styled(Info)`
-	cursor: pointer;
-	& :hover {
-		color: black;
 	}
 `;
 

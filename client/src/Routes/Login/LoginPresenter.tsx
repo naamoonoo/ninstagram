@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../../Components/Input";
 import { forceHistory } from "../../utils/history";
+import { useTitle } from "../../utils/hooks";
 import { Routes } from "../routes";
 import * as S from "./LoginStyle";
 
@@ -19,6 +20,7 @@ const LoginPresenter: React.FC<IProps> = ({
 	isLogin,
 	onSubmitHandler
 }) => {
+	useTitle("Ninstgram | Login");
 	const renderInputs = (inputs: any, inputLabels: string[]) => {
 		return inputLabels.map(label => (
 			<Input

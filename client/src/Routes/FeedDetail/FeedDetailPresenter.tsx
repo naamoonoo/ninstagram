@@ -1,6 +1,6 @@
 import React from "react";
-import CameraButton from "../../Components/CameraButton";
 import Feed from "../../Components/Feed";
+import { useTitle } from "../../utils/hooks";
 import * as S from "./FeedDetailStyle";
 
 interface IProps {
@@ -22,6 +22,7 @@ const FeedDetailPresenter: React.FC<IProps> = ({
 	deleteMutation,
 	updateProfilePhoto
 }) => {
+	useTitle("Ninstagram | Feed");
 	const isOwner = user && feed && feed.user && user.id === feed.user.id;
 	return (
 		<S.Container>

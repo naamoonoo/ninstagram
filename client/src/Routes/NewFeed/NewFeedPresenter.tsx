@@ -1,6 +1,7 @@
 import React from "react";
 import CameraButton from "../../Components/CameraButton";
 import Feed from "../../Components/Feed";
+import { useTitle } from "../../utils/hooks";
 import * as S from "./NewFeedStyle";
 
 interface IProps {
@@ -18,6 +19,7 @@ const NewFeedPresenter: React.FC<IProps> = ({
 	userData: { GetCurrentUser: { user = {} } = {} } = {},
 	onClickHandler
 }) => {
+	useTitle("Ninstgram | New Feed");
 	return (
 		<S.Container>
 			<Feed photo={photo} text={text} user={user} updateAt={"now"}>

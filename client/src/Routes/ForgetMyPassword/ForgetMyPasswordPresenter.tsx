@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Input from "../../Components/Input";
-import { useInput, useMultiInputs } from "../../utils/hooks";
-import * as S from "./ForgetMyPasswordStyle";
 import { toast } from "react-toastify";
+import Input from "../../Components/Input";
 import { ResetPasswordVariables } from "../../types/api";
+import { useInput, useMultiInputs, useTitle } from "../../utils/hooks";
+import * as S from "./ForgetMyPasswordStyle";
 
 interface IProps {
 	keyRequested: boolean;
@@ -27,7 +27,7 @@ const ForgetMyPasswordPresenter: React.FC<IProps> = ({
 	const [payload, onChangePayload] = useInput("");
 	const [key, onChangeKey] = useInput("");
 	const label = isEmail ? "Email" : "Phone";
-
+	useTitle("Ninstagram | Forget Password");
 	const [inputs, onChangeHandle, inputLabels] = useMultiInputs([
 		"password",
 		"password confirm"

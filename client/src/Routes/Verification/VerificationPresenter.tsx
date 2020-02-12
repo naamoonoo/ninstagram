@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "../../Components/Input";
+import { useTitle } from "../../utils/hooks";
 import * as S from "./VerificationStyle";
 
 interface IProps {
@@ -19,6 +20,7 @@ const VerificationPresenter: React.FC<IProps> = ({
 	requestMutation,
 	validateMutation
 }) => {
+	useTitle("Ninstgram | Verification");
 	const renderInputs = (inputs: any, inputLabels: string[]) => {
 		return inputLabels.map(label => (
 			<Input

@@ -4,6 +4,7 @@ import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 import { ReactComponent as PhotoUploadIcon } from "../../assets/icons/photoUpload.svg";
 import CameraButton from "../../Components/CameraButton";
 import Webcam from "../../Components/Webcam";
+import { useTitle } from "../../utils/hooks";
 import * as S from "./NewPhotoStyle";
 
 interface IProps {
@@ -29,6 +30,7 @@ const NewPhotoPresenter: React.FC<IProps> = ({
 	onUploadImage,
 	history
 }) => {
+	useTitle("Ninstgram | New Photo");
 	const renderPreview = (pictures: string[]) => {
 		return pictures.map(picture => (
 			<S.Preview

@@ -3,6 +3,7 @@ import { isMobile } from "react-device-detect";
 import { ReactComponent as ToTop } from "../../assets/icons/TopButton.svg";
 import CameraButton from "../../Components/CameraButton";
 import Feed from "../../Components/Feed";
+import { useTitle } from "../../utils/hooks";
 import { Routes } from "../routes";
 import * as S from "./FeedsStyle";
 
@@ -27,6 +28,7 @@ const FeedsPresenter: React.FC<IProps> = ({
 	newFeed,
 	setNewFeed
 }) => {
+	useTitle("Ninstagram");
 	const renderFeed = (feeds: any[]) => {
 		return feeds.map(feed => {
 			const liked =

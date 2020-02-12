@@ -1,6 +1,7 @@
 import React from "react";
 import Profile from "../../Components/Profile";
 import { forceHistory } from "../../utils/history";
+import { useTitle } from "../../utils/hooks";
 import { Routes } from "../routes";
 import * as S from "./UserPageStyle";
 
@@ -17,6 +18,7 @@ const UserPagePresenter: React.FC<IProps> = ({
 	isCurrentUser,
 	logOutMutation
 }) => {
+	useTitle("Ninstgram | User Page");
 	const renderPhotos = (feeds: any[]) => {
 		return feeds.map(feed => {
 			return (

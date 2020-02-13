@@ -1,0 +1,9 @@
+type GetTaggedFeedsResponse {
+	res: Boolean!
+	error: String
+	feeds: [Feed]
+}
+
+type Query {
+	GetTaggedFeeds(tag: String!): GetTaggedFeedsResponse!
+}

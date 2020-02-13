@@ -5,7 +5,8 @@ const theme: DefaultTheme = {
 	greenColor: "#1abc9c",
 	greyColor: "#7f8c8d",
 	yellowColor: "#f1c40f",
-	darkGreyColor: "#565656"
+	darkGreyColor: "#565656",
+	tagColor: "#99ccff"
 };
 
 export { theme };

@@ -7,6 +7,7 @@ import {
 import { Resolvers } from "../../../types/resolvers";
 import { authProtector } from "../../../utils/authProtector";
 import { getNoneNull } from "../../../utils/getNoneNull";
+import { NONE_EXISTED_FEED } from "./errors";
 
 const resolvers: Resolvers = {
 	Mutation: {
@@ -22,6 +23,16 @@ const resolvers: Resolvers = {
 				const user: User = req.user;
 				try {
 					await Feed.update({ id: feedId, user }, nonNullArgs);
+					const feed = await Feed.findOne({ id: feedId, user });
+					if (!feed) {
+						return {
+							res: false,
+							error: NONE_EXISTED_FEED
+						};
+					}
+					feed.getTags();
+					// feed.save();
+					// const feed = await
 					return {
 						res: true,
 						error: null

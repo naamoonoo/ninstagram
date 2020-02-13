@@ -13,5 +13,6 @@ export const Routes = {
 	VERIFICATION_FORM: "/verify/:type/:key",
 	CHANGE_PASSWORD: "/chagne-password",
 	FORGET_PASSWORD: "/forget-password",
-	SEARCH: "/search"
+	SEARCH: "/search",
+	SEARCH_TAG: "/search/:tag"
 };

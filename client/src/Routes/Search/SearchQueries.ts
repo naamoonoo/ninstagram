@@ -1,13 +1,28 @@
 import { gql } from "apollo-boost";
 
 export const SEARCH_FEEDS = gql`
-	query FindFeedsByHashtag($search: String!) {
-		FindFeedsByHashtag(search: $search) {
+	query GetTaggedFeeds($tag: String!) {
+		GetTaggedFeeds(tag: $tag) {
 			res
 			error
 			feeds {
 				photo
 				id
+			}
+		}
+	}
+`;
+
+export const SEARCH_TAGS = gql`
+	query FindHashtagsByTag($search: String!) {
+		FindHashtagsByTag(search: $search) {
+			res
+			error
+			tags {
+				feeds {
+					id
+				}
+				tag
 			}
 		}
 	}

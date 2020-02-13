@@ -31,7 +31,7 @@ export const Warning = styled.div`
 	opacity: 0.9;
 `;
 
-export const UsersContainer = styled.div`
+export const ResultContainer = styled.div`
 	display: block;
 	width: 400px;
 	margin: 50px auto;
@@ -39,6 +39,40 @@ export const UsersContainer = styled.div`
 	padding-left: 50px;
 `;
 
+export const TagContainer = styled.div`
+	display: flex;
+	width: 80%;
+	height: 20;
+	align-items: center;
+	margin: 10px;
+	padding: 5px 0 -40px 0;
+	position: relative;
+	cursor: pointer;
+`;
+
+export const Tag = styled.div`
+	display: flex;
+	font-weight: 300;
+	font-size: 30px;
+	align-items: center;
+	color: ${props => props.theme.tagColor};
+`;
+
+export const TagHeader = styled(Tag)`
+	margin: 50px auto;
+	justify-content: center;
+	width: 400px;
+	font-weight: 500;
+	font-size: 40px;
+`;
+
+export const TagDetail = styled.span`
+	color: darkgrey;
+	font-weight: 200;
+	font-size: 15;
+	position: absolute;
+	right: 5px;
+`;
 export const PhotoContainer = styled.div`
 	padding: 5px;
 	border: 1px solid lightgrey;

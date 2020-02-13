@@ -1,0 +1,9 @@
+type FindHashtagsByTagResponse {
+	res: Boolean!
+	error: String
+	tags: [Hashtag]
+}
+
+type Query {
+	FindHashtagsByTag(search: String!): FindHashtagsByTagResponse!
+}

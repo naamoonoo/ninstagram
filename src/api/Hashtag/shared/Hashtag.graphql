@@ -1,0 +1,5 @@
+type Hashtag {
+	id: String!
+	tag: String!
+	feeds: [Feed]
+}

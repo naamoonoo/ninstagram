@@ -60,7 +60,7 @@ const NewPhotoPresenter: React.FC<IProps> = ({
 				)}
 				<S.Icon
 					selected={!isCameraMode}
-					onClick={() => changeMode(true)}
+					onClick={() => changeMode(false)}
 				>
 					<PhotoUploadIcon />
 				</S.Icon>

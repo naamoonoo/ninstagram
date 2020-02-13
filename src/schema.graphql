@@ -37,6 +37,8 @@ type Query {
   GetFeed(feedId: String!): GetFeedResponse!
   GetFeeds(page: Int!): GetFeedsResponse!
   GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
+  FindHashtagsByTag(search: String!): FindHashtagsByTagResponse!
+  GetTaggedFeeds(tag: String!): GetTaggedFeedsResponse!
   FindUserByUsername(search: String!): FindUserByUsernameResponse!
   GetCurrentUser: GetCurrentUserResponse!
   GetUserById(userId: String!): GetUserByIdResponse!
@@ -99,6 +101,7 @@ type Feed {
   text: String
   user: User
   likes: [Like]
+  tags: [Hashtag]
   comments: [Comment]
   createAt: String!
   updateAt: String!
@@ -111,6 +114,24 @@ type Subscription {
 type UpdateFeedResponse {
   res: Boolean!
   error: String
+}
+
+type FindHashtagsByTagResponse {
+  res: Boolean!
+  error: String
+  tags: [Hashtag]
+}
+
+type GetTaggedFeedsResponse {
+  res: Boolean!
+  error: String
+  feeds: [Feed]
+}
+
+type Hashtag {
+  id: String!
+  tag: String!
+  feeds: [Feed]
 }
 
 type CreateLikeResponse {

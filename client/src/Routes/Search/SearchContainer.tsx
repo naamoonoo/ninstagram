@@ -1,27 +1,46 @@
 import { useLazyQuery } from "@apollo/react-hooks";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { RouteComponentProps } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
-	FindFeedsByHashtag,
-	FindFeedsByHashtagVariables,
+	FindHashtagsByTag,
+	FindHashtagsByTagVariables,
 	FindUserByUsername,
-	FindUserByUsernameVariables
+	FindUserByUsernameVariables,
+	GetTaggedFeeds,
+	GetTaggedFeedsVariables
 } from "../../types/api";
 import SearchPresenter from "./SearchPresenter";
-import { SEARCH_FEEDS, SEARCH_USERS } from "./SearchQueries";
+import { SEARCH_FEEDS, SEARCH_TAGS, SEARCH_USERS } from "./SearchQueries";
 
-const SearchContainer: React.FC = () => {
+interface IProps
+	extends RouteComponentProps<{
+		tag: string;
+	}> {}
+
+const SearchContainer: React.FC<IProps> = ({
+	match: {
+		params: { tag: tagParams }
+	}
+}) => {
 	const [search, setSearch] = useState("");
+	const [tag, setTag] = useState<string>();
 	const [isUserSearch, setIsUserSearch] = useState<boolean>();
 
 	const [getUsers, { data: userData }] = useLazyQuery<
 		FindUserByUsername,
 		FindUserByUsernameVariables
 	>(SEARCH_USERS, { variables: { search: search.substr(1) } });
+
+	const [getTags, { data: tagData }] = useLazyQuery<
+		FindHashtagsByTag,
+		FindHashtagsByTagVariables
+	>(SEARCH_TAGS, { variables: { search: search.substr(1) } });
+
 	const [getFeeds, { data: feedData }] = useLazyQuery<
-		FindFeedsByHashtag,
-		FindFeedsByHashtagVariables
-	>(SEARCH_FEEDS, { variables: { search: search.substr(1) } });
+		GetTaggedFeeds,
+		GetTaggedFeedsVariables
+	>(SEARCH_FEEDS, { variables: { tag: tag || "" } });
 
 	const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		event.preventDefault();
@@ -47,16 +66,29 @@ const SearchContainer: React.FC = () => {
 		if (search.length > 1 && isUserSearch) {
 			getUsers();
 		} else {
-			getFeeds();
+			getTags();
 		}
 	};
+
+	useEffect(() => {
+		if (tagParams) {
+			setTag(tagParams);
+			setIsUserSearch(false);
+			getFeeds();
+		} else {
+			setTag(undefined);
+			setIsUserSearch(true);
+		}
+	}, [tagParams]);
 
 	return (
 		<SearchPresenter
 			search={search}
+			tag={tag}
 			onChangeHandler={onChangeHandler}
 			userData={userData}
 			feedData={feedData}
+			tagData={tagData}
 			isUserSearch={isUserSearch}
 		/>
 	);

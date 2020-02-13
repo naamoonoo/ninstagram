@@ -56,6 +56,21 @@ const FeedPresenter: React.FC<IProps> = ({
 		return onLike({ variables: { feedId: id } });
 	};
 
+	const renderText = (text: string) => {
+		return text.split(" ").map(word => {
+			if (word.startsWith("#")) {
+				const tag = word.substr(1);
+				return (
+					<S.Tag key={tag} to={`/search/${tag}`}>
+						{word}&nbsp;
+					</S.Tag>
+				);
+			} else {
+				return `${word} `;
+			}
+		});
+	};
+
 	return (
 		<S.Container
 			onMouseEnter={() => setIsHovered(true)}
@@ -97,7 +112,7 @@ const FeedPresenter: React.FC<IProps> = ({
 					)}
 				</S.Infos>
 			)}
-			{children || <S.Text>{text}</S.Text>}
+			{children || <S.Text>{text && renderText(text)}</S.Text>}
 			{commentShow && id && (
 				<S.Comments>
 					<Comments feedId={id} />

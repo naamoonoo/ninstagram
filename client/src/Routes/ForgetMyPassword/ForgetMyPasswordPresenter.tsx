@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { toast } from "react-toastify";
 import Input from "../../Components/Input";
 import { ResetPasswordVariables } from "../../types/api";

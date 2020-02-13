@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import Input from "../../Components/Input";
 import { forceHistory } from "../../utils/history";
 import { useTitle } from "../../utils/hooks";
@@ -52,7 +53,8 @@ const LoginPresenter: React.FC<IProps> = ({
 			</S.Button>
 			<S.Button
 				color="#3b5998"
-				onClick={() => forceHistory.push("/api/auth/facebook")}
+				// onClick={() => forceHistory.push("/api/auth/facebook")}
+				onClick={() => toast.error("It in fixing")}
 			>
 				facebook
 			</S.Button>

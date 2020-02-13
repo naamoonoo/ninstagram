@@ -4,6 +4,7 @@ type Feed {
 	text: String
 	user: User
 	likes: [Like]
+	tags: [Hashtag]
 	comments: [Comment]
 	createAt: String!
 	updateAt: String!

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -93,4 +94,12 @@ export const Comments = styled.div`
 	border-top: 1px solid lightgrey;
 	width: 100%;
 	padding: 5px 10px;
+`;
+
+export const Tag = styled(Link)`
+	color: ${props => props.theme.tagColor};
+	font-weight: 300;
+	text-decoration: underline;
+	margin: 0 1px;
+	padding: 0 1px;
 `;

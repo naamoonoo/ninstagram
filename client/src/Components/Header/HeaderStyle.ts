@@ -29,7 +29,7 @@ export const Title = styled.div`
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	font-weight: lighter;
+	font-weight: 200;
 	cursor: pointer;
 `;
 

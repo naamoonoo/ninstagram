@@ -49,6 +49,7 @@ const AppPresenter: React.FC<IProps> = ({ isLoggedIn }) => {
 						component={Verification}
 					/>
 					<Route path={Routes.USER_PAGE_FORM} component={UserPage} />
+					<Route path={Routes.SEARCH_TAG} component={Search} />
 					<Route path={Routes.SEARCH} component={Search} />
 					<Route
 						path={Routes.USER_PAGE}

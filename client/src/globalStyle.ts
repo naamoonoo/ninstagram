@@ -19,5 +19,8 @@ export default createGlobalStyle`
   button{
 	  &:focus,
 	  &:active{outline:none}
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
   }
 `;

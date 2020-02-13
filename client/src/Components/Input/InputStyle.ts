@@ -14,7 +14,7 @@ export const Label = styled.label<IFocus>`
 	align-items: center;
 	width: 100%;
 	color: ${props => (props.isFocused ? "lightblue" : "darkgrey")};
-	font-weight: lighter;
+	font-weight: ${props => (props.isFocused ? "bold" : "lighter")};
 	margin-right: 10px;
 	margin-bottom: 10px;
 `;

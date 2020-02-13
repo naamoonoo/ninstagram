@@ -20,7 +20,8 @@ export class Like extends BaseEntity {
 
 	@ManyToOne(
 		type => Feed,
-		feed => feed.likes
+		feed => feed.likes,
+		{ onDelete: "CASCADE" }
 	)
 	feed: Feed;
 

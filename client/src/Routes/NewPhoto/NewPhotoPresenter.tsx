@@ -1,8 +1,10 @@
 import React from "react";
+import { isMobile } from "react-device-detect";
 import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 import { ReactComponent as PhotoUploadIcon } from "../../assets/icons/photoUpload.svg";
 import CameraButton from "../../Components/CameraButton";
 import Webcam from "../../Components/Webcam";
+import { useTitle } from "../../utils/hooks";
 import * as S from "./NewPhotoStyle";
 
 interface IProps {
@@ -13,9 +15,7 @@ interface IProps {
 	setSelected: any;
 	isCameraMode: boolean;
 	setIsCameraMode: any;
-	onUploadImage: (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => Promise<void>;
+	onUploadImage: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	history: any;
 }
 
@@ -30,6 +30,7 @@ const NewPhotoPresenter: React.FC<IProps> = ({
 	onUploadImage,
 	history
 }) => {
+	useTitle("ninstgram | New Photo");
 	const renderPreview = (pictures: string[]) => {
 		return pictures.map(picture => (
 			<S.Preview
@@ -40,26 +41,26 @@ const NewPhotoPresenter: React.FC<IProps> = ({
 		));
 	};
 
+	const changeMode = (isCameraMode: boolean) => {
+		setIsCameraMode(isCameraMode);
+		setSelected(undefined);
+		setPictures([]);
+	};
+
 	return (
 		<S.Container>
 			<S.Header>
-				<S.Icon
-					selected={isCameraMode}
-					onClick={() => {
-						setIsCameraMode(true);
-						setSelected(undefined);
-						setPictures([]);
-					}}
-				>
-					<CameraIcon />
-				</S.Icon>
+				{!isMobile && (
+					<S.Icon
+						selected={isCameraMode}
+						onClick={() => changeMode(true)}
+					>
+						<CameraIcon />
+					</S.Icon>
+				)}
 				<S.Icon
 					selected={!isCameraMode}
-					onClick={() => {
-						setIsCameraMode(false);
-						setSelected(undefined);
-						setPictures([]);
-					}}
+					onClick={() => changeMode(true)}
 				>
 					<PhotoUploadIcon />
 				</S.Icon>
@@ -83,7 +84,7 @@ const NewPhotoPresenter: React.FC<IProps> = ({
 					{selected ? (
 						<S.Image src={selected} />
 					) : (
-						<S.Upload>
+						<S.Upload onDropHandler={setSelected}>
 							<S.UploadInput
 								id={"photo"}
 								type="file"
@@ -91,7 +92,9 @@ const NewPhotoPresenter: React.FC<IProps> = ({
 								onChange={onUploadImage}
 							/>
 							<S.UploadLabel htmlFor="photo">
-								"click or drag your image"
+								{isMobile
+									? "Click here to take selfie or upload image"
+									: "click or drag your image"}
 							</S.UploadLabel>
 						</S.Upload>
 					)}

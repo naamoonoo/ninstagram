@@ -12,7 +12,6 @@ const AppContainer: React.FC = () => {
 		IS_LOGGED_IN
 	);
 
-	console.log(isLoggedIn);
 	return (
 		<React.Fragment>
 			<ThemeProvider theme={theme}>

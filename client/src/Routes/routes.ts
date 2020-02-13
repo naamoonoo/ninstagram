@@ -12,5 +12,6 @@ export const Routes = {
 	VERIFICATION: "/verify",
 	VERIFICATION_FORM: "/verify/:type/:key",
 	CHANGE_PASSWORD: "/chagne-password",
-	FORGET_PASSWORD: "/forget-password"
+	FORGET_PASSWORD: "/forget-password",
+	SEARCH: "/search"
 };

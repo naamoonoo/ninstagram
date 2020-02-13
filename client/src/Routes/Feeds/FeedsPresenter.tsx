@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
+import { isMobile } from "react-device-detect";
 import { ReactComponent as ToTop } from "../../assets/icons/TopButton.svg";
 import CameraButton from "../../Components/CameraButton";
-
 import Feed from "../../Components/Feed";
+import { useTitle } from "../../utils/hooks";
 import { Routes } from "../routes";
 import * as S from "./FeedsStyle";
 
@@ -27,6 +28,7 @@ const FeedsPresenter: React.FC<IProps> = ({
 	newFeed,
 	setNewFeed
 }) => {
+	useTitle("ninstagram");
 	const renderFeed = (feeds: any[]) => {
 		return feeds.map(feed => {
 			const liked =
@@ -74,7 +76,10 @@ const FeedsPresenter: React.FC<IProps> = ({
 			)}
 			{user && feeds && renderFeed(feeds)}
 			{user && user.id && (
-				<CameraButton onClick={() => history.push(Routes.NEW_PHOTO)} />
+				<CameraButton
+					hovered={isMobile}
+					onClick={() => history.push(Routes.NEW_PHOTO)}
+				/>
 			)}
 		</S.Container>
 	);

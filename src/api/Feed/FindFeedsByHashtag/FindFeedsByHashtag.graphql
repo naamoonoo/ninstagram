@@ -1,0 +1,9 @@
+type FindFeedsByHashtagResponse {
+	res: Boolean!
+	error: String
+	feeds: [Feed]
+}
+
+type Query {
+	FindFeedsByHashtag(search: String!): FindFeedsByHashtagResponse!
+}

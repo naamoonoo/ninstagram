@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../../Components/Input";
 import { forceHistory } from "../../utils/history";
+import { useTitle } from "../../utils/hooks";
 import { Routes } from "../routes";
 import * as S from "./ChangePasswordStyle";
 
@@ -17,6 +18,7 @@ const ChangePasswordPresenter: React.FC<IProps> = ({
 	inputLabels,
 	onSubmitHandler
 }) => {
+	useTitle("ninstagram | Password Change");
 	const renderInputs = (inputs: any, inputLabels: string[]) => {
 		return inputLabels.map(label => (
 			<Input

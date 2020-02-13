@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../../Components/Input";
 import { forceHistory } from "../../utils/history";
+import { useTitle } from "../../utils/hooks";
 import { Routes } from "../routes";
 import * as S from "./LoginStyle";
 
@@ -19,6 +20,7 @@ const LoginPresenter: React.FC<IProps> = ({
 	isLogin,
 	onSubmitHandler
 }) => {
+	useTitle("ninstgram | Login");
 	const renderInputs = (inputs: any, inputLabels: string[]) => {
 		return inputLabels.map(label => (
 			<Input
@@ -55,7 +57,9 @@ const LoginPresenter: React.FC<IProps> = ({
 				facebook
 			</S.Button>
 			<S.LinkExtend to={routes}>go to {text}</S.LinkExtend>
-			<S.LinkExtend to={routes}>find my password</S.LinkExtend>
+			<S.LinkExtend to={Routes.FORGET_PASSWORD}>
+				find my password
+			</S.LinkExtend>
 		</S.Container>
 	);
 };

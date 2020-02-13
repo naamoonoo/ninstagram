@@ -3,10 +3,12 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import ChangePassord from "../../Routes/ChangePassword";
 import FeedDetail from "../../Routes/FeedDetail";
 import Feeds from "../../Routes/Feeds";
+import ForgetMyPassword from "../../Routes/ForgetMyPassword";
 import Login from "../../Routes/Login";
 import NewFeed from "../../Routes/NewFeed";
 import NewPhoto from "../../Routes/NewPhoto";
 import { Routes } from "../../Routes/routes";
+import Search from "../../Routes/Search";
 import SocialLogin from "../../Routes/SocialLogin";
 import UserPage from "../../Routes/UserPage";
 import Verification from "../../Routes/Verification";
@@ -39,7 +41,7 @@ const AppPresenter: React.FC<IProps> = ({ isLoggedIn }) => {
 					/>
 					<Route
 						path={Routes.FORGET_PASSWORD}
-						component={ChangePassord}
+						component={ForgetMyPassword}
 					/>
 					<Route
 						path={Routes.VERIFICATION_FORM}
@@ -47,6 +49,7 @@ const AppPresenter: React.FC<IProps> = ({ isLoggedIn }) => {
 						component={Verification}
 					/>
 					<Route path={Routes.USER_PAGE_FORM} component={UserPage} />
+					<Route path={Routes.SEARCH} component={Search} />
 					<Route
 						path={Routes.USER_PAGE}
 						exact={true}

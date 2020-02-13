@@ -29,7 +29,8 @@ export class Comment extends BaseEntity {
 
 	@ManyToOne(
 		type => Feed,
-		feed => feed.comments
+		feed => feed.comments,
+		{ onDelete: "CASCADE" }
 	)
 	feed: Feed;
 

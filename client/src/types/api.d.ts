@@ -55,7 +55,7 @@ export interface GetComments_GetComments_comments_user {
 	__typename: "User";
 	id: string;
 	firstName: string;
-	profilePhoto: string | null;
+	profilePhoto: string;
 }
 
 export interface GetComments_GetComments_comments {
@@ -115,7 +115,7 @@ export interface GetFeed_GetFeed_feed_user {
 	__typename: "User";
 	id: string;
 	firstName: string;
-	profilePhoto: string | null;
+	profilePhoto: string;
 }
 
 export interface GetFeed_GetFeed_feed {
@@ -221,7 +221,7 @@ export interface GetFeeds_GetFeeds_feeds_user {
 	__typename: "User";
 	id: string;
 	firstName: string;
-	profilePhoto: string | null;
+	profilePhoto: string;
 }
 
 export interface GetFeeds_GetFeeds_feeds_likes {
@@ -320,6 +320,55 @@ export interface SubscribeFeed {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: ForgetPassword
+// ====================================================
+
+export interface ForgetPassword_ForgetPassword {
+	__typename: "ForgetPasswordResponse";
+	res: boolean;
+	error: string | null;
+	key: string | null;
+}
+
+export interface ForgetPassword {
+	ForgetPassword: ForgetPassword_ForgetPassword;
+}
+
+export interface ForgetPasswordVariables {
+	type: string;
+	payload: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ResetPassword
+// ====================================================
+
+export interface ResetPassword_ResetPassword {
+	__typename: "ResetPasswordResponse";
+	res: boolean;
+	error: string | null;
+	token: string | null;
+}
+
+export interface ResetPassword {
+	ResetPassword: ResetPassword_ResetPassword;
+}
+
+export interface ResetPasswordVariables {
+	email?: string | null;
+	phone?: string | null;
+	password: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: EmailSignIn
 // ====================================================
 
@@ -375,7 +424,7 @@ export interface EmailSignUpVariables {
 export interface GetCurrentUserNewFeed_GetCurrentUser_user {
 	__typename: "User";
 	firstName: string;
-	profilePhoto: string | null;
+	profilePhoto: string;
 }
 
 export interface GetCurrentUserNewFeed_GetCurrentUser {
@@ -415,6 +464,65 @@ export interface CreateFeedVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: FindFeedsByHashtag
+// ====================================================
+
+export interface FindFeedsByHashtag_FindFeedsByHashtag_feeds {
+	__typename: "Feed";
+	photo: string;
+	id: string;
+}
+
+export interface FindFeedsByHashtag_FindFeedsByHashtag {
+	__typename: "FindFeedsByHashtagResponse";
+	res: boolean;
+	error: string | null;
+	feeds: (FindFeedsByHashtag_FindFeedsByHashtag_feeds | null)[] | null;
+}
+
+export interface FindFeedsByHashtag {
+	FindFeedsByHashtag: FindFeedsByHashtag_FindFeedsByHashtag;
+}
+
+export interface FindFeedsByHashtagVariables {
+	search: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: FindUserByUsername
+// ====================================================
+
+export interface FindUserByUsername_FindUserByUsername_users {
+	__typename: "User";
+	firstName: string;
+	profilePhoto: string;
+	id: string;
+}
+
+export interface FindUserByUsername_FindUserByUsername {
+	__typename: "FindUserByUsernameResponse";
+	res: boolean;
+	error: string | null;
+	users: (FindUserByUsername_FindUserByUsername_users | null)[] | null;
+}
+
+export interface FindUserByUsername {
+	FindUserByUsername: FindUserByUsername_FindUserByUsername;
+}
+
+export interface FindUserByUsernameVariables {
+	search: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetUserById
 // ====================================================
 
@@ -427,12 +535,14 @@ export interface GetUserById_GetUserById_user_feeds {
 export interface GetUserById_GetUserById_user {
 	__typename: "User";
 	firstName: string;
-	profilePhoto: string | null;
+	profilePhoto: string;
 	feeds: (GetUserById_GetUserById_user_feeds | null)[] | null;
 	isEmailVerified: boolean | null;
 	isPhoneVerified: boolean | null;
 	email: string | null;
 	phone: string | null;
+	fbId: string | null;
+	googleId: string | null;
 }
 
 export interface GetUserById_GetUserById {
@@ -513,7 +623,7 @@ export interface GetCurrentUser_GetCurrentUser_user {
 	__typename: "User";
 	id: string;
 	firstName: string;
-	profilePhoto: string | null;
+	profilePhoto: string;
 	likes: (GetCurrentUser_GetCurrentUser_user_likes | null)[] | null;
 	email: string | null;
 	phone: string | null;

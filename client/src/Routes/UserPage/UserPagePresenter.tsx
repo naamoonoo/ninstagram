@@ -1,6 +1,7 @@
 import React from "react";
 import Profile from "../../Components/Profile";
 import { forceHistory } from "../../utils/history";
+import { useTitle } from "../../utils/hooks";
 import { Routes } from "../routes";
 import * as S from "./UserPageStyle";
 
@@ -17,6 +18,7 @@ const UserPagePresenter: React.FC<IProps> = ({
 	isCurrentUser,
 	logOutMutation
 }) => {
+	useTitle("ninstgram | User Page");
 	const renderPhotos = (feeds: any[]) => {
 		return feeds.map(feed => {
 			return (
@@ -53,11 +55,15 @@ const UserPagePresenter: React.FC<IProps> = ({
 						>
 							PHONE {user.isPhoneVerified ? "✅" : "❌"}
 						</S.Info>
-						<S.Info
-							onClick={() => history.push(Routes.CHANGE_PASSWORD)}
-						>
-							PASSWORD ⚙️
-						</S.Info>
+						{!user.fbId && !user.googleId && (
+							<S.Info
+								onClick={() =>
+									history.push(Routes.CHANGE_PASSWORD)
+								}
+							>
+								PASSWORD ⚙️
+							</S.Info>
+						)}
 					</S.Infos>
 				)}
 			</S.ProfileContainer>

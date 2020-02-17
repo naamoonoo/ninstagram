@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Input from "../../Components/Input";
 
 export const Container = styled.div`
-	max-width: 650;
+	max-width: 650px;
 	display: block;
 	justify-content: center;
 	margin: auto;
@@ -59,6 +59,7 @@ export const Tag = styled.div`
 `;
 
 export const TagHeader = styled(Tag)`
+	display: contents;
 	margin: 50px auto;
 	justify-content: center;
 	width: 400px;

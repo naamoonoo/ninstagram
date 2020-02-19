@@ -15,6 +15,7 @@ type Mutation {
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
   EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!
   ResetPassword(email: String, phone: String, password: String!): ResetPasswordResponse!
+  SocialLogin(googleId: String!, firstName: String!, lastName: String!, profilePhoto: String!, email: String!): SocialLoginResponse!
   UpdateUser(phone: String, isEmailVerified: Boolean, isPhoneVerified: Boolean, email: String, password: String, newPassword: String, profilePhoto: String): UpdateUserResponse!
   RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
   ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
@@ -207,6 +208,12 @@ type User {
   comments: [Comment]
   createAt: String!
   updateAt: String!
+}
+
+type SocialLoginResponse {
+  res: Boolean!
+  error: String
+  token: String
 }
 
 type UpdateUserResponse {

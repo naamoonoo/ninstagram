@@ -1,0 +1,15 @@
+type SocialLoginResponse {
+	res: Boolean!
+	error: String
+	token: String
+}
+
+type Mutation {
+	SocialLogin(
+		googleId: String!
+		firstName: String!
+		lastName: String!
+		profilePhoto: String!
+		email: String!
+	): SocialLoginResponse!
+}

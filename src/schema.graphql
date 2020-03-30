@@ -1,7 +1,6 @@
 type Chat {
   id: String!
   messages: [Message]
-  users: [User]
   createAt: String!
   updateAt: String!
 }
@@ -21,6 +20,7 @@ type Mutation {
   CreateLike(feedId: String!): CreateLikeResponse!
   DeleteLike(feedId: String!): DeleteLikeResponse!
   CreateMessage(chatId: String!, receiverId: String!, content: String!): CreateMessageResponse!
+  FetchMessagesByUser(receiverId: String!): FetchMessagesByUserResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
   EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!
   ResetPassword(email: String, phone: String, password: String!): ResetPasswordResponse!
@@ -120,6 +120,7 @@ type Feed {
 
 type Subscription {
   SubscribeFeed: Feed
+  SubscribeMessage(receiverId: String!): Message
 }
 
 type UpdateFeedResponse {
@@ -176,6 +177,12 @@ type Like {
 type CreateMessageResponse {
   res: Boolean!
   error: String
+}
+
+type FetchMessagesByUserResponse {
+  res: Boolean!
+  error: String
+  messages: [Message]
 }
 
 type Message {

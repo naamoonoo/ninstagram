@@ -1,1 +1,2 @@
 export const NEW_FEED_CREATED = "NEW_FEED_CREATED";
+export const NEW_MESSAGE = "NEW_MESSAGE";

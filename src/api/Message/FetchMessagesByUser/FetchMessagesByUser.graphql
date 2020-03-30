@@ -1,0 +1,9 @@
+type FetchMessagesByUserResponse {
+	res: Boolean!
+	error: String
+	messages: [Message]
+}
+
+type Mutation {
+	FetchMessagesByUser(receiverId: String!): FetchMessagesByUserResponse!
+}

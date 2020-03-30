@@ -6,6 +6,7 @@ import {
 	CreateMessageResponse
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
+import { NEW_MESSAGE } from "../../../types/subscriptions";
 import { authProtector } from "../../../utils/authProtector";
 
 const resolvers: Resolvers = {
@@ -14,18 +15,12 @@ const resolvers: Resolvers = {
 			async (
 				_,
 				args: CreateMessageMutationArgs,
-				{ req }
+				{ req, pubsub }
 			): Promise<CreateMessageResponse> => {
 				const user: User = req.user;
 				const { receiverId, chatId, content } = args;
 				try {
-					const chat = await Chat.findOne({ id: chatId });
-					if (!chat) {
-						return {
-							res: false,
-							error: "NONE EXISTED CHAT"
-						};
-					}
+					let chat = await Chat.findOne({ id: chatId }); // if not existed, create one
 
 					const receiver = await User.findOne({ id: receiverId });
 					if (!receiver) {
@@ -35,13 +30,17 @@ const resolvers: Resolvers = {
 						};
 					}
 
-					await Message.create({
+					if (!chat) {
+						chat = await Chat.create({});
+					}
+
+					const message = await Message.create({
 						sender: user,
 						chat,
 						content,
 						receiver
 					});
-
+					pubsub.publish(NEW_MESSAGE, { ...message });
 					return {
 						res: true,
 						error: null

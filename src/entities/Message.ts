@@ -20,12 +20,21 @@ export class Message extends BaseEntity {
 
 	@ManyToOne(
 		type => User,
-		user => user.comments
+		user => user.sentMessages
 	)
-	user: User;
+	sender: User;
 
 	@Column({ nullable: true })
-	userId: string;
+	senderId: string;
+
+	@ManyToOne(
+		type => User,
+		user => user.receivedMessages
+	)
+	receiver: User;
+
+	@Column({ nullable: true })
+	receiverId: string;
 
 	@ManyToOne(
 		type => Chat,

@@ -3,8 +3,10 @@ type Message {
 	content: String!
 	chat: Chat!
 	chatId: String
-	user: User!
-	userId: String
+	sender: User!
+	senderId: String
+	receiver: User!
+	receiverId: String
 	createAt: String!
 	updateAt: String!
 }

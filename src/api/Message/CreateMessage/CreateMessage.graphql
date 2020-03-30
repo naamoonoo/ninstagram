@@ -1,0 +1,12 @@
+type CreateMessageResponse {
+	res: Boolean!
+	error: String
+}
+
+type Mutation {
+	CreateMessage(
+		chatId: String!
+		receiverId: String!
+		content: String!
+	): CreateMessageResponse!
+}

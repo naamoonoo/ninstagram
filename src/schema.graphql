@@ -1,6 +1,7 @@
 type Chat {
   id: String!
   messages: [Message]
+  users: [User]
   createAt: String!
   updateAt: String!
 }
@@ -19,6 +20,7 @@ type Mutation {
   UpdateFeed(feedId: String!, text: String): UpdateFeedResponse!
   CreateLike(feedId: String!): CreateLikeResponse!
   DeleteLike(feedId: String!): DeleteLikeResponse!
+  CreateMessage(chatId: String!, receiverId: String!, content: String!): CreateMessageResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
   EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!
   ResetPassword(email: String, phone: String, password: String!): ResetPasswordResponse!
@@ -141,6 +143,8 @@ type Hashtag {
   id: String!
   tag: String!
   feeds: [Feed]
+  createAt: String!
+  updateAt: String!
 }
 
 type CreateLikeResponse {
@@ -169,13 +173,20 @@ type Like {
   updateAt: String
 }
 
+type CreateMessageResponse {
+  res: Boolean!
+  error: String
+}
+
 type Message {
   id: String!
   content: String!
   chat: Chat!
   chatId: String
-  user: User!
-  userId: String
+  sender: User!
+  senderId: String
+  receiver: User!
+  receiverId: String
   createAt: String!
   updateAt: String!
 }
@@ -231,6 +242,9 @@ type User {
   feeds: [Feed]
   likes: [Like]
   comments: [Comment]
+  chats: [Chat]
+  sentMessages: [Message]
+  receivedMessages: [Message]
   createAt: String!
   updateAt: String!
 }

@@ -1,3 +1,10 @@
+type Chat {
+  id: String!
+  messages: [Message]
+  createAt: String!
+  updateAt: String!
+}
+
 type CreateCommentResponse {
   res: Boolean!
   error: String
@@ -40,6 +47,7 @@ type Query {
   GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
   FindHashtagsByTag(search: String!): FindHashtagsByTagResponse!
   GetTaggedFeeds(tag: String!): GetTaggedFeedsResponse!
+  GetLikers(feedId: String!): GetLikersResponse!
   FindUserByUsername(search: String!): FindUserByUsernameResponse!
   GetCurrentUser: GetCurrentUserResponse!
   GetUserById(userId: String!): GetUserByIdResponse!
@@ -145,6 +153,12 @@ type DeleteLikeResponse {
   error: String
 }
 
+type GetLikersResponse {
+  res: Boolean!
+  error: String
+  likes: [Like]
+}
+
 type Like {
   id: String!
   user: User!
@@ -153,6 +167,17 @@ type Like {
   userId: String
   createAt: String
   updateAt: String
+}
+
+type Message {
+  id: String!
+  content: String!
+  chat: Chat!
+  chatId: String
+  user: User!
+  userId: String
+  createAt: String!
+  updateAt: String!
 }
 
 type EmailSignInResponse {

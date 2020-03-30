@@ -1,0 +1,9 @@
+type GetLikersResponse {
+	res: Boolean!
+	error: String
+	likes: [Like]
+}
+
+type Query {
+	GetLikers(feedId: String!): GetLikersResponse!
+}

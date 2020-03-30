@@ -1,4 +1,4 @@
-export const typeDefs = ["type CreateCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype Mutation {\n  CreateComment(feedId: String!, comment: String!): CreateCommentResponse!\n  DeleteComment(commentId: String!): DeleteCommentResponse!\n  UpdateComment(commentId: String!, comment: String!): UpdateCommentResponse!\n  CreateFeed(photo: String!, text: String!): CreateFeedResponse!\n  DeleteFeed(feedId: String!): DeleteFeedResponse!\n  UpdateFeed(feedId: String!, text: String): UpdateFeedResponse!\n  CreateLike(feedId: String!): CreateLikeResponse!\n  DeleteLike(feedId: String!): DeleteLikeResponse!\n  EmailSignIn(email: String!, password: String!): EmailSignInResponse!\n  EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!\n  ResetPassword(email: String, phone: String, password: String!): ResetPasswordResponse!\n  SocialLogin(googleId: String!, firstName: String!, lastName: String!, profilePhoto: String!, email: String!): SocialLoginResponse!\n  UpdateUser(phone: String, isEmailVerified: Boolean, isPhoneVerified: Boolean, email: String, password: String, newPassword: String, profilePhoto: String): UpdateUserResponse!\n  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!\n  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!\n}\n\ntype DeleteCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype GetCommentsResponse {\n  res: Boolean!\n  error: String\n  comments: [Comment]\n}\n\ntype Query {\n  GetComments(feedId: String!): GetCommentsResponse!\n  FindFeedsByHashtag(search: String!): FindFeedsByHashtagResponse!\n  GetFeed(feedId: String!): GetFeedResponse!\n  GetFeeds(page: Int!): GetFeedsResponse!\n  GetFeedsByUser(userId: String!): GetFeedsByUserResponse!\n  FindHashtagsByTag(search: String!): FindHashtagsByTagResponse!\n  GetTaggedFeeds(tag: String!): GetTaggedFeedsResponse!\n  FindUserByUsername(search: String!): FindUserByUsernameResponse!\n  GetCurrentUser: GetCurrentUserResponse!\n  GetUserById(userId: String!): GetUserByIdResponse!\n  ForgetPassword(type: String!, payload: String!): ForgetPasswordResponse!\n}\n\ntype Comment {\n  id: String!\n  comment: String\n  user: User\n  userId: String\n  feed: Feed\n  feedId: String\n  createAt: String!\n  updateAt: String!\n}\n\ntype UpdateCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype CreateFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype DeleteFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype FindFeedsByHashtagResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype GetFeedResponse {\n  res: Boolean!\n  error: String\n  feed: Feed\n}\n\ntype GetFeedsResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype GetFeedsByUserResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype Feed {\n  id: String!\n  photo: String!\n  text: String\n  user: User\n  likes: [Like]\n  tags: [Hashtag]\n  comments: [Comment]\n  createAt: String!\n  updateAt: String!\n}\n\ntype Subscription {\n  SubscribeFeed: Feed\n}\n\ntype UpdateFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype FindHashtagsByTagResponse {\n  res: Boolean!\n  error: String\n  tags: [Hashtag]\n}\n\ntype GetTaggedFeedsResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype Hashtag {\n  id: String!\n  tag: String!\n  feeds: [Feed]\n}\n\ntype CreateLikeResponse {\n  res: Boolean!\n  error: String\n}\n\ntype DeleteLikeResponse {\n  res: Boolean!\n  error: String\n}\n\ntype Like {\n  id: String!\n  user: User!\n  feed: Feed!\n  feedId: String\n  userId: String\n  createAt: String\n  updateAt: String\n}\n\ntype EmailSignInResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype EmailSignUpResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype FindUserByUsernameResponse {\n  res: Boolean!\n  error: String\n  users: [User]\n}\n\ntype GetCurrentUserResponse {\n  res: Boolean!\n  error: String\n  user: User\n}\n\ntype GetUserByIdResponse {\n  res: Boolean!\n  error: String\n  user: User\n}\n\ntype ResetPasswordResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype User {\n  id: String!\n  fbId: String\n  googleId: String\n  firstName: String!\n  lastName: String\n  password: String\n  profilePhoto: String!\n  email: String\n  isEmailVerified: Boolean\n  phone: String\n  isPhoneVerified: Boolean\n  feeds: [Feed]\n  likes: [Like]\n  comments: [Comment]\n  createAt: String!\n  updateAt: String!\n}\n\ntype SocialLoginResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype UpdateUserResponse {\n  res: Boolean!\n  error: String\n}\n\ntype ForgetPasswordResponse {\n  res: Boolean!\n  error: String\n  key: String\n}\n\ntype RequestVerificationResponse {\n  res: Boolean!\n  error: String\n}\n\ntype Verification {\n  id: String!\n  type: String!\n  payload: String!\n  key: String!\n  isVerified: Boolean!\n  createAt: String!\n  updateAt: String!\n}\n\ntype ValidateVerificationResponse {\n  res: Boolean!\n  error: String\n}\n"];
+export const typeDefs = ["type Chat {\n  id: String!\n  messages: [Message]\n  createAt: String!\n  updateAt: String!\n}\n\ntype CreateCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype Mutation {\n  CreateComment(feedId: String!, comment: String!): CreateCommentResponse!\n  DeleteComment(commentId: String!): DeleteCommentResponse!\n  UpdateComment(commentId: String!, comment: String!): UpdateCommentResponse!\n  CreateFeed(photo: String!, text: String!): CreateFeedResponse!\n  DeleteFeed(feedId: String!): DeleteFeedResponse!\n  UpdateFeed(feedId: String!, text: String): UpdateFeedResponse!\n  CreateLike(feedId: String!): CreateLikeResponse!\n  DeleteLike(feedId: String!): DeleteLikeResponse!\n  EmailSignIn(email: String!, password: String!): EmailSignInResponse!\n  EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!\n  ResetPassword(email: String, phone: String, password: String!): ResetPasswordResponse!\n  SocialLogin(googleId: String!, firstName: String!, lastName: String!, profilePhoto: String!, email: String!): SocialLoginResponse!\n  UpdateUser(phone: String, isEmailVerified: Boolean, isPhoneVerified: Boolean, email: String, password: String, newPassword: String, profilePhoto: String): UpdateUserResponse!\n  RequestVerification(type: String!, payload: String!): RequestVerificationResponse!\n  ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!\n}\n\ntype DeleteCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype GetCommentsResponse {\n  res: Boolean!\n  error: String\n  comments: [Comment]\n}\n\ntype Query {\n  GetComments(feedId: String!): GetCommentsResponse!\n  FindFeedsByHashtag(search: String!): FindFeedsByHashtagResponse!\n  GetFeed(feedId: String!): GetFeedResponse!\n  GetFeeds(page: Int!): GetFeedsResponse!\n  GetFeedsByUser(userId: String!): GetFeedsByUserResponse!\n  FindHashtagsByTag(search: String!): FindHashtagsByTagResponse!\n  GetTaggedFeeds(tag: String!): GetTaggedFeedsResponse!\n  GetLikers(feedId: String!): GetLikersResponse!\n  FindUserByUsername(search: String!): FindUserByUsernameResponse!\n  GetCurrentUser: GetCurrentUserResponse!\n  GetUserById(userId: String!): GetUserByIdResponse!\n  ForgetPassword(type: String!, payload: String!): ForgetPasswordResponse!\n}\n\ntype Comment {\n  id: String!\n  comment: String\n  user: User\n  userId: String\n  feed: Feed\n  feedId: String\n  createAt: String!\n  updateAt: String!\n}\n\ntype UpdateCommentResponse {\n  res: Boolean!\n  error: String\n}\n\ntype CreateFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype DeleteFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype FindFeedsByHashtagResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype GetFeedResponse {\n  res: Boolean!\n  error: String\n  feed: Feed\n}\n\ntype GetFeedsResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype GetFeedsByUserResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype Feed {\n  id: String!\n  photo: String!\n  text: String\n  user: User\n  likes: [Like]\n  tags: [Hashtag]\n  comments: [Comment]\n  createAt: String!\n  updateAt: String!\n}\n\ntype Subscription {\n  SubscribeFeed: Feed\n}\n\ntype UpdateFeedResponse {\n  res: Boolean!\n  error: String\n}\n\ntype FindHashtagsByTagResponse {\n  res: Boolean!\n  error: String\n  tags: [Hashtag]\n}\n\ntype GetTaggedFeedsResponse {\n  res: Boolean!\n  error: String\n  feeds: [Feed]\n}\n\ntype Hashtag {\n  id: String!\n  tag: String!\n  feeds: [Feed]\n}\n\ntype CreateLikeResponse {\n  res: Boolean!\n  error: String\n}\n\ntype DeleteLikeResponse {\n  res: Boolean!\n  error: String\n}\n\ntype GetLikersResponse {\n  res: Boolean!\n  error: String\n  likes: [Like]\n}\n\ntype Like {\n  id: String!\n  user: User!\n  feed: Feed!\n  feedId: String\n  userId: String\n  createAt: String\n  updateAt: String\n}\n\ntype Message {\n  id: String!\n  content: String!\n  chat: Chat!\n  chatId: String\n  user: User!\n  userId: String\n  createAt: String!\n  updateAt: String!\n}\n\ntype EmailSignInResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype EmailSignUpResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype FindUserByUsernameResponse {\n  res: Boolean!\n  error: String\n  users: [User]\n}\n\ntype GetCurrentUserResponse {\n  res: Boolean!\n  error: String\n  user: User\n}\n\ntype GetUserByIdResponse {\n  res: Boolean!\n  error: String\n  user: User\n}\n\ntype ResetPasswordResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype User {\n  id: String!\n  fbId: String\n  googleId: String\n  firstName: String!\n  lastName: String\n  password: String\n  profilePhoto: String!\n  email: String\n  isEmailVerified: Boolean\n  phone: String\n  isPhoneVerified: Boolean\n  feeds: [Feed]\n  likes: [Like]\n  comments: [Comment]\n  createAt: String!\n  updateAt: String!\n}\n\ntype SocialLoginResponse {\n  res: Boolean!\n  error: String\n  token: String\n}\n\ntype UpdateUserResponse {\n  res: Boolean!\n  error: String\n}\n\ntype ForgetPasswordResponse {\n  res: Boolean!\n  error: String\n  key: String\n}\n\ntype RequestVerificationResponse {\n  res: Boolean!\n  error: String\n}\n\ntype Verification {\n  id: String!\n  type: String!\n  payload: String!\n  key: String!\n  isVerified: Boolean!\n  createAt: String!\n  updateAt: String!\n}\n\ntype ValidateVerificationResponse {\n  res: Boolean!\n  error: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -9,6 +9,7 @@ export interface Query {
   GetFeedsByUser: GetFeedsByUserResponse;
   FindHashtagsByTag: FindHashtagsByTagResponse;
   GetTaggedFeeds: GetTaggedFeedsResponse;
+  GetLikers: GetLikersResponse;
   FindUserByUsername: FindUserByUsernameResponse;
   GetCurrentUser: GetCurrentUserResponse;
   GetUserById: GetUserByIdResponse;
@@ -41,6 +42,10 @@ export interface FindHashtagsByTagQueryArgs {
 
 export interface GetTaggedFeedsQueryArgs {
   tag: string;
+}
+
+export interface GetLikersQueryArgs {
+  feedId: string;
 }
 
 export interface FindUserByUsernameQueryArgs {
@@ -154,6 +159,12 @@ export interface GetTaggedFeedsResponse {
   res: boolean;
   error: string | null;
   feeds: Array<Feed> | null;
+}
+
+export interface GetLikersResponse {
+  res: boolean;
+  error: string | null;
+  likes: Array<Like> | null;
 }
 
 export interface FindUserByUsernameResponse {
@@ -360,6 +371,24 @@ export interface ValidateVerificationResponse {
 
 export interface Subscription {
   SubscribeFeed: Feed | null;
+}
+
+export interface Chat {
+  id: string;
+  messages: Array<Message> | null;
+  createAt: string;
+  updateAt: string;
+}
+
+export interface Message {
+  id: string;
+  content: string;
+  chat: Chat;
+  chatId: string | null;
+  user: User;
+  userId: string | null;
+  createAt: string;
+  updateAt: string;
 }
 
 export interface Verification {

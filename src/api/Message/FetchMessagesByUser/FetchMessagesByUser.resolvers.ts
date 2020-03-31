@@ -1,28 +1,36 @@
 import { Message } from "../../../entities/Message";
 import { User } from "../../../entities/User";
 import {
-	FetchMessagesByUserMutationArgs,
+	FetchMessagesByUserQueryArgs,
 	FetchMessagesByUserResponse
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
 import { authProtector } from "../../../utils/authProtector";
 
 const resolvers: Resolvers = {
-	Mutation: {
+	Query: {
 		FetchMessagesByUser: authProtector(
 			async (
 				_,
-				args: FetchMessagesByUserMutationArgs,
+				args: FetchMessagesByUserQueryArgs,
 				{ req }
 			): Promise<FetchMessagesByUserResponse> => {
 				const sender: User = req.user;
 				const { receiverId } = args;
 				try {
 					const messages = await Message.find({
-						where: {
-							sender,
-							receiverId
-						},
+						where: [
+							{
+								// which current user sent
+								sender,
+								receiverId
+							},
+							{
+								// which current user received
+								serderId: receiverId,
+								receiver: sender
+							}
+						],
 						relations: ["chat", "sender", "receiver"],
 						order: { createAt: "ASC" }
 					});

@@ -19,13 +19,12 @@ type Mutation {
   UpdateFeed(feedId: String!, text: String): UpdateFeedResponse!
   CreateLike(feedId: String!): CreateLikeResponse!
   DeleteLike(feedId: String!): DeleteLikeResponse!
-  CreateMessage(chatId: String!, receiverId: String!, content: String!): CreateMessageResponse!
-  FetchMessagesByUser(receiverId: String!): FetchMessagesByUserResponse!
+  CreateMessage(receiverId: String!, content: String!, chatId: String): CreateMessageResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
   EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!
   ResetPassword(email: String, phone: String, password: String!): ResetPasswordResponse!
   SocialLogin(googleId: String!, firstName: String!, lastName: String!, profilePhoto: String!, email: String!): SocialLoginResponse!
-  UpdateUser(phone: String, isEmailVerified: Boolean, isPhoneVerified: Boolean, email: String, password: String, newPassword: String, profilePhoto: String): UpdateUserResponse!
+  UpdateUser(phone: String, isEmailVerified: Boolean, isPhoneVerified: Boolean, email: String, password: String, newPassword: String, profilePhoto: String, active: Boolean): UpdateUserResponse!
   RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
   ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
 }
@@ -50,6 +49,8 @@ type Query {
   FindHashtagsByTag(search: String!): FindHashtagsByTagResponse!
   GetTaggedFeeds(tag: String!): GetTaggedFeedsResponse!
   GetLikers(feedId: String!): GetLikersResponse!
+  FetchMessages: FetchMessagesResponse!
+  FetchMessagesByUser(receiverId: String!): FetchMessagesByUserResponse!
   FindUserByUsername(search: String!): FindUserByUsernameResponse!
   GetCurrentUser: GetCurrentUserResponse!
   GetUserById(userId: String!): GetUserByIdResponse!
@@ -120,7 +121,7 @@ type Feed {
 
 type Subscription {
   SubscribeFeed: Feed
-  SubscribeMessage(receiverId: String!): Message
+  SubscribeMessage: Message
 }
 
 type UpdateFeedResponse {
@@ -179,6 +180,11 @@ type CreateMessageResponse {
   error: String
 }
 
+type FetchMessagesResponse {
+  res: Boolean!
+  error: String
+}
+
 type FetchMessagesByUserResponse {
   res: Boolean!
   error: String
@@ -194,6 +200,7 @@ type Message {
   senderId: String
   receiver: User!
   receiverId: String
+  checked: Boolean
   createAt: String!
   updateAt: String!
 }
@@ -246,6 +253,7 @@ type User {
   isEmailVerified: Boolean
   phone: String
   isPhoneVerified: Boolean
+  isActive: Boolean
   feeds: [Feed]
   likes: [Like]
   comments: [Comment]

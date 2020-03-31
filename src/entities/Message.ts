@@ -1,12 +1,12 @@
 import {
+	AfterLoad,
 	BaseEntity,
 	Column,
 	CreateDateColumn,
 	Entity,
 	ManyToOne,
 	PrimaryGeneratedColumn,
-	UpdateDateColumn,
-	AfterLoad
+	UpdateDateColumn
 } from "typeorm";
 import { Chat } from "./Chat";
 import { User } from "./User";

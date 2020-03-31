@@ -22,7 +22,7 @@ const resolvers: Resolvers = {
 				try {
 					const chat = chatId
 						? await Chat.findOne({ id: chatId })
-						: await Chat.create({}); // if not existed, create one
+						: await Chat.create({}).save(); // if not existed, create one
 
 					if (!chat) {
 						return {
@@ -46,9 +46,15 @@ const resolvers: Resolvers = {
 						chat,
 						content,
 						receiver
-					});
+					}).save();
 
 					pubsub.publish(NEW_MESSAGE, { ...message });
+					if (!chat.messages) {
+						chat.messages = [message];
+					} else {
+						chat.messages.push(message);
+					}
+					chat.save();
 					return {
 						res: true,
 						error: null

@@ -4,6 +4,6 @@ type FetchMessagesByUserResponse {
 	messages: [Message]
 }
 
-type Mutation {
+type Query {
 	FetchMessagesByUser(receiverId: String!): FetchMessagesByUserResponse!
 }

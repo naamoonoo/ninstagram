@@ -21,6 +21,7 @@ const resolvers = {
 					const sender: User = context.user;
 					console.log(payload);
 					console.log(context);
+					// when receiver is active, send notification. else, send a mail
 					return (
 						payload.receiverId === receiverId &&
 						payload.sender.id === sender.id

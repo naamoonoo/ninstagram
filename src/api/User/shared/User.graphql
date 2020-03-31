@@ -10,10 +10,10 @@ type User {
 	isEmailVerified: Boolean
 	phone: String
 	isPhoneVerified: Boolean
+	isActive: Boolean
 	feeds: [Feed]
 	likes: [Like]
 	comments: [Comment]
-	chats: [Chat]
 	sentMessages: [Message]
 	receivedMessages: [Message]
 	createAt: String!

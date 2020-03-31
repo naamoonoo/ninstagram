@@ -249,7 +249,6 @@ type User {
   feeds: [Feed]
   likes: [Like]
   comments: [Comment]
-  chats: [Chat]
   sentMessages: [Message]
   receivedMessages: [Message]
   createAt: String!

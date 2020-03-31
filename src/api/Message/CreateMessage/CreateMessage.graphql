@@ -5,8 +5,8 @@ type CreateMessageResponse {
 
 type Mutation {
 	CreateMessage(
-		chatId: String!
 		receiverId: String!
 		content: String!
+		chatId: String
 	): CreateMessageResponse!
 }

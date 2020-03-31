@@ -20,7 +20,18 @@ const resolvers: Resolvers = {
 				const user: User = req.user;
 				const { receiverId, chatId, content } = args;
 				try {
-					let chat = await Chat.findOne({ id: chatId }); // if not existed, create one
+					const chat = chatId
+						? await Chat.findOne({ id: chatId })
+						: await Chat.create({}); // if not existed, create one
+
+					if (!chat) {
+						return {
+							res: false,
+							error: chatId
+								? "NONE EXISTED CHAT"
+								: "FAIL TO CREATE NEW CHAT"
+						};
+					}
 
 					const receiver = await User.findOne({ id: receiverId });
 					if (!receiver) {
@@ -30,16 +41,13 @@ const resolvers: Resolvers = {
 						};
 					}
 
-					if (!chat) {
-						chat = await Chat.create({});
-					}
-
 					const message = await Message.create({
 						sender: user,
 						chat,
 						content,
 						receiver
 					});
+
 					pubsub.publish(NEW_MESSAGE, { ...message });
 					return {
 						res: true,

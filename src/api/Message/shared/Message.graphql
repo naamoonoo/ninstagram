@@ -7,6 +7,7 @@ type Message {
 	senderId: String
 	receiver: User!
 	receiverId: String
+	checked: Boolean
 	createAt: String!
 	updateAt: String!
 }

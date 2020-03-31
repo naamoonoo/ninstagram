@@ -5,7 +5,8 @@ import {
 	Entity,
 	ManyToOne,
 	PrimaryGeneratedColumn,
-	UpdateDateColumn
+	UpdateDateColumn,
+	AfterLoad
 } from "typeorm";
 import { Chat } from "./Chat";
 import { User } from "./User";
@@ -45,7 +46,15 @@ export class Message extends BaseEntity {
 	@Column({ nullable: true })
 	chatId: string;
 
+	@Column({ default: false })
+	checked: boolean;
+
 	@CreateDateColumn() createAt: string;
 
 	@UpdateDateColumn() updateAt: string;
+
+	@AfterLoad()
+	updateChecked() {
+		this.checked = true;
+	}
 }

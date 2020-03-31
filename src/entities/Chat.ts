@@ -13,13 +13,6 @@ export class Chat extends BaseEntity {
 	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
-	// @ManyToMany(
-	// 	type => User,
-	// 	user => user.chats,
-	// 	{ onDelete: "CASCADE" } // ?
-	// )
-	// users: User[];
-
 	@OneToMany(
 		type => Message,
 		messages => messages.chat

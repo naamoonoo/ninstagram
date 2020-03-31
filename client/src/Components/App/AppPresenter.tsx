@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import ChangePassord from "../../Routes/ChangePassword";
+import Chat from "../../Routes/Chat";
 import FeedDetail from "../../Routes/FeedDetail";
 import Feeds from "../../Routes/Feeds";
 import ForgetMyPassword from "../../Routes/ForgetMyPassword";
@@ -56,6 +57,7 @@ const AppPresenter: React.FC<IProps> = ({ isLoggedIn }) => {
 						exact={true}
 						component={UserPage}
 					/>
+					<Route path={Routes.CHAT} exact={true} component={Chat} />
 					<Redirect path={"*"} to={Routes.HOME} />
 				</Switch>
 			</S.Body>

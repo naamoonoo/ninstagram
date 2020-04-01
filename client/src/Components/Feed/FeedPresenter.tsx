@@ -101,7 +101,13 @@ const FeedPresenter: React.FC<IProps> = ({
 						{commentShow ? <CommentFull /> : <CommentEmpty />}
 					</S.Message>
 					{!isCurrentUser && (
-						<Chat onClick={() => forceHistory.push(Routes.CHAT)} />
+						<Chat
+							onClick={() =>
+								forceHistory.push(Routes.CHAT, {
+									receiverId: user.id
+								})
+							}
+						/>
 					)}
 					{likes && <S.Info>{likes.length} likes</S.Info>}
 					{((isHovered && isCurrentUser) ||

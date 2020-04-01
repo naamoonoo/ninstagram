@@ -49,7 +49,6 @@ type Query {
   FindHashtagsByTag(search: String!): FindHashtagsByTagResponse!
   GetTaggedFeeds(tag: String!): GetTaggedFeedsResponse!
   GetLikers(feedId: String!): GetLikersResponse!
-  FetchMessages: FetchMessagesResponse!
   FetchMessagesByUser(receiverId: String!): FetchMessagesByUserResponse!
   FindUserByUsername(search: String!): FindUserByUsernameResponse!
   GetCurrentUser: GetCurrentUserResponse!
@@ -121,6 +120,7 @@ type Feed {
 
 type Subscription {
   SubscribeFeed: Feed
+  SubscribeCurrentChatMessage(otherId: String!): Message
   SubscribeMessage: Message
 }
 
@@ -176,11 +176,6 @@ type Like {
 }
 
 type CreateMessageResponse {
-  res: Boolean!
-  error: String
-}
-
-type FetchMessagesResponse {
   res: Boolean!
   error: String
 }

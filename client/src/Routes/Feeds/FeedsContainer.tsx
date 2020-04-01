@@ -49,6 +49,7 @@ const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 			}
 		}
 	});
+
 	const [onDisLike] = useMutation<DeleteLike, DeleteLikeVariables>(
 		LIKE_DELETE,
 		{

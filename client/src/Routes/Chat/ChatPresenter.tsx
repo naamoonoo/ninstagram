@@ -16,6 +16,7 @@ const ChatPresenter: React.FC<IProps> = ({ receiverId, messages }) => {
 		messages && messages[0] && messages[0].chatId
 			? messages[0].chatId
 			: undefined;
+
 	const renderMessage = () => {
 		if (!messages) {
 			return null;

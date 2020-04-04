@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useSubscription } from "@apollo/react-hooks";
 import React, { useState } from "react";
-import { RouteComponentProps, Route } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
 import { toast } from "react-toastify";
 import { GET_CURRENT_USER } from "../../SharedQueries";
 import {
@@ -11,6 +11,7 @@ import {
 	GetCurrentUser,
 	GetFeeds,
 	GetFeedsVariables,
+	SubscribeFeed,
 	SubscribeMessage,
 } from "../../types/api";
 import { Routes } from "../routes";
@@ -22,7 +23,6 @@ import {
 	SUBSCRIBE_FEED,
 	SUBSCRIBE_MESSAGE,
 } from "./FeedsQueries";
-import { forceHistory } from "../../utils/history";
 
 interface IProps extends RouteComponentProps {}
 
@@ -67,7 +67,7 @@ const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 		}
 	);
 
-	useSubscription(SUBSCRIBE_FEED, {
+	useSubscription<SubscribeFeed>(SUBSCRIBE_FEED, {
 		onSubscriptionData: () => {
 			setNewFeed(true);
 			feedRefetch();

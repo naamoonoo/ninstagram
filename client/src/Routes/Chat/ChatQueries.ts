@@ -6,6 +6,7 @@ export const GET_MESSAGES = gql`
 			res
 			error
 			messages {
+				id
 				sender {
 					id
 					firstName
@@ -16,6 +17,7 @@ export const GET_MESSAGES = gql`
 					firstName
 					profilePhoto
 				}
+				chatId
 				content
 				checked
 			}
@@ -26,18 +28,7 @@ export const GET_MESSAGES = gql`
 export const SUBSCRIBE_CURRENT_MESSAGES = gql`
 	subscription SubscribeCurrentChatMessage($otherId: String!) {
 		SubscribeCurrentChatMessage(otherId: $otherId) {
-			sender {
-				id
-				firstName
-				profilePhoto
-			}
-			receiver {
-				id
-				firstName
-				profilePhoto
-			}
-			content
-			checked
+			id
 		}
 	}
 `;

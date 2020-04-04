@@ -7,7 +7,7 @@ import {
 	FetchMessagesByUserVariables,
 	FetchMessagesByUser_FetchMessagesByUser_messages,
 	SubscribeCurrentChatMessage,
-	SubscribeCurrentChatMessageVariables
+	SubscribeCurrentChatMessageVariables,
 } from "../../types/api";
 import { Routes } from "../routes";
 import ChatPresenter from "./ChatPresenter";
@@ -17,30 +17,24 @@ interface IProps extends RouteComponentProps<{}, {}, { receiverId: string }> {}
 
 const ChatContainer: React.FC<IProps> = ({
 	location: {
-		state: { receiverId }
+		state: { receiverId },
 	},
-	history
+	history,
 }) => {
 	if (!receiverId) {
 		history.push(Routes.FEED);
 	}
 
-	const [messages, setMessages] = useState<
-		FetchMessagesByUser_FetchMessagesByUser_messages[]
-	>([]);
-	const {} = useQuery<FetchMessagesByUser, FetchMessagesByUserVariables>(
+	const {
+		data: { FetchMessagesByUser: { messages = [] } = {} } = {},
+		refetch,
+	} = useQuery<FetchMessagesByUser, FetchMessagesByUserVariables>(
 		GET_MESSAGES,
 		{
 			variables: { receiverId },
-			onCompleted: ({
-				FetchMessagesByUser: { messages: data, res, error }
-			}) => {
-				if (res && data) {
-					console.log(data);
-				} else {
-					toast.error(error);
-				}
-			}
+			onCompleted: ({ FetchMessagesByUser: { error } }) => {
+				if (error) toast.error(error);
+			},
 		}
 	);
 
@@ -49,22 +43,16 @@ const ChatContainer: React.FC<IProps> = ({
 		SubscribeCurrentChatMessageVariables
 	>(SUBSCRIBE_CURRENT_MESSAGES, {
 		variables: { otherId: receiverId },
-		onSubscriptionComplete: () => {
-			console.log("listening to subscritipn");
+		onSubscriptionData: () => {
+			refetch();
 		},
-		onSubscriptionData: ({
-			subscriptionData: {
-				data: { SubscribeCurrentChatMessage = {} } = {}
-			} = {}
-		}) => {
-			// toast.error(
-			// 	`${SubscribeCurrentChatMessage?.sender?.firstName} : ${SubscribeCurrentChatMessage?.content}`
-			// );
-			console.log(SubscribeCurrentChatMessage);
-		}
 	});
 
-	return <ChatPresenter receiverId={receiverId} />;
+	const chatId =
+		messages && messages[0] && messages[0].chatId
+			? messages[0].chatId
+			: undefined;
+	return <ChatPresenter receiverId={receiverId} messages={messages} />;
 };
 
 export default ChatContainer;

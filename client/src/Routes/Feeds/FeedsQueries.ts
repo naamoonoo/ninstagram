@@ -48,3 +48,24 @@ export const SUBSCRIBE_FEED = gql`
 		}
 	}
 `;
+
+export const SUBSCRIBE_MESSAGE = gql`
+	subscription SubscribeMessage {
+		SubscribeMessage {
+			id
+			sender {
+				id
+				firstName
+				profilePhoto
+			}
+			receiver {
+				id
+				firstName
+				profilePhoto
+			}
+			chatId
+			content
+			checked
+		}
+	}
+`;

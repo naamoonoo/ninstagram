@@ -8,15 +8,16 @@ import * as S from "./ChatInputStyle";
 
 interface IProps {
 	receiverId: string;
+	chatId?: string;
 }
 
-const ChatInputPresenter: React.FC<IProps> = ({ receiverId }) => {
+const ChatInputPresenter: React.FC<IProps> = ({ receiverId, chatId }) => {
 	const [content, onContentChange, setContent] = useInput("");
 
 	const [sendMessage] = useMutation<CreateMessage, CreateMessageVariables>(
 		SEND_MESSAGE,
 		{
-			variables: { receiverId, content }
+			variables: { receiverId, content, chatId },
 		}
 	);
 

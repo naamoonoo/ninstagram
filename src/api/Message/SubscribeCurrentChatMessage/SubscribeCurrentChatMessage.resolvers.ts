@@ -6,7 +6,7 @@ import { NEW_MESSAGE } from "../../../types/subscriptions";
 const resolvers = {
 	Subscription: {
 		SubscribeCurrentChatMessage: {
-			resolve: payload => payload,
+			resolve: (payload) => payload,
 			subscribe: withFilter(
 				(_, __, { pubsub }) => {
 					return pubsub.asyncIterator(NEW_MESSAGE);
@@ -26,9 +26,9 @@ const resolvers = {
 					);
 					return true;
 				}
-			)
-		}
-	}
+			),
+		},
+	},
 };
 
 export default resolvers;

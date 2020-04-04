@@ -30,8 +30,9 @@ export const Button = styled.button`
 	right: 0;
 	height: 100%;
 	position: absolute;
-	color: lightgrey;
+	fill: gray;
+
 	:hover {
-		background: lightgrey;
+		fill: black;
 	}
 `;

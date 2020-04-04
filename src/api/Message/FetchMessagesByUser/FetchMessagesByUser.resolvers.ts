@@ -2,7 +2,7 @@ import { Message } from "../../../entities/Message";
 import { User } from "../../../entities/User";
 import {
 	FetchMessagesByUserQueryArgs,
-	FetchMessagesByUserResponse
+	FetchMessagesByUserResponse,
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
 import { authProtector } from "../../../utils/authProtector";
@@ -16,40 +16,40 @@ const resolvers: Resolvers = {
 				{ req }
 			): Promise<FetchMessagesByUserResponse> => {
 				const sender: User = req.user;
-				const { receiverId } = args;
+				const { receiverId, isInChat } = args;
 				try {
 					const messages = await Message.find({
 						where: [
 							{
 								// which current user sent
 								sender,
-								receiverId
+								receiverId,
 							},
 							{
 								// which current user received
 								serderId: receiverId,
-								receiver: sender
-							}
+								receiver: sender,
+							},
 						],
 						relations: ["chat", "sender", "receiver"],
-						order: { createAt: "ASC" }
+						order: { createAt: "ASC" },
 					});
 
 					return {
 						res: true,
 						error: null,
-						messages
+						messages,
 					};
 				} catch (error) {
 					return {
 						res: false,
 						error: error.message,
-						messages: null
+						messages: null,
 					};
 				}
 			}
-		)
-	}
+		),
+	},
 };
 
 export default resolvers;

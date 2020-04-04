@@ -10,6 +10,7 @@ interface IProps {
 	size?: string;
 	fontSize?: string;
 	clickable?: boolean;
+	onlyPhoto?: boolean;
 }
 
 const ProfilePresenter: React.FC<IProps> = ({
@@ -18,7 +19,8 @@ const ProfilePresenter: React.FC<IProps> = ({
 	profilePhoto,
 	size = "25px",
 	fontSize = "0.9em",
-	clickable = true
+	clickable = true,
+	onlyPhoto = false,
 }) => {
 	const onClickHandler = () => {
 		if (!clickable) {
@@ -29,7 +31,7 @@ const ProfilePresenter: React.FC<IProps> = ({
 	return (
 		<S.Container onClick={onClickHandler}>
 			<S.ProfileImg src={profilePhoto} size={size} />
-			<S.Name fontSize={fontSize}>{firstName}</S.Name>
+			{!onlyPhoto && <S.Name fontSize={fontSize}>{firstName}</S.Name>}
 		</S.Container>
 	);
 };

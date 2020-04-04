@@ -79,7 +79,12 @@ const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 			if (data && data.SubscribeMessage) {
 				const { sender, content, checked } = data.SubscribeMessage;
 				if (!checked) {
-					toast.success(`${sender.firstName} : ${content}`, {
+					const message =
+						content.length + sender.firstName.length > 30
+							? content.slice(0, 30 - sender.firstName.length) +
+							  "..."
+							: content;
+					toast.success(`${sender.firstName} : ${message}`, {
 						position: "top-right",
 						onClick: () =>
 							history.push(Routes.CHAT, {

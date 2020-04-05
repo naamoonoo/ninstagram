@@ -5,29 +5,41 @@ interface IProps {
 }
 
 export const Container = styled.div<IProps>`
-	display: flex;
-	/* flex-direction: column;
-	align-items: flex-start; */
+	/* overflow: auto; */
+	/* background: ${(props) => (props.isMine ? "lightblue" : "lightgray")}; */
+	/* position:flex; */
+	/* width: 100%; */
 
-	right: 0;
-	margin: 10 auto;
-/* float: ${(props) => props.isMine && "left"}; */
-`;
-
-export const Message = styled.div<IProps>`
-	/* position: absolute; */
 	/* /* left: 0; */
+	/* justify-content: center; */
+
+	/* border-radius: 50;
 	min-height: 50;
-	justify-content: center;
 	align-items: center;
-	display: flex;
-	overflow: auto;
-	background: ${(props) => (props.isMine ? "lightblue" : "lightgray")};
-	padding: 10;
-	border-radius: 50;
-	border: 1px red solid;
-	align-self: ${(props) => props.isMine && "flex-end"};
-	/* flex: 1; */
+	display: flex; */
+	/* padding: 10;
+	border: 1px red solid; */
+	/* align-self: ${(props) => props.isMine && "flex-end"}; */
+/* background: ${(props) => (props.isMine ? "lightblue" : "lightgray")}; */
+	background-color: ${(props) => (props.isMine ? "lightblue" : "lightgray")};
+	color: white;
+	padding: 10px 20px;
+	border-radius: 20px;
+	align-self: ${(props) => (props.isMine ? "flex-end" : "flex-start")};
+	border-bottom-right-radius: ${(props) => (props.isMine ? "0px" : "20px")};
+	border-bottom-left-radius: ${(props) => (!props.isMine ? "0px" : "20px")};
+	margin-bottom: 10px;
+	word-break:break-all;
 `;
 
-export const Text = styled.p``;
+export const Text = styled.div<IProps>`
+	${(props) =>
+		props.isMine
+			? {
+					background: "lightblue",
+					textAlign: "right",
+			  }
+			: {
+					background: "lightgray",
+			  }};
+`;

@@ -1,28 +1,20 @@
 import React from "react";
 import {
 	FetchMessagesByUser_FetchMessagesByUser_messages,
-	SubscribeCurrentChatMessage_SubscribeCurrentChatMessage,
+	GetUserById_GetUserById_user,
 } from "../../types/api";
 import Profile from "../Profile";
 import * as S from "./MessageStyle";
 
 interface IProps {
-	receiverId: string;
+	receiver: GetUserById_GetUserById_user;
 	message: FetchMessagesByUser_FetchMessagesByUser_messages;
 }
 
-const MessagePresenter: React.FC<IProps> = ({ message, receiverId }) => {
-	const isMine = receiverId === message.receiver.id;
+const MessagePresenter: React.FC<IProps> = ({ message, receiver }) => {
+	const isMine = receiver.id === message.receiver.id;
 
-	return (
-		<S.Container isMine={isMine}>
-			{!isMine && <Profile {...message.sender} onlyPhoto={true} />}
-			<S.Message isMine={isMine}>
-				<S.Text>{message.content}</S.Text>
-			</S.Message>
-			{isMine && <Profile {...message.sender} onlyPhoto={true} />}
-		</S.Container>
-	);
+	return <S.Container isMine={isMine}>{message.content}</S.Container>;
 };
 
 export default MessagePresenter;

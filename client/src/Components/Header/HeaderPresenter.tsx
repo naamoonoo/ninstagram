@@ -1,11 +1,14 @@
+import { useQuery } from "@apollo/react-hooks";
 import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { ReactComponent as Back } from "../../assets/icons/backArrow.svg";
 import { ReactComponent as Login } from "../../assets/icons/login.svg";
 import { ReactComponent as Search } from "../../assets/icons/search.svg";
-import { ReactComponent as User } from "../../assets/icons/user.svg";
 import { Routes } from "../../Routes/routes";
+import { GET_CURRENT_USER } from "../../SharedQueries";
+import { GetCurrentUser } from "../../types/api";
 import { forceHistory } from "../../utils/history";
+import Profile from "../Profile";
 import * as S from "./HeaderStyle";
 
 interface IProps extends RouteComponentProps {
@@ -15,6 +18,10 @@ interface IProps extends RouteComponentProps {
 const HeaderPresenter: React.FC<IProps> = ({ history, match, isLoggedIn }) => {
 	const isHome = match.url === Routes.HOME;
 	const path = isLoggedIn ? Routes.USER_PAGE : Routes.LOGIN;
+
+	const { data: { GetCurrentUser: { user = null } = {} } = {} } = useQuery<
+		GetCurrentUser
+	>(GET_CURRENT_USER, {});
 	return (
 		<S.Container>
 			{isHome ? (
@@ -30,7 +37,11 @@ const HeaderPresenter: React.FC<IProps> = ({ history, match, isLoggedIn }) => {
 				ninstagram
 			</S.Title>
 			<S.Menu onClick={() => forceHistory.push(path)}>
-				{isLoggedIn ? <User /> : <Login />}
+				{isLoggedIn && user ? (
+					<Profile {...user} onlyPhoto={true} />
+				) : (
+					<Login />
+				)}
 			</S.Menu>
 		</S.Container>
 	);

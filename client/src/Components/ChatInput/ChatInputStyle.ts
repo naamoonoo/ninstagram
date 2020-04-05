@@ -22,17 +22,32 @@ export const Input = styled.input`
 	height: 100%;
 	font-size: 16px;
 	padding-left: 20px;
-	/* position: fixed;
-	bottom: 0;
-	margin: auto; */
 `;
+
 export const Button = styled.button`
 	right: 0;
 	height: 100%;
 	position: absolute;
 	fill: gray;
+	cursor: pointer;
 
 	:hover {
 		fill: black;
+	}
+`;
+
+export const Emojis = styled.div`
+	right: 0;
+	height: 100%;
+	position: absolute;
+	align-items: center;
+	display: flex;
+`;
+
+export const Emoji = styled.button`
+	cursor: pointer;
+
+	:hover {
+		font-size: 1.5em;
 	}
 `;

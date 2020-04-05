@@ -5,11 +5,13 @@ import { toast } from "react-toastify";
 import {
 	FetchMessagesByUser,
 	FetchMessagesByUserVariables,
-	FetchMessagesByUser_FetchMessagesByUser_messages,
+	GetUserById,
+	GetUserByIdVariables,
 	SubscribeCurrentChatMessage,
 	SubscribeCurrentChatMessageVariables,
 } from "../../types/api";
 import { Routes } from "../routes";
+import { GET_USER_BY_ID } from "../UserPage/UserPageQueries";
 import ChatPresenter from "./ChatPresenter";
 import { GET_MESSAGES, SUBSCRIBE_CURRENT_MESSAGES } from "./ChatQueries";
 
@@ -25,6 +27,14 @@ const ChatContainer: React.FC<IProps> = ({
 		history.push(Routes.FEED);
 	}
 
+	const [chatId, setChatId] = useState<string | null>(null);
+
+	const {
+		data: { GetUserById: { user: receiver = null } = {} } = {},
+	} = useQuery<GetUserById, GetUserByIdVariables>(GET_USER_BY_ID, {
+		variables: { userId: receiverId },
+	});
+
 	const {
 		data: { FetchMessagesByUser: { messages = [] } = {} } = {},
 		refetch,
@@ -32,7 +42,10 @@ const ChatContainer: React.FC<IProps> = ({
 		GET_MESSAGES,
 		{
 			variables: { receiverId },
-			onCompleted: ({ FetchMessagesByUser: { error } }) => {
+			onCompleted: ({ FetchMessagesByUser: { error, messages } }) => {
+				if (messages && messages[0]) {
+					setChatId(messages[0].chatId);
+				}
 				if (error) toast.error(error);
 			},
 		}
@@ -48,11 +61,13 @@ const ChatContainer: React.FC<IProps> = ({
 		},
 	});
 
-	const chatId =
-		messages && messages[0] && messages[0].chatId
-			? messages[0].chatId
-			: undefined;
-	return <ChatPresenter receiverId={receiverId} messages={messages} />;
+	return (
+		<ChatPresenter
+			receiver={receiver}
+			messages={messages}
+			chatId={chatId}
+		/>
+	);
 };
 
 export default ChatContainer;

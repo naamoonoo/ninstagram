@@ -696,6 +696,7 @@ export interface GetUserById_GetUserById_user_feeds {
 
 export interface GetUserById_GetUserById_user {
   __typename: "User";
+  id: string;
   firstName: string;
   profilePhoto: string;
   feeds: (GetUserById_GetUserById_user_feeds | null)[] | null;

@@ -6,6 +6,7 @@ export const GET_USER_BY_ID = gql`
 			res
 			error
 			user {
+				id
 				firstName
 				profilePhoto
 				feeds {

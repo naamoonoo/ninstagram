@@ -16,7 +16,7 @@ const resolvers: Resolvers = {
 				{ req }
 			): Promise<FetchMessagesByUserResponse> => {
 				const sender: User = req.user;
-				const { receiverId, isInChat } = args;
+				const { receiverId } = args;
 				try {
 					const messages = await Message.find({
 						where: [

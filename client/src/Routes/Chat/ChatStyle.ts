@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
 	display: block;
 	max-width: 650px;
-	min-height: 500px;
+	height: 100%;
 	justify-content: center;
 	align-items: center;
 	margin: auto;

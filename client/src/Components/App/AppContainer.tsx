@@ -17,7 +17,12 @@ const AppContainer: React.FC = () => {
 			<ThemeProvider theme={theme}>
 				<AppPresenter isLoggedIn={isLoggedIn} />
 			</ThemeProvider>
-			<ToastContainer draggable={true} position={"bottom-center"} />
+			<ToastContainer
+				draggable={true}
+				position={"bottom-center"}
+				newestOnTop={true}
+				pauseOnFocusLoss={false}
+			/>
 		</React.Fragment>
 	);
 };

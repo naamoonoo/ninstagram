@@ -86,6 +86,8 @@ const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 							: content;
 					toast.success(`${sender.firstName} : ${message}`, {
 						position: "top-right",
+						pauseOnHover: true,
+						closeButton: true,
 						onClick: () =>
 							history.push(Routes.CHAT, {
 								receiverId: sender.id,

@@ -24,12 +24,12 @@ export const Container = styled.button<IProps>`
 		#285aeb 90%
 	);
 	fill: black;
-	opacity: ${props => (props.hovered ? 1 : 0.1)};
+	opacity: ${(props) => (props.hovered ? 1 : 0.25)};
 
 	/* shadow */
-	-moz-box-shadow: 5px 5px 5px 1px #ccc;
-	-webkit-box-shadow: 5px 5px 5px 1px #ccc;
-	box-shadow: 5px 5px 5px 1px #ccc;
+	-moz-box-shadow: 3px 3px 3px 1px #ccc;
+	-webkit-box-shadow: 3px 3px 3px 1px #ccc;
+	box-shadow: 3px 3px 3px 1px #ccc;
 
 	/* transition change the background */
 	-webkit-transition: all 0.5s ease-out;

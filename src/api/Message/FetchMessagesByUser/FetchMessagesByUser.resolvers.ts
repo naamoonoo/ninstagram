@@ -18,6 +18,11 @@ const resolvers: Resolvers = {
 				const sender: User = req.user;
 				const { receiverId } = args;
 				try {
+					// if it has a chatId -> search By chat Id
+
+					// if not, which means new Chat -> return []
+
+					// if it has only one chat
 					const messages = await Message.find({
 						where: [
 							{

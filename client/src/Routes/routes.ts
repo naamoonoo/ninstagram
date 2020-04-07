@@ -14,5 +14,6 @@ export const Routes = {
 	CHANGE_PASSWORD: "/chagne-password",
 	FORGET_PASSWORD: "/forget-password",
 	SEARCH: "/search",
-	SEARCH_TAG: "/search/:tag"
+	SEARCH_TAG: "/search/:tag",
+	CHAT: "/chat"
 };

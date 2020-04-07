@@ -47,7 +47,7 @@ export const Infos = styled.div`
 export const Info = styled.span`
 	color: grey;
 	position: relative;
-	left: 45px;
+	left: 15px;
 	font-weight: lighter;
 	font-size: 14px;
 `;
@@ -70,6 +70,7 @@ interface MessageProps {
 export const Message = styled.div<MessageProps>`
 	position: relative;
 	left: 30px;
+	margin-right: 45px;
 	fill: ${props => props.commentShow && "grey"};
 	transform: scaleX(-1);
 	cursor: pointer;

@@ -6,14 +6,18 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	// JoinTable,
+	// ManyToMany,
 	OneToMany,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
 import { BCRYPT_ROUNDS } from "../types/constants";
+// import { Chat } from "./Chat";
 import { Comment } from "./Comment";
 import { Feed } from "./Feed";
 import { Like } from "./Like";
+import { Message } from "./Message";
 
 @Entity()
 export class User extends BaseEntity {
@@ -50,6 +54,8 @@ export class User extends BaseEntity {
 
 	@Column({ default: false }) isPhoneVerified: boolean;
 
+	@Column({ default: false }) isActive: boolean;
+
 	@OneToMany(
 		type => Feed,
 		feed => feed.user
@@ -67,6 +73,25 @@ export class User extends BaseEntity {
 		comment => comment.user
 	)
 	comments: Comment[];
+
+	// @ManyToMany(
+	// 	type => Chat,
+	// 	chat => chat.users
+	// )
+	// @JoinTable()
+	// chats: Chat[];
+
+	@OneToMany(
+		type => Message,
+		message => message.sender
+	)
+	sentMessages: Message[];
+
+	@OneToMany(
+		type => Message,
+		message => message.receiver
+	)
+	receivedMessages: Message[];
 
 	@CreateDateColumn() createAt: string;
 

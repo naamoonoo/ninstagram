@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { isMobile } from "react-device-detect";
+import { ReactComponent as Chat } from "../../assets/icons/chat.svg";
 import { ReactComponent as CommentEmpty } from "../../assets/icons/comment-empty.svg";
 import { ReactComponent as CommentFull } from "../../assets/icons/comment-full.svg";
 import { ReactComponent as LikeEmpty } from "../../assets/icons/like-empty.svg";
@@ -7,7 +8,7 @@ import { ReactComponent as LikeFull } from "../../assets/icons/like-full.svg";
 import { ReactComponent as EditMenu } from "../../assets/icons/menu-dot.svg";
 import { Routes } from "../../Routes/routes";
 import { getTimeDiff } from "../../utils/getTimeDiff";
-import { forceHistory } from "../../utils/history";
+import { forceHistory, history } from "../../utils/history";
 import Comments from "../Comments";
 import Profile from "../Profile";
 import * as S from "./FeedStyle";
@@ -99,6 +100,15 @@ const FeedPresenter: React.FC<IProps> = ({
 					>
 						{commentShow ? <CommentFull /> : <CommentEmpty />}
 					</S.Message>
+					{!isCurrentUser && (
+						<Chat
+							onClick={() =>
+								forceHistory.push(Routes.CHAT, {
+									receiverId: user.id
+								})
+							}
+						/>
+					)}
 					{likes && <S.Info>{likes.length} likes</S.Info>}
 					{((isHovered && isCurrentUser) ||
 						(isMobile && isCurrentUser)) && (

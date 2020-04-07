@@ -1,0 +1,12 @@
+type FetchMessagesByUserResponse {
+	res: Boolean!
+	error: String
+	messages: [Message]
+}
+
+type Query {
+	FetchMessagesByUser(
+		receiverId: String!
+		chatId: String
+	): FetchMessagesByUserResponse!
+}

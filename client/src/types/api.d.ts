@@ -3,6 +3,30 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateMessage
+// ====================================================
+
+export interface CreateMessage_CreateMessage {
+  __typename: "CreateMessageResponse";
+  res: boolean;
+  error: string | null;
+}
+
+export interface CreateMessage {
+  CreateMessage: CreateMessage_CreateMessage;
+}
+
+export interface CreateMessageVariables {
+  receiverId: string;
+  content: string;
+  chatId?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: CreateComment
 // ====================================================
 
@@ -101,6 +125,74 @@ export interface ChangePassword {
 export interface ChangePasswordVariables {
   password?: string | null;
   newPassword?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: FetchMessagesByUser
+// ====================================================
+
+export interface FetchMessagesByUser_FetchMessagesByUser_messages_sender {
+  __typename: "User";
+  id: string;
+  firstName: string;
+  profilePhoto: string;
+}
+
+export interface FetchMessagesByUser_FetchMessagesByUser_messages_receiver {
+  __typename: "User";
+  id: string;
+  firstName: string;
+  profilePhoto: string;
+}
+
+export interface FetchMessagesByUser_FetchMessagesByUser_messages {
+  __typename: "Message";
+  id: string;
+  sender: FetchMessagesByUser_FetchMessagesByUser_messages_sender;
+  receiver: FetchMessagesByUser_FetchMessagesByUser_messages_receiver;
+  chatId: string | null;
+  content: string;
+  checked: boolean | null;
+}
+
+export interface FetchMessagesByUser_FetchMessagesByUser {
+  __typename: "FetchMessagesByUserResponse";
+  res: boolean;
+  error: string | null;
+  messages: (FetchMessagesByUser_FetchMessagesByUser_messages | null)[] | null;
+}
+
+export interface FetchMessagesByUser {
+  FetchMessagesByUser: FetchMessagesByUser_FetchMessagesByUser;
+}
+
+export interface FetchMessagesByUserVariables {
+  receiverId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL subscription operation: SubscribeCurrentChatMessage
+// ====================================================
+
+export interface SubscribeCurrentChatMessage_SubscribeCurrentChatMessage {
+  __typename: "Message";
+  chatId: string | null;
+}
+
+export interface SubscribeCurrentChatMessage {
+  SubscribeCurrentChatMessage: SubscribeCurrentChatMessage_SubscribeCurrentChatMessage | null;
+}
+
+export interface SubscribeCurrentChatMessageVariables {
+  otherId: string;
 }
 
 /* tslint:disable */
@@ -313,6 +405,42 @@ export interface SubscribeFeed_SubscribeFeed {
 
 export interface SubscribeFeed {
   SubscribeFeed: SubscribeFeed_SubscribeFeed | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL subscription operation: SubscribeMessage
+// ====================================================
+
+export interface SubscribeMessage_SubscribeMessage_sender {
+  __typename: "User";
+  id: string;
+  firstName: string;
+  profilePhoto: string;
+}
+
+export interface SubscribeMessage_SubscribeMessage_receiver {
+  __typename: "User";
+  id: string;
+  firstName: string;
+  profilePhoto: string;
+}
+
+export interface SubscribeMessage_SubscribeMessage {
+  __typename: "Message";
+  id: string;
+  sender: SubscribeMessage_SubscribeMessage_sender;
+  receiver: SubscribeMessage_SubscribeMessage_receiver;
+  chatId: string | null;
+  content: string;
+  checked: boolean | null;
+}
+
+export interface SubscribeMessage {
+  SubscribeMessage: SubscribeMessage_SubscribeMessage | null;
 }
 
 /* tslint:disable */
@@ -568,6 +696,7 @@ export interface GetUserById_GetUserById_user_feeds {
 
 export interface GetUserById_GetUserById_user {
   __typename: "User";
+  id: string;
   firstName: string;
   profilePhoto: string;
   feeds: (GetUserById_GetUserById_user_feeds | null)[] | null;

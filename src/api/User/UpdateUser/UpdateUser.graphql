@@ -12,5 +12,6 @@ type Mutation {
 		password: String
 		newPassword: String
 		profilePhoto: String
+		active: Boolean
 	): UpdateUserResponse!
 }

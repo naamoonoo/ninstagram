@@ -1,14 +1,16 @@
 import { ConnectionOptions } from "typeorm";
+import { Chat } from "./entities/Chat";
 import { Comment } from "./entities/Comment";
 import { Feed } from "./entities/Feed";
 import { Hashtag } from "./entities/Hashtag";
 import { Like } from "./entities/Like";
+import { Message } from "./entities/Message";
 import { User } from "./entities/User";
 import { Verification } from "./entities/Verification";
 
 const connectionOptions: ConnectionOptions = {
 	type: "postgres",
-	entities: [Comment, Feed, Like, User, Verification, Hashtag],
+	entities: [Comment, Feed, Like, User, Verification, Hashtag, Chat, Message],
 	port: 5432,
 	host: process.env.DB_HOST,
 	database:

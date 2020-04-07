@@ -10,7 +10,9 @@ import {
 	DeleteLikeVariables,
 	GetCurrentUser,
 	GetFeeds,
-	GetFeedsVariables
+	GetFeedsVariables,
+	SubscribeFeed,
+	SubscribeMessage,
 } from "../../types/api";
 import { Routes } from "../routes";
 import FeedsPresenter from "./FeedsPresenter";
@@ -18,7 +20,8 @@ import {
 	GET_FEEDS,
 	LIKE_CREATE,
 	LIKE_DELETE,
-	SUBSCRIBE_FEED
+	SUBSCRIBE_FEED,
+	SUBSCRIBE_MESSAGE,
 } from "./FeedsQueries";
 
 interface IProps extends RouteComponentProps {}
@@ -29,14 +32,14 @@ const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 	const { data: userData, refetch: userRefetch } = useQuery<GetCurrentUser>(
 		GET_CURRENT_USER
 	);
-	const { data, refetch, refetch: feedRefetch } = useQuery<
+	const { data, refetch: feedRefetch } = useQuery<
 		GetFeeds,
 		GetFeedsVariables
 	>(GET_FEEDS, {
 		fetchPolicy: "cache-and-network",
 		variables: {
-			page
-		}
+			page,
+		},
 	});
 
 	const [onLike] = useMutation<CreateLike, CreateLikeVariables>(LIKE_CREATE, {
@@ -47,8 +50,9 @@ const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 			} else {
 				toast.error(error);
 			}
-		}
+		},
 	});
+
 	const [onDisLike] = useMutation<DeleteLike, DeleteLikeVariables>(
 		LIKE_DELETE,
 		{
@@ -59,21 +63,47 @@ const FeedsContainer: React.FC<IProps> = ({ history, match }) => {
 				} else {
 					toast.error(error);
 				}
-			}
+			},
 		}
 	);
 
-	useSubscription(SUBSCRIBE_FEED, {
+	useSubscription<SubscribeFeed>(SUBSCRIBE_FEED, {
 		onSubscriptionData: () => {
 			setNewFeed(true);
 			feedRefetch();
-		}
+		},
+	});
+
+	useSubscription<SubscribeMessage>(SUBSCRIBE_MESSAGE, {
+		onSubscriptionData: ({ subscriptionData: { data, error } }) => {
+			if (data && data.SubscribeMessage) {
+				const { sender, content, checked } = data.SubscribeMessage;
+				if (!checked) {
+					const message =
+						content.length + sender.firstName.length > 30
+							? content.slice(0, 30 - sender.firstName.length) +
+							  "..."
+							: content;
+					toast.success(`${sender.firstName} : ${message}`, {
+						position: "top-right",
+						pauseOnHover: true,
+						closeButton: true,
+						onClick: () =>
+							history.push(Routes.CHAT, {
+								receiverId: sender.id,
+							}),
+					});
+				}
+			} else if (error) {
+				toast.error(error);
+			}
+		},
 	});
 
 	const onReachToEnd = () => {
 		if (match.path === Routes.HOME) {
 			setPage(page + 1);
-			refetch();
+			feedRefetch();
 		}
 	};
 

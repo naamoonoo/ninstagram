@@ -1,3 +1,10 @@
+type Chat {
+  id: String!
+  messages: [Message]
+  createAt: String!
+  updateAt: String!
+}
+
 type CreateCommentResponse {
   res: Boolean!
   error: String
@@ -12,11 +19,12 @@ type Mutation {
   UpdateFeed(feedId: String!, text: String): UpdateFeedResponse!
   CreateLike(feedId: String!): CreateLikeResponse!
   DeleteLike(feedId: String!): DeleteLikeResponse!
+  CreateMessage(receiverId: String!, content: String!, chatId: String): CreateMessageResponse!
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
   EmailSignUp(firstName: String!, password: String!, email: String!): EmailSignUpResponse!
   ResetPassword(email: String, phone: String, password: String!): ResetPasswordResponse!
   SocialLogin(googleId: String!, firstName: String!, lastName: String!, profilePhoto: String!, email: String!): SocialLoginResponse!
-  UpdateUser(phone: String, isEmailVerified: Boolean, isPhoneVerified: Boolean, email: String, password: String, newPassword: String, profilePhoto: String): UpdateUserResponse!
+  UpdateUser(phone: String, isEmailVerified: Boolean, isPhoneVerified: Boolean, email: String, password: String, newPassword: String, profilePhoto: String, active: Boolean): UpdateUserResponse!
   RequestVerification(type: String!, payload: String!): RequestVerificationResponse!
   ValidateVerification(payload: String!, key: String!): ValidateVerificationResponse!
 }
@@ -40,6 +48,8 @@ type Query {
   GetFeedsByUser(userId: String!): GetFeedsByUserResponse!
   FindHashtagsByTag(search: String!): FindHashtagsByTagResponse!
   GetTaggedFeeds(tag: String!): GetTaggedFeedsResponse!
+  GetLikers(feedId: String!): GetLikersResponse!
+  FetchMessagesByUser(receiverId: String!, chatId: String): FetchMessagesByUserResponse!
   FindUserByUsername(search: String!): FindUserByUsernameResponse!
   GetCurrentUser: GetCurrentUserResponse!
   GetUserById(userId: String!): GetUserByIdResponse!
@@ -110,6 +120,8 @@ type Feed {
 
 type Subscription {
   SubscribeFeed: Feed
+  SubscribeCurrentChatMessage(otherId: String!): Message
+  SubscribeMessage: Message
 }
 
 type UpdateFeedResponse {
@@ -133,6 +145,8 @@ type Hashtag {
   id: String!
   tag: String!
   feeds: [Feed]
+  createAt: String!
+  updateAt: String!
 }
 
 type CreateLikeResponse {
@@ -145,6 +159,12 @@ type DeleteLikeResponse {
   error: String
 }
 
+type GetLikersResponse {
+  res: Boolean!
+  error: String
+  likes: [Like]
+}
+
 type Like {
   id: String!
   user: User!
@@ -153,6 +173,31 @@ type Like {
   userId: String
   createAt: String
   updateAt: String
+}
+
+type CreateMessageResponse {
+  res: Boolean!
+  error: String
+}
+
+type FetchMessagesByUserResponse {
+  res: Boolean!
+  error: String
+  messages: [Message]
+}
+
+type Message {
+  id: String!
+  content: String!
+  chat: Chat!
+  chatId: String
+  sender: User!
+  senderId: String
+  receiver: User!
+  receiverId: String
+  checked: Boolean
+  createAt: String!
+  updateAt: String!
 }
 
 type EmailSignInResponse {
@@ -203,9 +248,12 @@ type User {
   isEmailVerified: Boolean
   phone: String
   isPhoneVerified: Boolean
+  isActive: Boolean
   feeds: [Feed]
   likes: [Like]
   comments: [Comment]
+  sentMessages: [Message]
+  receivedMessages: [Message]
   createAt: String!
   updateAt: String!
 }

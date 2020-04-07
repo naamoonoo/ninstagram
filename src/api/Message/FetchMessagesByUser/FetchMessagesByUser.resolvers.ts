@@ -15,27 +15,37 @@ const resolvers: Resolvers = {
 				args: FetchMessagesByUserQueryArgs,
 				{ req }
 			): Promise<FetchMessagesByUserResponse> => {
-				const sender: User = req.user;
-				const { receiverId } = args;
+				const currentUser: User = req.user;
+				const { receiverId, chatId: chatIdArgs } = args;
 				try {
-					// if it has a chatId -> search By chat Id
+					let chatId;
 
-					// if not, which means new Chat -> return []
+					if (!chatIdArgs) {
+						const sentMessage = await Message.findOne({
+							receiverId,
+							senderId: currentUser.id,
+						});
+						const receivedMessage = await Message.findOne({
+							senderId: receiverId,
+							receiverId: currentUser.id,
+						});
+						if (sentMessage) {
+							chatId = sentMessage.chatId;
+						} else if (receivedMessage) {
+							chatId = receivedMessage.chatId;
+						} else {
+							return {
+								res: true,
+								error: null,
+								messages: [],
+							};
+						}
+					} else {
+						chatId = chatIdArgs;
+					}
 
-					// if it has only one chat
 					const messages = await Message.find({
-						where: [
-							{
-								// which current user sent
-								sender,
-								receiverId,
-							},
-							{
-								// which current user received
-								serderId: receiverId,
-								receiver: sender,
-							},
-						],
+						where: { chatId },
 						relations: ["chat", "sender", "receiver"],
 						order: { createAt: "ASC" },
 					});

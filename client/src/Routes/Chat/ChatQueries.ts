@@ -28,7 +28,7 @@ export const GET_MESSAGES = gql`
 export const SUBSCRIBE_CURRENT_MESSAGES = gql`
 	subscription SubscribeCurrentChatMessage($otherId: String!) {
 		SubscribeCurrentChatMessage(otherId: $otherId) {
-			id
+			chatId
 		}
 	}
 `;

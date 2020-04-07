@@ -184,7 +184,7 @@ export interface FetchMessagesByUserVariables {
 
 export interface SubscribeCurrentChatMessage_SubscribeCurrentChatMessage {
   __typename: "Message";
-  id: string;
+  chatId: string | null;
 }
 
 export interface SubscribeCurrentChatMessage {

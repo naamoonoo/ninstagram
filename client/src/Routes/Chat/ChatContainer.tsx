@@ -56,7 +56,17 @@ const ChatContainer: React.FC<IProps> = ({
 		SubscribeCurrentChatMessageVariables
 	>(SUBSCRIBE_CURRENT_MESSAGES, {
 		variables: { otherId: receiverId },
-		onSubscriptionData: () => {
+		onSubscriptionData: ({
+			subscriptionData: {
+				data: { SubscribeCurrentChatMessage = null } = {},
+			} = {},
+		}) => {
+			if (
+				SubscribeCurrentChatMessage &&
+				SubscribeCurrentChatMessage.chatId
+			) {
+				setChatId(SubscribeCurrentChatMessage.chatId);
+			}
 			refetch();
 		},
 	});

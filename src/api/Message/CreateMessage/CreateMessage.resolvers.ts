@@ -3,7 +3,7 @@ import { Message } from "../../../entities/Message";
 import { User } from "../../../entities/User";
 import {
 	CreateMessageMutationArgs,
-	CreateMessageResponse
+	CreateMessageResponse,
 } from "../../../types/graph";
 import { Resolvers } from "../../../types/resolvers";
 import { NEW_MESSAGE } from "../../../types/subscriptions";
@@ -29,7 +29,7 @@ const resolvers: Resolvers = {
 							res: false,
 							error: chatId
 								? "NONE EXISTED CHAT"
-								: "FAIL TO CREATE NEW CHAT"
+								: "FAIL TO CREATE NEW CHAT",
 						};
 					}
 
@@ -37,7 +37,7 @@ const resolvers: Resolvers = {
 					if (!receiver) {
 						return {
 							res: false,
-							error: "NONE EXISTED USER"
+							error: "NONE EXISTED USER",
 						};
 					}
 
@@ -45,29 +45,29 @@ const resolvers: Resolvers = {
 						sender: user,
 						chat,
 						content,
-						receiver
+						receiver,
 					}).save();
 
 					pubsub.publish(NEW_MESSAGE, { ...message });
-					if (!chat.messages) {
-						chat.messages = [message];
-					} else {
-						chat.messages.push(message);
-					}
-					chat.save();
+					// if (!chat.messages) {
+					// 	chat.messages = [message];
+					// } else {
+					// 	chat.messages.push(message);
+					// }
+					// chat.save();
 					return {
 						res: true,
-						error: null
+						error: null,
 					};
 				} catch (error) {
 					return {
 						res: false,
-						error: error.message
+						error: error.message,
 					};
 				}
 			}
-		)
-	}
+		),
+	},
 };
 
 export default resolvers;

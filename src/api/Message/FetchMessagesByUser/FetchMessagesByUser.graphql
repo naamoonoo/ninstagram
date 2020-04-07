@@ -5,5 +5,8 @@ type FetchMessagesByUserResponse {
 }
 
 type Query {
-	FetchMessagesByUser(receiverId: String!): FetchMessagesByUserResponse!
+	FetchMessagesByUser(
+		receiverId: String!
+		chatId: String
+	): FetchMessagesByUserResponse!
 }

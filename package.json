@@ -68,7 +68,7 @@
     "styled-reset": "^4.1.2",
     "subscriptions-transport-ws": "^0.9.16",
     "twilio": "^3.39.3",
-    "typeorm": "^0.2.22"
+    "typeorm": "^0.2.25"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
